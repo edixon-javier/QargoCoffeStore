@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp, Grid, List } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp, Grid, List, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
 import ProductCard from '../components/products/ProductCard';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+import ProductCardSkeleton from '../components/ui/ProductCardSkeleton';
 import { useLocation } from 'react-router-dom';
 
 // Mock data
@@ -13,6 +15,9 @@ const CatalogPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortOption, setSortOption] = useState<string>('relevancia');
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(12);
   
   // Estados específicos para cada tipo de filtro
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -42,6 +47,29 @@ const CatalogPage: React.FC = () => {
       }
     }
   }, [categoryParam]);
+  
+  // Simular tiempo de carga para demostración
+  // Usamos useCallback para evitar regenerar la función en cada renderizado
+  const applyFilters = useCallback(() => {
+    setIsLoading(true);
+    
+    // Simular carga de datos con un pequeño retraso
+    // En una implementación real, aquí iría la llamada a la API
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  // Cuando cambian los filtros o la paginación, aplicamos los filtros con un debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      applyFilters();
+    }, 200); // Pequeño debounce para no disparar demasiadas actualizaciones
+    
+    return () => clearTimeout(timer);
+  }, [selectedCategories, selectedSuppliers, priceRange, sortOption, currentPage, applyFilters]);
   
   // Filtrado y ordenamiento de productos
   const filteredProducts = useMemo(() => {
@@ -157,6 +185,52 @@ const CatalogPage: React.FC = () => {
     setPriceRange({min: null, max: null});
     setMinPrice('');
     setMaxPrice('');
+    setCurrentPage(1); // Resetear a la primera página al limpiar filtros
+  };
+
+  // Funciones de paginación
+  const getCurrentPageProducts = () => {
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    return filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  };
+
+  const goToNextPage = () => {
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll al inicio para mejor experiencia de usuario
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Devuelve un rango de páginas para la paginación
+  const getPaginationRange = () => {
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    
+    // Si hay menos de 6 páginas, mostrar todas
+    if (totalPages <= 5) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    
+    // Si estamos en las primeras 3 páginas
+    if (currentPage <= 3) {
+      return [1, 2, 3, 4, 5];
+    }
+    
+    // Si estamos en las últimas 3 páginas
+    if (currentPage >= totalPages - 2) {
+      return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    }
+    
+    // En cualquier otro caso, mostrar la página actual y 2 en cada dirección
+    return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
   };
 
   return (
@@ -519,11 +593,22 @@ const CatalogPage: React.FC = () => {
               </motion.div>
             </motion.div>
           )}
-        </AnimatePresence>
-
-        {/* Products grid */}
+        </AnimatePresence>          {/* Products grid */}
         <div className="flex-grow">
-          {filteredProducts.length === 0 ? (
+          {isLoading ? (
+            // Mostrar esqueleto durante la carga
+            <div className={viewMode === 'grid' 
+              ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" 
+              : "space-y-4"
+            }>
+              {Array.from({ length: productsPerPage }).map((_, index) => (
+                <ProductCardSkeleton 
+                  key={index} 
+                  layout={viewMode}
+                />
+              ))}
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-lg text-secondary-600 mb-4">No se encontraron productos.</p>
               <Button
@@ -538,7 +623,7 @@ const CatalogPage: React.FC = () => {
               ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" 
               : "space-y-4"
             }>
-              {filteredProducts.map(product => (
+              {getCurrentPageProducts().map(product => (
                 <ProductCard 
                   key={product.id} 
                   product={product} 
@@ -549,26 +634,43 @@ const CatalogPage: React.FC = () => {
           )}
 
           {/* Pagination */}
-          <div className="mt-8 flex justify-center">
-            <nav className="flex items-center gap-1">
-              <Button variant="outline" size="sm" className="px-3">
-                &laquo;
-              </Button>
-              {[1, 2, 3, 4, 5].map(page => (
+          {!isLoading && filteredProducts.length > 0 && (
+            <div className="mt-8 flex justify-center">
+              <nav className="flex items-center gap-1">
                 <Button 
-                  key={page} 
-                  variant={page === 1 ? 'primary' : 'outline'} 
+                  variant="outline" 
                   size="sm" 
                   className="px-3"
+                  onClick={goToPreviousPage}
+                  disabled={currentPage === 1}
                 >
-                  {page}
+                  <ChevronLeft size={16} />
                 </Button>
-              ))}
-              <Button variant="outline" size="sm" className="px-3">
-                &raquo;
-              </Button>
-            </nav>
-          </div>
+                
+                {getPaginationRange().map(page => (
+                  <Button 
+                    key={page} 
+                    variant={page === currentPage ? 'primary' : 'outline'} 
+                    size="sm" 
+                    className="px-3"
+                    onClick={() => setCurrentPage(page)}
+                  >
+                    {page}
+                  </Button>
+                ))}
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="px-3"
+                  onClick={goToNextPage}
+                  disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage)}
+                >
+                  <ChevronRight size={16} />
+                </Button>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </div>

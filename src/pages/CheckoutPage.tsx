@@ -425,7 +425,7 @@ const CheckoutPage: React.FC = () => {
                     variant="primary"
                     onClick={() => navigate('/')}
                   >
-                    Volver al inicio
+                    Explorar catálogo
                   </Button>
                 </div>
               </div>

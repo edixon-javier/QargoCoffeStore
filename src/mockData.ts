@@ -1,52 +1,9 @@
-import { Product, Category, Supplier } from './lib/types';
+import { Product } from './lib/types';
+import { categories, suppliers } from './catalogData';
+import createAdditionalProducts from './additionalMockProducts';
 
-// Mock Categories
-export const categories: Category[] = [
-  {
-    id: '1',
-    name: 'Café en grano',
-    slug: 'cafe-grano',
-    description: 'Granos de café de la más alta calidad',
-    image: 'https://images.pexels.com/photos/685527/pexels-photo-685527.jpeg',
-  },
-  {
-    id: '2',
-    name: 'Máquinas profesionales',
-    slug: 'maquinas',
-    description: 'Equipos profesionales para preparación de café',
-    image: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg',
-  },
-  {
-    id: '3',
-    name: 'Accesorios',
-    slug: 'accesorios',
-    description: 'Accesorios para mejorar tu experiencia cafetera',
-    image: 'https://images.pexels.com/photos/2879812/pexels-photo-2879812.jpeg',
-  },
-];
-
-// Mock Suppliers
-export const suppliers: Supplier[] = [
-  {
-    id: '1',
-    name: 'Café Italiano S.A.',
-    description: 'Importador directo de café italiano de alta calidad',
-    contactEmail: 'contacto@cafeitaliano.com',
-    contactPhone: '+52 55 1234 5678',
-    minOrderValue: 5000,
-    deliveryTime: '3-5 días',
-  },
-  {
-    id: '2',
-    name: 'ImportCoffee',
-    logo: 'https://images.pexels.com/photos/1337386/pexels-photo-1337386.jpeg',
-    description: 'Especialistas en máquinas para café',
-    contactEmail: 'ventas@importcoffee.com',
-    contactPhone: '+52 55 8765 4321',
-    minOrderValue: 10000,
-    deliveryTime: '5-7 días',
-  },
-];
+// Re-exportamos las categorías y proveedores para mantener compatibilidad con el código existente
+export { categories, suppliers };
 
 // Mock Products
 export const mockProducts: Product[] = [
@@ -259,4 +216,6 @@ export const mockProducts: Product[] = [
     createdAt: '2023-06-25T12:40:00Z',
     updatedAt: '2023-08-30T11:15:00Z',
   },
+  // Añadir los productos adicionales
+  ...createAdditionalProducts(categories, suppliers)
 ];

@@ -256,12 +256,7 @@ const AboutUsPage: React.FC = () => {
           >
             Contactar
           </a>
-          <a 
-            href="/franquicia" 
-            className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-md font-medium transition-colors"
-          >
-            Información de Franquicia
-          </a>
+
         </div>
       </motion.section>
     </div>

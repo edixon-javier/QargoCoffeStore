@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Coffee, Home, Search } from 'lucide-react';
+import { Coffee, Home } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 const NotFoundPage: React.FC = () => {
@@ -13,7 +12,7 @@ const NotFoundPage: React.FC = () => {
       
       <p className="text-secondary-600 max-w-md mb-8">
         Lo sentimos, la página que estás buscando no existe o ha sido movida.
-        Puedes volver a la página de inicio o explorar nuestro catálogo.
+        Puedes volver al catálogo para continuar explorando nuestros productos.
       </p>
       
       <div className="flex flex-wrap gap-4 justify-center">
@@ -22,14 +21,7 @@ const NotFoundPage: React.FC = () => {
           leftIcon={<Home size={18} />}
           onClick={() => window.location.href = '/'}
         >
-          Volver al inicio
-        </Button>
-        <Button
-          variant="outline"
-          leftIcon={<Search size={18} />}
-          onClick={() => window.location.href = '/catalogo'}
-        >
-          Explorar catálogo
+          Ir al catálogo
         </Button>
       </div>
     </div>
