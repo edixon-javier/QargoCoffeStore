@@ -1,7 +1,7 @@
 import { Product, Category, Supplier } from './lib/types';
 
 // Mock Categories
-const categories: Category[] = [
+export const categories: Category[] = [
   {
     id: '1',
     name: 'Café en grano',
@@ -26,7 +26,7 @@ const categories: Category[] = [
 ];
 
 // Mock Suppliers
-const suppliers: Supplier[] = [
+export const suppliers: Supplier[] = [
   {
     id: '1',
     name: 'Café Italiano S.A.',

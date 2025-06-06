@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp, Grid, List } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
@@ -6,12 +6,22 @@ import ProductCard from '../components/products/ProductCard';
 import { useLocation } from 'react-router-dom';
 
 // Mock data
-import { mockProducts } from '../mockData';
+import { mockProducts, categories, suppliers } from '../mockData';
 
 const CatalogPage: React.FC = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortOption, setSortOption] = useState<string>('relevancia');
+  
+  // Estados específicos para cada tipo de filtro
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState<{min: number|null, max: number|null}>({min: null, max: null});
+  
+  const [minPrice, setMinPrice] = useState<string>('');
+  const [maxPrice, setMaxPrice] = useState<string>('');
+  
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
     price: true,
@@ -22,10 +32,60 @@ const CatalogPage: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const categoryParam = queryParams.get('categoria');
   
-  // Filter products based on URL parameters if needed
-  const filteredProducts = categoryParam 
-    ? mockProducts.filter(p => p.category.slug === categoryParam)
-    : mockProducts;
+  // Inicializa categoría desde URL si existe
+  useEffect(() => {
+    if (categoryParam) {
+      const categoryName = categories.find(c => c.slug === categoryParam)?.name;
+      if (categoryName) {
+        setSelectedCategories([categoryName]);
+        setActiveFilters([categoryName]);
+      }
+    }
+  }, [categoryParam]);
+  
+  // Filtrado y ordenamiento de productos
+  const filteredProducts = useMemo(() => {
+    // Primero filtrar los productos
+    const filtered = mockProducts.filter(product => {
+      // Filtrado por categoría
+      if (selectedCategories.length > 0 && !selectedCategories.includes(product.category.name)) {
+        return false;
+      }
+      
+      // Filtrado por proveedor
+      if (selectedSuppliers.length > 0 && !selectedSuppliers.includes(product.supplier.name)) {
+        return false;
+      }
+      
+      // Filtrado por rango de precio
+      if (priceRange.min !== null && product.price < priceRange.min) {
+        return false;
+      }
+      if (priceRange.max !== null && product.price > priceRange.max) {
+        return false;
+      }
+      
+      return true;
+    });
+    
+    // Luego ordenar los productos filtrados
+    return [...filtered].sort((a, b) => {
+      switch (sortOption) {
+        case 'precio-asc':
+          // Precio de menor a mayor
+          return (a.salePrice || a.price) - (b.salePrice || b.price);
+        
+        case 'precio-desc':
+          // Precio de mayor a menor
+          return (b.salePrice || b.price) - (a.salePrice || a.price);
+          
+        case 'relevancia':
+        default:
+          // Por defecto, mantener el orden original
+          return 0;
+      }
+    });
+  }, [selectedCategories, selectedSuppliers, priceRange, sortOption]);
 
   const toggleFilter = () => setFilterOpen(!filterOpen);
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -35,14 +95,68 @@ const CatalogPage: React.FC = () => {
     }));
   };
 
-  const addFilter = (filter: string) => {
-    if (!activeFilters.includes(filter)) {
-      setActiveFilters([...activeFilters, filter]);
+  // Maneja los cambios en el filtro de categorías
+  const handleCategoryChange = (category: string, isChecked: boolean) => {
+    if (isChecked) {
+      setSelectedCategories(prev => [...prev, category]);
+      setActiveFilters(prev => [...prev, category]);
+    } else {
+      setSelectedCategories(prev => prev.filter(c => c !== category));
+      setActiveFilters(prev => prev.filter(f => f !== category));
+    }
+  };
+
+  // Maneja los cambios en el filtro de proveedores
+  const handleSupplierChange = (supplier: string, isChecked: boolean) => {
+    if (isChecked) {
+      setSelectedSuppliers(prev => [...prev, supplier]);
+      setActiveFilters(prev => [...prev, supplier]);
+    } else {
+      setSelectedSuppliers(prev => prev.filter(s => s !== supplier));
+      setActiveFilters(prev => prev.filter(f => f !== supplier));
+    }
+  };
+
+  // Aplica el filtro de rango de precio
+  const applyPriceFilter = () => {
+    const min = minPrice ? parseInt(minPrice) : null;
+    const max = maxPrice ? parseInt(maxPrice) : null;
+    
+    setPriceRange({min, max});
+    
+    // Eliminar filtros previos de precio
+    setActiveFilters(prev => prev.filter(f => !f.includes('Precio:')));
+    
+    // Añadir nuevo filtro de precio si se especificó algún valor
+    if (min !== null || max !== null) {
+      const priceFilterText = `Precio: ${min !== null ? min : '0'}-${max !== null ? max : '∞'}`;
+      setActiveFilters(prev => [...prev, priceFilterText]);
     }
   };
 
   const removeFilter = (filter: string) => {
     setActiveFilters(activeFilters.filter(f => f !== filter));
+    
+    // Determinar qué tipo de filtro es y eliminarlo del estado correspondiente
+    if (selectedCategories.includes(filter)) {
+      setSelectedCategories(prev => prev.filter(c => c !== filter));
+    } else if (selectedSuppliers.includes(filter)) {
+      setSelectedSuppliers(prev => prev.filter(s => s !== filter));
+    } else if (filter.includes('Precio:')) {
+      setPriceRange({min: null, max: null});
+      setMinPrice('');
+      setMaxPrice('');
+    }
+  };
+  
+  // Limpiar todos los filtros
+  const clearAllFilters = () => {
+    setActiveFilters([]);
+    setSelectedCategories([]);
+    setSelectedSuppliers([]);
+    setPriceRange({min: null, max: null});
+    setMinPrice('');
+    setMaxPrice('');
   };
 
   return (
@@ -90,11 +204,14 @@ const CatalogPage: React.FC = () => {
 
         <div className="flex items-center gap-2">
           <span className="text-sm text-secondary-600">Ordenar por:</span>
-          <select className="border border-gray-300 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500">
-            <option>Relevancia</option>
-            <option>Precio: Menor a Mayor</option>
-            <option>Precio: Mayor a Menor</option>
-            <option>Más vendidos</option>
+          <select 
+            className="border border-gray-300 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="relevancia">Relevancia</option>
+            <option value="precio-asc">Precio: Menor a Mayor</option>
+            <option value="precio-desc">Precio: Mayor a Menor</option>
           </select>
         </div>
       </div>
@@ -119,7 +236,7 @@ const CatalogPage: React.FC = () => {
           ))}
           <button 
             className="text-sm text-primary-600 hover:text-primary-800"
-            onClick={() => setActiveFilters([])}
+            onClick={clearAllFilters}
           >
             Limpiar todos
           </button>
@@ -154,15 +271,16 @@ const CatalogPage: React.FC = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <div className="space-y-2 ml-1">
-                      {['Café en grano', 'Café molido', 'Máquinas profesionales', 'Accesorios', 'Insumos'].map((cat) => (
-                        <div key={cat} className="flex items-center">
+                      {categories.map((cat) => (
+                        <div key={cat.id} className="flex items-center">
                           <input 
                             type="checkbox" 
-                            id={`cat-${cat}`} 
+                            id={`cat-${cat.id}`} 
+                            checked={selectedCategories.includes(cat.name)}
                             className="rounded text-primary-600 focus:ring-primary-500 mr-2"
-                            onChange={() => addFilter(cat)}
+                            onChange={(e) => handleCategoryChange(cat.name, e.target.checked)}
                           />
-                          <label htmlFor={`cat-${cat}`} className="text-sm">{cat}</label>
+                          <label htmlFor={`cat-${cat.id}`} className="text-sm">{cat.name}</label>
                         </div>
                       ))}
                     </div>
@@ -188,25 +306,29 @@ const CatalogPage: React.FC = () => {
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                  >
-                    <div className="space-y-3 px-1">
+                  >                      <div className="space-y-3 px-1">
                       <div className="flex items-center justify-between gap-2">
                         <input 
                           type="number" 
                           placeholder="Min" 
                           className="w-full p-1.5 border border-gray-300 rounded text-sm" 
+                          value={minPrice}
+                          onChange={(e) => setMinPrice(e.target.value)}
                         />
                         <span className="text-gray-400">-</span>
                         <input 
                           type="number" 
                           placeholder="Max" 
                           className="w-full p-1.5 border border-gray-300 rounded text-sm" 
+                          value={maxPrice}
+                          onChange={(e) => setMaxPrice(e.target.value)}
                         />
                       </div>
                       <Button 
                         variant="outline" 
                         size="sm" 
                         className="w-full"
+                        onClick={applyPriceFilter}
                       >
                         Aplicar
                       </Button>
@@ -235,15 +357,16 @@ const CatalogPage: React.FC = () => {
                     transition={{ duration: 0.2 }}
                   >
                     <div className="space-y-2 ml-1">
-                      {['Café Italiano S.A.', 'ImportCoffee', 'CafeMaq', 'BaristaTools'].map((sup) => (
-                        <div key={sup} className="flex items-center">
+                      {suppliers.map((sup) => (
+                        <div key={sup.id} className="flex items-center">
                           <input 
                             type="checkbox" 
-                            id={`sup-${sup}`} 
+                            id={`sup-${sup.id}`} 
+                            checked={selectedSuppliers.includes(sup.name)}
                             className="rounded text-primary-600 focus:ring-primary-500 mr-2"
-                            onChange={() => addFilter(sup)}
+                            onChange={(e) => handleSupplierChange(sup.name, e.target.checked)}
                           />
-                          <label htmlFor={`sup-${sup}`} className="text-sm">{sup}</label>
+                          <label htmlFor={`sup-${sup.id}`} className="text-sm">{sup.name}</label>
                         </div>
                       ))}
                     </div>
@@ -301,15 +424,16 @@ const CatalogPage: React.FC = () => {
                             transition={{ duration: 0.2 }}
                           >
                             <div className="space-y-2 ml-1">
-                              {['Café en grano', 'Café molido', 'Máquinas profesionales', 'Accesorios', 'Insumos'].map((cat) => (
-                                <div key={cat} className="flex items-center">
+                              {categories.map((cat) => (
+                                <div key={`m-${cat.id}`} className="flex items-center">
                                   <input 
                                     type="checkbox" 
-                                    id={`m-cat-${cat}`} 
+                                    id={`m-cat-${cat.id}`} 
+                                    checked={selectedCategories.includes(cat.name)}
                                     className="rounded text-primary-600 focus:ring-primary-500 mr-2"
-                                    onChange={() => addFilter(cat)}
+                                    onChange={(e) => handleCategoryChange(cat.name, e.target.checked)}
                                   />
-                                  <label htmlFor={`m-cat-${cat}`} className="text-sm">{cat}</label>
+                                  <label htmlFor={`m-cat-${cat.id}`} className="text-sm">{cat.name}</label>
                                 </div>
                               ))}
                             </div>
@@ -342,18 +466,23 @@ const CatalogPage: React.FC = () => {
                                   type="number" 
                                   placeholder="Min" 
                                   className="w-full p-2 border border-gray-300 rounded text-sm" 
+                                  value={minPrice}
+                                  onChange={(e) => setMinPrice(e.target.value)}
                                 />
                                 <span className="text-gray-400">-</span>
                                 <input 
                                   type="number" 
                                   placeholder="Max" 
                                   className="w-full p-2 border border-gray-300 rounded text-sm" 
+                                  value={maxPrice}
+                                  onChange={(e) => setMaxPrice(e.target.value)}
                                 />
                               </div>
                               <Button 
                                 variant="outline" 
                                 size="sm" 
                                 className="w-full"
+                                onClick={applyPriceFilter}
                               >
                                 Aplicar
                               </Button>
@@ -379,7 +508,7 @@ const CatalogPage: React.FC = () => {
                       variant="outline" 
                       fullWidth
                       onClick={() => {
-                        setActiveFilters([]);
+                        clearAllFilters();
                         toggleFilter();
                       }}
                     >
@@ -399,7 +528,7 @@ const CatalogPage: React.FC = () => {
               <p className="text-lg text-secondary-600 mb-4">No se encontraron productos.</p>
               <Button
                 variant="outline"
-                onClick={() => setActiveFilters([])}
+                onClick={clearAllFilters}
               >
                 Limpiar filtros
               </Button>

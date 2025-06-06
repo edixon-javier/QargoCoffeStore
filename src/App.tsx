@@ -12,6 +12,8 @@ const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const SupplierPortalPage = lazy(() => import('./pages/SupplierPortalPage'));
 const FranchiseePortalPage = lazy(() => import('./pages/FranchiseePortalPage'));
+const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/producto/:id" element={<ProductDetailPage />} />
           <Route path="/carrito" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/sobre-nosotros" element={<AboutUsPage />} />
+          <Route path="/contacto" element={<ContactPage />} />
           <Route path="/admin/*" element={<DashboardPage />} />
           <Route path="/proveedor/*" element={<SupplierPortalPage />} />
           <Route path="/franquiciado/*" element={<FranchiseePortalPage />} />
