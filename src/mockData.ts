@@ -2,16 +2,16 @@ import { Product } from './lib/types';
 import { categories, suppliers } from './catalogData';
 import createAdditionalProducts from './additionalMockProducts';
 
-// Re-exportamos las categorías y proveedores para mantener compatibilidad con el código existente
+// Re-export categories and suppliers to maintain compatibility with existing code
 export { categories, suppliers };
 
 // Mock Products
 export const mockProducts: Product[] = [
   {
     id: '1',
-    name: 'Café Espresso Italiano Premium 1kg',
-    description: 'Café de tueste medio con notas de chocolate y caramelo. Perfecto para máquinas de espresso profesionales.',
-    sku: 'CAF-ESP-001',
+    name: 'Premium Italian Espresso Coffee 1kg',
+    description: 'Medium roast coffee with chocolate and caramel notes. Perfect for professional espresso machines.',
+    sku: 'COF-ESP-001',
     price: 450,
     salePrice: 399,
     images: [
@@ -24,12 +24,12 @@ export const mockProducts: Product[] = [
     stock: 150,
     minOrderQuantity: 5,
     specifications: {
-      'Origen': 'Italia',
-      'Tueste': 'Medio',
-      'Notas': 'Chocolate, Caramelo, Frutos secos',
-      'Método recomendado': 'Espresso',
-      'Intensidad': '8/10',
-      'Peso': '1kg',
+      'Origin': 'Italy',
+      'Roast': 'Medium',
+      'Notes': 'Chocolate, Caramel, Nuts',
+      'Recommended Method': 'Espresso',
+      'Intensity': '8/10',
+      'Weight': '1kg',
     },
     isActive: true,
     createdAt: '2023-05-15T10:30:00Z',
@@ -37,8 +37,8 @@ export const mockProducts: Product[] = [
   },
   {
     id: '2',
-    name: 'Máquina de Espresso Profesional Pro 3000',
-    description: 'Máquina de espresso profesional con 2 grupos, caldera de 10L y sistema de estabilidad térmica avanzado.',
+    name: 'Professional Espresso Machine Pro 3000',
+    description: 'Professional espresso machine with 2 groups, 10L boiler and advanced thermal stability system.',
     sku: 'MAQ-ESP-3000',
     price: 45000,
     images: [
@@ -51,13 +51,13 @@ export const mockProducts: Product[] = [
     stock: 10,
     minOrderQuantity: 1,
     specifications: {
-      'Grupos': '2',
-      'Potencia': '3200W',
-      'Capacidad caldera': '10L',
-      'Presión': '9 bar',
-      'Dimensiones': '72 x 55 x 53 cm',
-      'Peso': '64kg',
-      'Voltaje': '220V',
+      'Groups': '2',
+      'Power': '3200W',
+      'Boiler Capacity': '10L',
+      'Pressure': '9 bar',
+      'Dimensions': '72 x 55 x 53 cm',
+      'Weight': '64kg',
+      'Voltage': '220V',
     },
     isActive: true,
     createdAt: '2023-06-10T08:15:00Z',
@@ -65,8 +65,8 @@ export const mockProducts: Product[] = [
   },
   {
     id: '3',
-    name: 'Tamper Profesional de Acero Inoxidable',
-    description: 'Tamper de barista profesional con mango ergonómico y base de acero inoxidable de 58mm.',
+    name: 'Professional Stainless Steel Tamper',
+    description: 'Professional barista tamper with ergonomic handle and 58mm stainless steel base.',
     sku: 'ACC-TAM-001',
     price: 890,
     salePrice: 750,
@@ -79,10 +79,10 @@ export const mockProducts: Product[] = [
     stock: 45,
     minOrderQuantity: 2,
     specifications: {
-      'Material': 'Acero inoxidable',
-      'Diámetro': '58mm',
-      'Peso': '500g',
-      'Color': 'Plata/Negro',
+      'Material': 'Stainless Steel',
+      'Diameter': '58mm',
+      'Weight': '500g',
+      'Color': 'Silver/Black',
     },
     isActive: true,
     createdAt: '2023-04-20T09:45:00Z',
@@ -90,9 +90,9 @@ export const mockProducts: Product[] = [
   },
   {
     id: '4',
-    name: 'Café de Especialidad Orgánico 500g',
-    description: 'Café orgánico de comercio justo con certificación. Notas florales y afrutadas con un acabado limpio.',
-    sku: 'CAF-ESP-002',
+    name: 'Organic Specialty Coffee 500g',
+    description: 'Fair trade certified organic coffee. Floral and fruity notes with a clean finish.',
+    sku: 'COF-ESP-002',
     price: 320,
     images: [
       'https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg',
@@ -103,12 +103,12 @@ export const mockProducts: Product[] = [
     stock: 80,
     minOrderQuantity: 3,
     specifications: {
-      'Origen': 'Chiapas, México',
-      'Tueste': 'Medio-Claro',
-      'Notas': 'Flores, Cítricos, Miel',
-      'Método recomendado': 'Pour over, Prensa francesa',
-      'Certificación': 'Orgánico, Comercio Justo',
-      'Peso': '500g',
+      'Origin': 'Chiapas, Mexico',
+      'Roast': 'Medium-Light',
+      'Notes': 'Floral, Citrus, Honey',
+      'Recommended Method': 'Pour over, French press',
+      'Certification': 'Organic, Fair Trade',
+      'Weight': '500g',
     },
     isActive: true,
     createdAt: '2023-07-05T11:30:00Z',
@@ -116,9 +116,9 @@ export const mockProducts: Product[] = [
   },
   {
     id: '5',
-    name: 'Molinillo de Café Premium',
-    description: 'Molinillo de café profesional con 45 configuraciones de molienda y temporizador digital.',
-    sku: 'ACC-MOL-001',
+    name: 'Premium Coffee Grinder',
+    description: 'Professional coffee grinder with 45 grind settings and digital timer.',
+    sku: 'ACC-GRD-001',
     price: 3600,
     salePrice: 2999,
     images: [

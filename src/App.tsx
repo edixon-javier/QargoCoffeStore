@@ -21,15 +21,15 @@ function App() {
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/" element={<CatalogPage />} />
-          <Route path="/catalogo" element={<CatalogPage />} />
-          <Route path="/producto/:id" element={<ProductDetailPage />} />
-          <Route path="/carrito" element={<CartPage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/sobre-nosotros" element={<AboutUsPage />} />
-          <Route path="/contacto" element={<ContactPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin/*" element={<DashboardPage />} />
-          <Route path="/proveedor/*" element={<SupplierPortalPage />} />
-          <Route path="/franquiciado/*" element={<FranchiseePortalPage />} />
+          <Route path="/supplier/*" element={<SupplierPortalPage />} />
+          <Route path="/franchisee/*" element={<FranchiseePortalPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

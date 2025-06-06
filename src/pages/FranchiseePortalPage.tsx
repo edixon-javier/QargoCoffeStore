@@ -6,8 +6,8 @@ import { useAuth } from '../contexts/AuthContext';
 // Placeholder component
 const FranchiseePortalHome = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Portal de Franquiciados</h2>
-    <p className="text-secondary-600">Bienvenido al panel de gestión para franquiciados de Qargo Coffee.</p>
+    <h2 className="text-2xl font-serif mb-4">Franchisee Portal</h2>
+    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Coffee franchisees.</p>
   </div>
 );
 

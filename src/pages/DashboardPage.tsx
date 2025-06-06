@@ -7,29 +7,29 @@ import { useAuth } from '../contexts/AuthContext';
 // Dashboard components
 const DashboardHome = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Panel Principal</h2>
-    <p className="text-secondary-600">Bienvenido al panel de administración de Qargo Coffee.</p>
+    <h2 className="text-2xl font-serif mb-4">Main Dashboard</h2>
+    <p className="text-secondary-600">Welcome to the Qargo Coffee administration dashboard.</p>
   </div>
 );
 
 const DashboardProducts = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Gestión de Productos</h2>
-    <p className="text-secondary-600">Administra todos los productos de la plataforma.</p>
+    <h2 className="text-2xl font-serif mb-4">Product Management</h2>
+    <p className="text-secondary-600">Manage all products on the platform.</p>
   </div>
 );
 
 const DashboardSuppliers = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Gestión de Proveedores</h2>
-    <p className="text-secondary-600">Administra los proveedores registrados.</p>
+    <h2 className="text-2xl font-serif mb-4">Supplier Management</h2>
+    <p className="text-secondary-600">Manage registered suppliers.</p>
   </div>
 );
 
 const DashboardOrders = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Gestión de Pedidos</h2>
-    <p className="text-secondary-600">Supervisa y administra todos los pedidos realizados en la plataforma.</p>
+    <h2 className="text-2xl font-serif mb-4">Order Management</h2>
+    <p className="text-secondary-600">Monitor and manage all orders placed on the platform.</p>
   </div>
 );
 
@@ -45,13 +45,13 @@ const DashboardPage: React.FC = () => {
   }
 
   const menuItems = [
-    { icon: <LayoutDashboard size={20} />, label: 'Panel', path: '/admin' },
-    { icon: <PackageOpen size={20} />, label: 'Productos', path: '/admin/productos' },
-    { icon: <Users size={20} />, label: 'Proveedores', path: '/admin/proveedores' },
-    { icon: <Truck size={20} />, label: 'Pedidos', path: '/admin/pedidos' },
-    { icon: <ShoppingCart size={20} />, label: 'Ventas', path: '/admin/ventas' },
-    { icon: <BarChart3 size={20} />, label: 'Estadísticas', path: '/admin/estadisticas' },
-    { icon: <Settings size={20} />, label: 'Configuración', path: '/admin/configuracion' },
+    { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin' },
+    { icon: <PackageOpen size={20} />, label: 'Products', path: '/admin/products' },
+    { icon: <Users size={20} />, label: 'Suppliers', path: '/admin/suppliers' },
+    { icon: <Truck size={20} />, label: 'Orders', path: '/admin/orders' },
+    { icon: <ShoppingCart size={20} />, label: 'Sales', path: '/admin/sales' },
+    { icon: <BarChart3 size={20} />, label: 'Statistics', path: '/admin/statistics' },
+    { icon: <Settings size={20} />, label: 'Settings', path: '/admin/settings' },
   ];
 
   const toggleSidebar = () => {
@@ -66,7 +66,7 @@ const DashboardPage: React.FC = () => {
           <button
             onClick={toggleSidebar}
             className="fixed z-50 bottom-4 right-4 p-3 rounded-full bg-primary-700 text-white shadow-lg"
-            aria-label={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
           >
             {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -134,7 +134,7 @@ const DashboardPage: React.FC = () => {
                   className="flex items-center w-full px-4 py-3 rounded-lg text-secondary-600 hover:bg-gray-100 transition-colors"
                 >
                   <LogOut size={20} className="mr-3" />
-                  Cerrar sesión
+                  Logout
                 </button>
               </nav>
             </motion.div>
@@ -191,7 +191,7 @@ const DashboardPage: React.FC = () => {
                 className="flex items-center w-full px-4 py-2 rounded-lg text-secondary-600 hover:bg-gray-100 transition-colors"
               >
                 <LogOut size={20} className="mr-3" />
-                Cerrar sesión
+                Logout
               </button>
             </div>
           </div>
@@ -202,9 +202,9 @@ const DashboardPage: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-8">
             <Routes>
               <Route path="/" element={<DashboardHome />} />
-              <Route path="/productos" element={<DashboardProducts />} />
-              <Route path="/proveedores" element={<DashboardSuppliers />} />
-              <Route path="/pedidos" element={<DashboardOrders />} />
+              <Route path="/products" element={<DashboardProducts />} />
+              <Route path="/suppliers" element={<DashboardSuppliers />} />
+              <Route path="/orders" element={<DashboardOrders />} />
               {/* Add routes for other dashboard sections */}
             </Routes>
           </div>

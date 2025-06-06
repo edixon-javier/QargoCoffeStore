@@ -46,7 +46,7 @@ const ProductDetailPage: React.FC = () => {
     <div className="container-custom py-8">
       {/* Breadcrumb */}
       <nav className="flex text-sm text-secondary-500 mb-6">
-        <Link to="/" className="hover:text-primary-700">Catálogo</Link>
+        <Link to="/" className="hover:text-primary-700">Catalog</Link>
         <ChevronRight size={16} className="mx-2" />
         <span className="text-secondary-700">{product.category.name}</span>
         <ChevronRight size={16} className="mx-2" />
@@ -141,19 +141,11 @@ const ProductDetailPage: React.FC = () => {
               <p className="text-secondary-500">
                 <strong>Proveedor:</strong> {product.supplier.name}
               </p>
-              <p className={`font-medium ${product.stock > 0 ? 'text-success-600' : 'text-error-600'}`}>
-                {product.stock > 10 
-                  ? 'En stock' 
-                  : product.stock > 0 
-                    ? `¡Solo quedan ${product.stock} unidades!` 
-                    : 'Agotado'
-                }
-              </p>
             </div>
             
             {/* Quantity selector and buttons */}
             <div className="mb-6">
-              <p className="text-sm font-medium mb-2">Cantidad</p>
+              <p className="text-sm font-medium mb-2">Quantity</p>
               <div className="flex items-center gap-4">
                 <div className="flex border border-gray-300 rounded-md">
                   <button
@@ -179,7 +171,7 @@ const ProductDetailPage: React.FC = () => {
                 </div>
                 
                 <p className="text-sm text-secondary-500">
-                  Pedido mínimo: {product.minOrderQuantity} unidades
+                  Minimum order: {product.minOrderQuantity} units
                 </p>
               </div>
             </div>
@@ -194,7 +186,7 @@ const ProductDetailPage: React.FC = () => {
                 leftIcon={<ShoppingCart size={18} />}
                 onClick={handleAddToCart}
               >
-                Agregar al carrito
+                Add to Cart
               </Button>
               <Button
                 variant="accent"
@@ -202,7 +194,7 @@ const ProductDetailPage: React.FC = () => {
                 fullWidth
                 onClick={() => window.location.href = '/checkout'}
               >
-                Comprar ahora
+                Buy Now
               </Button>
               <Button
                 variant="outline"
@@ -211,7 +203,7 @@ const ProductDetailPage: React.FC = () => {
                 leftIcon={<Heart size={18} />}
                 className="hidden md:flex"
               >
-                Guardar
+                Save
               </Button>
             </div>
             
@@ -219,15 +211,15 @@ const ProductDetailPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="flex items-center p-3 bg-primary-50 rounded-md">
                 <Truck className="h-5 w-5 text-primary-700 mr-2 flex-shrink-0" />
-                <span className="text-sm">Envío rápido</span>
+                <span className="text-sm">Fast Shipping</span>
               </div>
               <div className="flex items-center p-3 bg-primary-50 rounded-md">
                 <ShieldCheck className="h-5 w-5 text-primary-700 mr-2 flex-shrink-0" />
-                <span className="text-sm">Garantía oficial</span>
+                <span className="text-sm">Official Warranty</span>
               </div>
               <div className="flex items-center p-3 bg-primary-50 rounded-md">
                 <Clock className="h-5 w-5 text-primary-700 mr-2 flex-shrink-0" />
-                <span className="text-sm">Soporte 24/7</span>
+                <span className="text-sm">24/7 Support</span>
               </div>
             </div>
           </div>
@@ -246,7 +238,7 @@ const ProductDetailPage: React.FC = () => {
               }`}
               onClick={() => setActiveTab('description')}
             >
-              Descripción
+              Description
             </button>
             <button
               className={`py-4 px-1 font-medium text-sm border-b-2 transition-colors whitespace-nowrap ${
@@ -256,7 +248,7 @@ const ProductDetailPage: React.FC = () => {
               }`}
               onClick={() => setActiveTab('specs')}
             >
-              Especificaciones
+              Specifications
             </button>
             <button
               className={`py-4 px-1 font-medium text-sm border-b-2 transition-colors whitespace-nowrap ${
@@ -266,7 +258,7 @@ const ProductDetailPage: React.FC = () => {
               }`}
               onClick={() => setActiveTab('faq')}
             >
-              Preguntas frecuentes
+              Frequently Asked Questions
             </button>
           </div>
         </div>
@@ -311,16 +303,16 @@ const ProductDetailPage: React.FC = () => {
             <div className="space-y-4">
               {[
                 {
-                  question: '¿Cuál es el tiempo de entrega?',
-                  answer: 'El tiempo de entrega estándar es de 2 a 3 días hábiles para zonas metropolitanas y de 4 a 7 días para el resto del país.'
+                  question: 'What is the delivery time?',
+                  answer: 'Standard delivery time is 2-3 business days for metropolitan areas and 4-7 days for the rest of the country.'
                 },
                 {
-                  question: '¿Ofrecen garantía para este producto?',
-                  answer: 'Sí, todos nuestros productos cuentan con garantía oficial del fabricante. El período varía según el producto, en este caso es de 12 meses.'
+                  question: 'Do you offer warranty for this product?',
+                  answer: 'Yes, all our products come with official manufacturer warranty. The period varies depending on the product, in this case it is 12 months.'
                 },
                 {
-                  question: '¿Cómo puedo realizar una devolución?',
-                  answer: 'Puedes solicitar una devolución dentro de los primeros 15 días después de recibir tu producto. Contáctanos a través de tu cuenta o enviando un correo a devoluciones@qargocoffee.com.'
+                  question: 'How can I request a return?',
+                  answer: 'You can request a return within the first 15 days after receiving your product. Contact us through your account or by sending an email to returns@qargocoffee.com.'
                 },
               ].map((item, index) => (
                 <div key={index} className="border-b border-gray-200 pb-4">
@@ -336,7 +328,7 @@ const ProductDetailPage: React.FC = () => {
       {/* Related products */}
       {relatedProducts.length > 0 && (
         <section>
-          <h2 className="text-2xl font-serif mb-6">Productos relacionados</h2>
+          <h2 className="text-2xl font-serif mb-6">Related Products</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {relatedProducts.map(product => (
               <ProductCard key={product.id} product={product} />

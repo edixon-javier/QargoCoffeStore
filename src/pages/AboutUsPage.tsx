@@ -13,10 +13,9 @@ const AboutUsPage: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg')] bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Sobre Qargo Coffee</h1>
+        <div className="relative z-10">          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">About Qargo Coffee</h1>
           <p className="text-xl mb-6 max-w-3xl">
-            Fusionando la tradición cafetera italiana con el ritmo estadounidense para crear experiencias excepcionales, una taza a la vez.
+            Blending Italian coffee tradition with American pace to create exceptional experiences, one cup at a time.
           </p>
         </div>
       </motion.div>
@@ -29,13 +28,12 @@ const AboutUsPage: React.FC = () => {
         className="mb-16"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-3xl font-serif mb-4">Nuestra Historia</h2>
+          <div>            <h2 className="text-3xl font-serif mb-4">Our History</h2>
             <p className="text-secondary-700 mb-4">
-              Qargo Coffee nació en mayo de 2020, con la visión de revolucionar la cultura del café en Estados Unidos. Fundada en Delaware y con sede en Miami, Florida, nuestra marca surge de la pasión por el café italiano de alta calidad y la creencia de que cada taza tiene el poder de transformar momentos cotidianos en experiencias memorables.
+              Qargo Coffee was born in May 2020, with the vision of revolutionizing coffee culture in the United States. Founded in Delaware and headquartered in Miami, Florida, our brand stems from a passion for high-quality Italian coffee and the belief that each cup has the power to transform everyday moments into memorable experiences.
             </p>
             <p className="text-secondary-700">
-              Desde nuestros inicios, nos hemos distinguido por nuestro enfoque innovador: cafeterías diseñadas en contenedores de envío que reinventan el concepto tradicional, combinando diseño industrial moderno con la calidez y el encanto de una auténtica cafetería italiana.
+              Since our beginnings, we have distinguished ourselves by our innovative approach: cafes designed in shipping containers that reinvent the traditional concept, combining modern industrial design with the warmth and charm of an authentic Italian coffee shop.
             </p>
           </div>
           <div className="rounded-lg overflow-hidden shadow-medium">
@@ -56,22 +54,21 @@ const AboutUsPage: React.FC = () => {
         className="mb-16 bg-primary-50 rounded-xl p-8"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="flex items-center text-2xl font-serif mb-4">
+          <div>            <h3 className="flex items-center text-2xl font-serif mb-4">
               <Coffee className="text-primary-600 mr-3" size={28} />
-              Nuestra Misión
+              Our Mission
             </h3>
             <p className="text-secondary-700">
-              Redefinir la cultura del café restaurando su importancia en la vida diaria, fusionando la tradición italiana con el ritmo estadounidense y mejorando vidas una taza a la vez.
+              To redefine coffee culture by restoring its importance in daily life, blending Italian tradition with American pace, and improving lives one cup at a time.
             </p>
           </div>
           <div>
             <h3 className="flex items-center text-2xl font-serif mb-4">
               <Globe className="text-primary-600 mr-3" size={28} />
-              Nuestra Visión
+              Our Vision
             </h3>
             <p className="text-secondary-700">
-              Ser una presencia acogedora en cada comunidad, estableciendo nuevos puntos de referencia en la industria para el cuidado y la calidad del café, y ofreciendo una experiencia de café superior en los EE. UU.
+              To be a welcoming presence in every community, establishing new benchmarks in the industry for coffee care and quality, and offering a superior coffee experience in the USA.
             </p>
           </div>
         </div>
@@ -83,39 +80,38 @@ const AboutUsPage: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mb-16"
-      >
-        <h2 className="text-3xl font-serif mb-8 text-center">Nuestros Valores</h2>
+      >        <h2 className="text-3xl font-serif mb-8 text-center">Our Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
               icon: <Award className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Calidad",
-              description: "Nos comprometemos a ofrecer café italiano premium, especialmente Lavazza, y ponemos especial cuidado en cada taza que servimos."
+              title: "Quality",
+              description: "We commit to offering premium Italian coffee, especially Lavazza, and take special care with each cup we serve."
             },
             {
               icon: <Coffee className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Tradición",
-              description: "Honramos la rica herencia y la importancia social del café italiano, manteniendo vivas sus tradiciones en cada sorbo."
+              title: "Tradition",
+              description: "We honor the rich heritage and social importance of Italian coffee, keeping its traditions alive in every sip."
             },
             {
               icon: <ShoppingBag className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Modernidad",
-              description: "Nos adaptamos al estilo de vida americano contemporáneo con diseños de tiendas innovadores y un servicio eficiente sin comprometer la calidad."
+              title: "Modernity",
+              description: "We adapt to contemporary American lifestyle with innovative store designs and efficient service without compromising quality."
             },
             {
               icon: <Users className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Comunidad",
-              description: "Aspiramos a ser un centro local en cada ubicación, proporcionando un espacio acogedor para la conexión, el trabajo y la relajación."
+              title: "Community",
+              description: "We aspire to be a local hub in each location, providing a welcoming space for connection, work, and relaxation."
             },
             {
               icon: <Award className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Experiencia del cliente",
-              description: "Nos enfocamos en crear una experiencia de café europeo de primer nivel, convirtiéndonos en una parte positiva de la rutina diaria de nuestros clientes."
+              title: "Customer Experience",
+              description: "We focus on creating a top-tier European coffee experience, becoming a positive part of our customers' daily routine."
             },
             {
               icon: <Coffee className="h-12 w-12 text-primary-600 mb-4" />,
-              title: "Innovación",
-              description: "Exploramos conceptos únicos, como nuestras tiendas en contenedores de envío y la incorporación de elementos artísticos en nuestros espacios."
+              title: "Innovation",
+              description: "We explore unique concepts, such as our shipping container stores and the incorporation of artistic elements in our spaces."
             },
           ].map((value, index) => (
             <motion.div
@@ -148,16 +144,15 @@ const AboutUsPage: React.FC = () => {
               className="w-full h-full object-cover rounded-lg shadow-medium" 
             />
           </div>
-          <div>
-            <h2 className="text-3xl font-serif mb-4">Nuestra Presencia</h2>
+          <div>            <h2 className="text-3xl font-serif mb-4">Our Presence</h2>
             <p className="text-secondary-700 mb-4">
-              Desde nuestros inicios, Qargo Coffee ha experimentado un rápido crecimiento en todo el territorio estadounidense. Actualmente operamos en diversos estados como California, Colorado, Florida, Michigan, Nevada, Carolina del Norte, Texas y Washington D.C.
+              Since our beginnings, Qargo Coffee has experienced rapid growth throughout the United States. We currently operate in various states such as California, Colorado, Florida, Michigan, Nevada, North Carolina, Texas, and Washington D.C.
             </p>
             <p className="text-secondary-700 mb-6">
-              Estamos especialmente emocionados por nuestra expansión en el área de Dallas-Fort Worth, Texas, programada para el verano de 2025, donde llevaremos nuestra visión única del café a nuevas comunidades.
+              We are especially excited about our expansion in the Dallas-Fort Worth area, Texas, scheduled for summer 2025, where we will bring our unique coffee vision to new communities.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["California", "Colorado", "Florida", "Michigan", "Nevada", "Carolina del Norte", "Texas", "Washington D.C."].map(state => (
+              {["California", "Colorado", "Florida", "Michigan", "Nevada", "North Carolina", "Texas", "Washington D.C."].map(state => (
                 <span key={state} className="flex items-center bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm">
                   <MapPin size={14} className="mr-1" />
                   {state}
@@ -174,29 +169,28 @@ const AboutUsPage: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
         className="mb-16 bg-secondary-100 rounded-xl p-8"
-      >
-        <h2 className="text-3xl font-serif mb-8 text-center">Modelo de Franquicia</h2>
+      >        <h2 className="text-3xl font-serif mb-8 text-center">Franchise Model</h2>
         <p className="text-secondary-700 text-center max-w-3xl mx-auto mb-8">
-          Qargo Coffee se expande principalmente mediante un modelo de franquicia, ofreciendo a emprendedores la oportunidad de formar parte de nuestra visión revolucionaria del café.
+          Qargo Coffee expands primarily through a franchise model, offering entrepreneurs the opportunity to be part of our revolutionary coffee vision.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              title: "Diseño",
-              description: "Apoyo en el diseño único de tiendas, incluyendo nuestros innovadores modelos de contenedores de envío."
+              title: "Design",
+              description: "Support in the unique design of stores, including our innovative shipping container models."
             },
             {
-              title: "Instalación",
-              description: "Asistencia completa en el proceso de montaje y equipamiento de cada nueva ubicación Qargo."
+              title: "Installation",
+              description: "Complete assistance in the assembly and equipment process of each new Qargo location."
             },
             {
-              title: "Operaciones",
-              description: "Capacitación y soporte continuo en todos los aspectos operativos del negocio."
+              title: "Operations",
+              description: "Training and continuous support in all operational aspects of the business."
             },
             {
-              title: "Productos",
-              description: "Acceso a nuestro café italiano premium Lavazza y a nuestra selección de repostería de calidad."
+              title: "Products",
+              description: "Access to our premium Italian Lavazza coffee and our quality bakery selection."
             },
           ].map((benefit, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-soft">
@@ -213,26 +207,25 @@ const AboutUsPage: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.7 }}
         className="mb-16"
-      >
-        <h2 className="text-3xl font-serif mb-8 text-center">Diseño Único de Tiendas</h2>
+      >        <h2 className="text-3xl font-serif mb-8 text-center">Unique Store Design</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-lg overflow-hidden shadow-medium">
             <img 
               src="https://images.pexels.com/photos/1002740/pexels-photo-1002740.jpeg" 
-              alt="Diseño de tienda"
+              alt="Store design"
               className="w-full h-64 object-cover" 
             />
           </div>
           <div className="md:col-span-2">
             <p className="text-secondary-700 mb-4">
-              Un aspecto clave de nuestra marca es nuestro enfoque no tradicional en la construcción y el diseño de tiendas. Nos destacamos por el uso innovador de contenedores de envío reconvertidos, que nos permiten crear espacios únicos, sostenibles y visualmente impactantes.
+              A key aspect of our brand is our non-traditional approach to store construction and design. We stand out for the innovative use of repurposed shipping containers, which allow us to create unique, sustainable, and visually striking spaces.
             </p>
             <p className="text-secondary-700 mb-4">
-              Nuestros diseños son elegantes y modernos, inspirados en el diseño industrial y las tendencias arquitectónicas contemporáneas, pero manteniendo siempre la calidez y el ambiente acogedor característicos de las cafeterías italianas tradicionales.
+              Our designs are elegant and modern, inspired by industrial design and contemporary architectural trends, while always maintaining the warmth and cozy atmosphere characteristic of traditional Italian cafes.
             </p>
             <p className="text-secondary-700">
-              Además de nuestras tiendas principales, también ofrecemos formatos de quioscos y autoservicio, adaptándonos a diferentes necesidades y espacios, siempre manteniendo nuestra distintiva estética y calidad superior.
+              In addition to our main stores, we also offer kiosk and self-service formats, adapting to different needs and spaces, always maintaining our distinctive aesthetics and superior quality.
             </p>
           </div>
         </div>
@@ -244,17 +237,16 @@ const AboutUsPage: React.FC = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}
         className="bg-primary-600 text-white rounded-xl p-8 md:p-12 text-center"
-      >
-        <h2 className="text-3xl font-serif mb-4 text-white">Únete a la Revolución del Café</h2>
+      >        <h2 className="text-3xl font-serif mb-4 text-white">Join the Coffee Revolution</h2>
         <p className="text-xl mb-6 max-w-2xl mx-auto">
-          ¿Interesado en formar parte de Qargo Coffee? Descubre las oportunidades de franquicia disponibles o contáctanos para más información.
+          Interested in becoming part of Qargo Coffee? Discover available franchise opportunities or contact us for more information.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <a 
-            href="/contacto" 
+            href="/contact" 
             className="bg-white text-primary-700 hover:bg-primary-50 px-6 py-3 rounded-md font-medium transition-colors"
           >
-            Contactar
+            Contact Us
           </a>
 
         </div>

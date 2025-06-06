@@ -34,8 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         transition={{ duration: 0.3 }}
         whileHover={{ y: -4, transition: { duration: 0.2 } }}
       >
-        <div className="w-1/4 relative">
-          <Link to={`/producto/${product.id}`} className="block h-full">
+        <div className="w-1/4 relative">          <Link to={`/product/${product.id}`} className="block h-full">
             <img 
               src={product.images[0]} 
               alt={product.name}
@@ -52,8 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="w-3/4 p-4 flex flex-col">
           <div className="flex justify-between items-start mb-2">
             <div>
-              <p className="text-xs text-secondary-500 mb-1">{product.category.name}</p>
-              <Link to={`/producto/${product.id}`}>
+              <p className="text-xs text-secondary-500 mb-1">{product.category.name}</p>              <Link to={`/product/${product.id}`}>
                 <h3 className="text-lg font-medium hover:text-primary-700 transition-colors">
                   {product.name}
                 </h3>
@@ -89,14 +87,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
               )}
             </div>
             
-            <div className="flex space-x-2">
-              <Button 
+            <div className="flex space-x-2">              <Button 
                 size="sm"
                 variant="outline"
                 leftIcon={<ShoppingCart size={16} />}
                 onClick={handleAddToCart}
               >
-                Agregar
+                Add
               </Button>
             </div>
           </div>
@@ -113,8 +110,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       transition={{ duration: 0.3 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
     >
-      <div className="relative overflow-hidden pb-[100%]">
-        <Link to={`/producto/${product.id}`} className="block absolute inset-0">
+      <div className="relative overflow-hidden pb-[100%]">        <Link to={`/product/${product.id}`} className="block absolute inset-0">
           <img 
             src={product.images[0]} 
             alt={product.name}
@@ -130,16 +126,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
       
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <p className="text-xs text-secondary-500">{product.category.name}</p>
-          <button 
+          <p className="text-xs text-secondary-500">{product.category.name}</p>          <button 
             className="p-1 text-primary-600 hover:text-accent-600 transition-colors"
-            aria-label="Agregar a favoritos"
+            aria-label="Add to favorites"
           >
             <Heart size={16} />
           </button>
         </div>
-        
-        <Link to={`/producto/${product.id}`}>
+          <Link to={`/product/${product.id}`}>
           <h3 className="text-base font-medium mb-2 line-clamp-2 hover:text-primary-700 transition-colors h-12">
             {product.name}
           </h3>
@@ -162,11 +156,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </span>
             )}
           </div>
-          
-          <button 
+            <button 
             onClick={handleAddToCart}
             className="p-2 rounded-full bg-primary-100 text-primary-700 hover:bg-primary-200 transition-colors"
-            aria-label="Agregar al carrito"
+            aria-label="Add to cart"
           >
             <ShoppingCart size={18} />
           </button>

@@ -6,8 +6,8 @@ import { useAuth } from '../contexts/AuthContext';
 // Placeholder component
 const SupplierPortalHome = () => (
   <div>
-    <h2 className="text-2xl font-serif mb-4">Portal de Proveedores</h2>
-    <p className="text-secondary-600">Bienvenido al panel de gestión para proveedores de Qargo Coffee.</p>
+    <h2 className="text-2xl font-serif mb-4">Supplier Portal</h2>
+    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Coffee suppliers.</p>
   </div>
 );
 

@@ -14,12 +14,12 @@ const CatalogPage: React.FC = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [sortOption, setSortOption] = useState<string>('relevancia');
+  const [sortOption, setSortOption] = useState<string>('relevance');
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   
-  // Estados específicos para cada tipo de filtro
+  // States for each filter type
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<{min: number|null, max: number|null}>({min: null, max: null});
@@ -99,17 +99,17 @@ const CatalogPage: React.FC = () => {
     // Luego ordenar los productos filtrados
     return [...filtered].sort((a, b) => {
       switch (sortOption) {
-        case 'precio-asc':
-          // Precio de menor a mayor
+        case 'price-asc':
+          // Price low to high
           return (a.salePrice || a.price) - (b.salePrice || b.price);
         
-        case 'precio-desc':
-          // Precio de mayor a menor
+        case 'price-desc':
+          // Price high to low
           return (b.salePrice || b.price) - (a.salePrice || a.price);
           
-        case 'relevancia':
+        case 'relevance':
         default:
-          // Por defecto, mantener el orden original
+          // Default, keep original order
           return 0;
       }
     });
@@ -152,12 +152,12 @@ const CatalogPage: React.FC = () => {
     
     setPriceRange({min, max});
     
-    // Eliminar filtros previos de precio
-    setActiveFilters(prev => prev.filter(f => !f.includes('Precio:')));
+    // Remove previous price filters
+    setActiveFilters(prev => prev.filter(f => !f.includes('Price:')));
     
-    // Añadir nuevo filtro de precio si se especificó algún valor
+    // Add new price filter if any value was specified
     if (min !== null || max !== null) {
-      const priceFilterText = `Precio: ${min !== null ? min : '0'}-${max !== null ? max : '∞'}`;
+      const priceFilterText = `Price: ${min !== null ? min : '0'}-${max !== null ? max : '∞'}`;
       setActiveFilters(prev => [...prev, priceFilterText]);
     }
   };
@@ -236,9 +236,9 @@ const CatalogPage: React.FC = () => {
   return (
     <div className="container-custom py-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-serif mb-2">Catálogo de Productos</h1>
+        <h1 className="text-3xl font-serif mb-2">Product Catalog</h1>
         <p className="text-secondary-600">
-          Encuentra todo lo que necesitas para tu negocio de café
+          Find everything you need for your coffee business
         </p>
       </div>
 
@@ -251,17 +251,17 @@ const CatalogPage: React.FC = () => {
           onClick={toggleFilter}
           className="md:hidden"
         >
-          Filtros
+          Filters
         </Button>
 
         <div className="flex items-center gap-2 flex-grow md:flex-grow-0">
-          <span className="text-sm text-secondary-600">Ver como:</span>
+          <span className="text-sm text-secondary-600">View as:</span>
           <button
             onClick={() => setViewMode('grid')}
             className={`p-1.5 rounded ${
               viewMode === 'grid' ? 'bg-primary-100 text-primary-800' : 'text-secondary-400'
             }`}
-            aria-label="Ver en cuadrícula"
+            aria-label="View as grid"
           >
             <Grid size={18} />
           </button>
@@ -270,22 +270,22 @@ const CatalogPage: React.FC = () => {
             className={`p-1.5 rounded ${
               viewMode === 'list' ? 'bg-primary-100 text-primary-800' : 'text-secondary-400'
             }`}
-            aria-label="Ver en lista"
+            aria-label="View as list"
           >
             <List size={18} />
           </button>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-sm text-secondary-600">Ordenar por:</span>
+          <span className="text-sm text-secondary-600">Sort by:</span>
           <select 
             className="border border-primary-200 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-400"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >
-            <option value="relevancia">Relevancia</option>
-            <option value="precio-asc">Precio: Menor a Mayor</option>
-            <option value="precio-desc">Precio: Mayor a Menor</option>
+            <option value="relevance">Relevance</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
           </select>
         </div>
       </div>
@@ -293,7 +293,7 @@ const CatalogPage: React.FC = () => {
       {/* Active filters */}
       {activeFilters.length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2 items-center">
-          <span className="text-sm text-secondary-600">Filtros activos:</span>
+          <span className="text-sm text-secondary-600">Active filters:</span>
           {activeFilters.map((filter) => (
             <span 
               key={filter} 
@@ -312,7 +312,7 @@ const CatalogPage: React.FC = () => {
             className="text-sm text-primary-600 hover:text-primary-800"
             onClick={clearAllFilters}
           >
-            Limpiar todos
+            Clear all
           </button>
         </div>
       )}
@@ -322,7 +322,7 @@ const CatalogPage: React.FC = () => {
         <div className="hidden md:block w-64 flex-shrink-0">
           <div className="bg-white rounded-lg shadow-soft p-4">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium">Filtros</h3>
+              <h3 className="text-lg font-medium">Filters</h3>
               <SlidersHorizontal size={18} className="text-secondary-400" />
             </div>
 
@@ -332,7 +332,7 @@ const CatalogPage: React.FC = () => {
                 className="flex items-center justify-between w-full text-left font-medium mb-2"
                 onClick={() => toggleSection('categories')}
               >
-                <span>Categorías</span>
+                <span>Categories</span>
                 {expandedSections.categories ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
               
@@ -369,7 +369,7 @@ const CatalogPage: React.FC = () => {
                 className="flex items-center justify-between w-full text-left font-medium mb-2"
                 onClick={() => toggleSection('price')}
               >
-                <span>Rango de precio</span>
+                <span>Price Range</span>
                 {expandedSections.price ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
               
@@ -404,7 +404,7 @@ const CatalogPage: React.FC = () => {
                         className="w-full"
                         onClick={applyPriceFilter}
                       >
-                        Aplicar
+                        Apply
                       </Button>
                     </div>
                   </motion.div>
@@ -418,7 +418,7 @@ const CatalogPage: React.FC = () => {
                 className="flex items-center justify-between w-full text-left font-medium mb-2"
                 onClick={() => toggleSection('suppliers')}
               >
-                <span>Proveedores</span>
+                <span>Suppliers</span>
                 {expandedSections.suppliers ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
               
@@ -471,7 +471,7 @@ const CatalogPage: React.FC = () => {
               >
                 <div className="p-4">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-lg font-medium">Filtros</h3>
+                    <h3 className="text-lg font-medium">Filters</h3>
                     <button onClick={toggleFilter} className="p-1">
                       <X size={20} className="text-secondary-600" />
                     </button>
@@ -485,7 +485,7 @@ const CatalogPage: React.FC = () => {
                         className="flex items-center justify-between w-full text-left font-medium mb-2"
                         onClick={() => toggleSection('categories')}
                       >
-                        <span>Categorías</span>
+                        <span>Categories</span>
                         {expandedSections.categories ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </button>
                       
@@ -522,7 +522,7 @@ const CatalogPage: React.FC = () => {
                         className="flex items-center justify-between w-full text-left font-medium mb-2"
                         onClick={() => toggleSection('price')}
                       >
-                        <span>Rango de precio</span>
+                        <span>Price Range</span>
                         {expandedSections.price ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </button>
                       
@@ -558,7 +558,7 @@ const CatalogPage: React.FC = () => {
                                 className="w-full"
                                 onClick={applyPriceFilter}
                               >
-                                Aplicar
+                                Apply
                               </Button>
                             </div>
                           </motion.div>
@@ -576,7 +576,7 @@ const CatalogPage: React.FC = () => {
                       fullWidth
                       onClick={toggleFilter}
                     >
-                      Aplicar filtros
+                      Apply Filters
                     </Button>
                     <Button 
                       variant="outline" 
@@ -586,7 +586,7 @@ const CatalogPage: React.FC = () => {
                         toggleFilter();
                       }}
                     >
-                      Limpiar filtros
+                      Clear Filters
                     </Button>
                   </div>
                 </div>
@@ -596,7 +596,7 @@ const CatalogPage: React.FC = () => {
         </AnimatePresence>          {/* Products grid */}
         <div className="flex-grow">
           {isLoading ? (
-            // Mostrar esqueleto durante la carga
+            // Show skeleton during loading
             <div className={viewMode === 'grid' 
               ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" 
               : "space-y-4"
@@ -610,12 +610,12 @@ const CatalogPage: React.FC = () => {
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-lg text-secondary-600 mb-4">No se encontraron productos.</p>
+              <p className="text-lg text-secondary-600 mb-4">No products found.</p>
               <Button
                 variant="outline"
                 onClick={clearAllFilters}
               >
-                Limpiar filtros
+                Clear filters
               </Button>
             </div>
           ) : (

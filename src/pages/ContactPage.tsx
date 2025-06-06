@@ -18,19 +18,18 @@ const ContactPage: React.FC = () => {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
-    if (!formState.name.trim()) {
-      newErrors.name = 'El nombre es obligatorio';
+      if (!formState.name.trim()) {
+      newErrors.name = 'Name is required';
     }
     
     if (!formState.email.trim()) {
-      newErrors.email = 'El email es obligatorio';
+      newErrors.email = 'Email is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formState.email)) {
-      newErrors.email = 'Email inválido';
+      newErrors.email = 'Invalid email';
     }
     
     if (!formState.message.trim()) {
-      newErrors.message = 'El mensaje es obligatorio';
+      newErrors.message = 'Message is required';
     }
 
     return newErrors;
@@ -81,10 +80,9 @@ const ContactPage: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/4226805/pexels-photo-4226805.jpeg')] bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Contacto</h1>
+        <div className="relative z-10">          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">Contact Us</h1>
           <p className="text-xl mb-0 max-w-3xl">
-            Estamos aquí para responder a tus preguntas y recibir tus comentarios. ¡Contáctanos!
+            We're here to answer your questions and receive your feedback. Get in touch with us!
           </p>
         </div>
       </motion.div>
@@ -97,18 +95,17 @@ const ContactPage: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="bg-white rounded-lg shadow-soft p-6 mb-6">
-            <h2 className="text-2xl font-serif mb-6">Información de Contacto</h2>
+          <div className="bg-white rounded-lg shadow-soft p-6 mb-6">            <h2 className="text-2xl font-serif mb-6">Contact Information</h2>
             
             <div className="space-y-6">
               <div className="flex items-start">
                 <MapPin className="text-primary-600 mr-3 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-medium mb-1">Oficina Principal</h3>
+                  <h3 className="font-medium mb-1">Main Office</h3>
                   <p className="text-secondary-600">
                     1234 Café Avenue<br />
                     Miami, FL 33101<br />
-                    Estados Unidos
+                    United States
                   </p>
                 </div>
               </div>
@@ -116,7 +113,7 @@ const ContactPage: React.FC = () => {
               <div className="flex items-start">
                 <Phone className="text-primary-600 mr-3 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-medium mb-1">Teléfono</h3>
+                  <h3 className="font-medium mb-1">Phone</h3>
                   <p className="text-secondary-600">+1 (305) 555-0123</p>
                   <p className="text-secondary-600">+1 (800) QARGO-CF</p>
                 </div>
@@ -134,11 +131,11 @@ const ContactPage: React.FC = () => {
               <div className="flex items-start">
                 <Clock className="text-primary-600 mr-3 mt-1 flex-shrink-0" size={20} />
                 <div>
-                  <h3 className="font-medium mb-1">Horario de Atención</h3>
+                  <h3 className="font-medium mb-1">Business Hours</h3>
                   <p className="text-secondary-600">
-                    Lunes a Viernes: 9:00 AM - 6:00 PM<br />
-                    Sábados: 10:00 AM - 2:00 PM<br />
-                    Domingos: Cerrado
+                    Monday to Friday: 9:00 AM - 6:00 PM<br />
+                    Saturday: 10:00 AM - 2:00 PM<br />
+                    Sunday: Closed
                   </p>
                 </div>
               </div>
@@ -154,8 +151,7 @@ const ContactPage: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="bg-white rounded-lg shadow-soft p-6">
-            <h2 className="text-2xl font-serif mb-6">Envíanos un mensaje</h2>
+          <div className="bg-white rounded-lg shadow-soft p-6">            <h2 className="text-2xl font-serif mb-6">Send us a message</h2>
             
             {isSubmitted ? (
               <motion.div 
@@ -165,16 +161,15 @@ const ContactPage: React.FC = () => {
               >
                 <CheckCircle className="mr-3 mt-1 flex-shrink-0" size={24} />
                 <div>
-                  <h3 className="font-medium mb-2">¡Mensaje enviado correctamente!</h3>
-                  <p>Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos a la brevedad posible.</p>
+                  <h3 className="font-medium mb-2">Message sent successfully!</h3>
+                  <p>Thank you for contacting us. We have received your message and will respond as soon as possible.</p>
                 </div>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Nombre completo *
+                  <div>                    <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-1">
+                      Full name *
                     </label>
                     <input
                       type="text"
@@ -183,31 +178,29 @@ const ContactPage: React.FC = () => {
                       value={formState.name}
                       onChange={handleChange}
                       className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${errors.name ? 'border-error-500' : 'border-gray-300'}`}
-                      placeholder="Tu nombre"
+                      placeholder="Your name"
                     />
                     {errors.name && <p className="mt-1 text-sm text-error-600">{errors.name}</p>}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-secondary-700 mb-1">
                       Email *
-                    </label>
-                    <input
+                    </label>                    <input
                       type="email"
                       id="email"
                       name="email"
                       value={formState.email}
                       onChange={handleChange}
                       className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${errors.email ? 'border-error-500' : 'border-gray-300'}`}
-                      placeholder="tu@email.com"
+                      placeholder="you@email.com"
                     />
                     {errors.email && <p className="mt-1 text-sm text-error-600">{errors.email}</p>}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Teléfono
+                  <div>                    <label htmlFor="phone" className="block text-sm font-medium text-secondary-700 mb-1">
+                      Phone
                     </label>                    <input
                       type="tel"
                       id="phone"
@@ -215,12 +208,11 @@ const ContactPage: React.FC = () => {
                       value={formState.phone}
                       onChange={handleChange}
                       className="w-full p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400"
-                      placeholder="(opcional)"
+                      placeholder="(optional)"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Asunto
+                  <div>                    <label htmlFor="subject" className="block text-sm font-medium text-secondary-700 mb-1">
+                      Subject
                     </label>                    <select
                       id="subject"
                       name="subject"
@@ -228,20 +220,19 @@ const ContactPage: React.FC = () => {
                       onChange={handleChange}
                       className="w-full p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400"
                     >
-                      <option value="">Seleccionar asunto</option>
-                      <option value="Información general">Información general</option>
-                      <option value="Franquicia">Información sobre franquicias</option>
-                      <option value="Colaboración">Propuestas de colaboración</option>
-                      <option value="Prensa">Prensa y medios</option>
-                      <option value="Sugerencia">Sugerencias</option>
-                      <option value="Otro">Otro</option>
+                      <option value="">Select subject</option>
+                      <option value="General Information">General Information</option>
+                      <option value="Franchise">Franchise Information</option>
+                      <option value="Collaboration">Collaboration Proposals</option>
+                      <option value="Press">Press and Media</option>
+                      <option value="Suggestion">Suggestions</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Mensaje *
+                <div className="mb-6">                  <label htmlFor="message" className="block text-sm font-medium text-secondary-700 mb-1">
+                    Message *
                   </label>
                   <textarea
                     id="message"
@@ -250,7 +241,7 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     rows={5}
                     className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 ${errors.message ? 'border-error-500' : 'border-gray-300'}`}
-                    placeholder="¿En qué podemos ayudarte?"
+                    placeholder="How can we help you?"
                   ></textarea>
                   {errors.message && <p className="mt-1 text-sm text-error-600">{errors.message}</p>}
                 </div>
@@ -264,7 +255,7 @@ const ContactPage: React.FC = () => {
                     className="w-full md:w-auto"
                     rightIcon={isSubmitting ? undefined : <Send size={16} />}
                   >
-                    {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </div>
               </form>
@@ -279,26 +270,25 @@ const ContactPage: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
         className="mt-12"
-      >
-        <h2 className="text-2xl font-serif mb-6">Preguntas Frecuentes</h2>
+      >        <h2 className="text-2xl font-serif mb-6">Frequently Asked Questions</h2>
         
         <div className="bg-white rounded-lg shadow-soft divide-y">
           {[
             { 
-              question: "¿Cómo puedo obtener información sobre franquicias?", 
-              answer: "Para obtener información detallada sobre nuestras oportunidades de franquicia, puede completar el formulario de contacto seleccionando 'Información sobre franquicias' en el campo de asunto, o escribirnos directamente a franchise@qargocoffee.com. Un miembro de nuestro equipo se pondrá en contacto con usted para proporcionarle toda la información necesaria." 
+              question: "How can I get information about franchises?", 
+              answer: "To obtain detailed information about our franchise opportunities, you can complete the contact form by selecting 'Franchise Information' in the subject field, or write to us directly at franchise@qargocoffee.com. A member of our team will contact you to provide all the necessary information." 
             },
             { 
-              question: "¿Dónde puedo encontrar mi Qargo Coffee más cercano?", 
-              answer: "Puede encontrar la ubicación de Qargo Coffee más cercana utilizando el localizador de tiendas en nuestra aplicación móvil o visitando la sección 'Ubicaciones' en nuestro sitio web. Allí encontrará un mapa interactivo con todas nuestras tiendas." 
+              question: "Where can I find my nearest Qargo Coffee?", 
+              answer: "You can find the nearest Qargo Coffee location using the store locator in our mobile app or by visiting the 'Locations' section on our website. There you will find an interactive map with all our stores." 
             },
             { 
-              question: "¿Qué hace único a Qargo Coffee?", 
-              answer: "Qargo Coffee se distingue por su enfoque innovador que fusiona la tradición cafetera italiana con el ritmo de vida estadounidense. Nuestro diseño único de tiendas en contenedores de envío reconvertidos, nuestro café premium Lavazza y nuestra dedicación a crear experiencias excepcionales nos diferencian en el mercado." 
+              question: "What makes Qargo Coffee unique?", 
+              answer: "Qargo Coffee is distinguished by its innovative approach that fuses Italian coffee tradition with the American pace of life. Our unique store design in repurposed shipping containers, our premium Lavazza coffee, and our dedication to creating exceptional experiences set us apart in the market." 
             },
             { 
-              question: "¿Tienen opciones de catering para eventos?", 
-              answer: "Sí, ofrecemos servicios de catering para eventos corporativos, celebraciones privadas y eventos especiales. Contáctenos a través del formulario o llámenos directamente para discutir sus necesidades específicas y recibir un presupuesto personalizado." 
+              question: "Do you offer catering options for events?", 
+              answer: "Yes, we offer catering services for corporate events, private celebrations, and special occasions. Contact us through the form or call us directly to discuss your specific needs and receive a personalized quote." 
             },
           ].map((faq, index) => (
             <div key={index} className="p-6">

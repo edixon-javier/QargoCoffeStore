@@ -14,7 +14,7 @@ const CheckoutPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('information');
 
   if (items.length === 0) {
-    navigate('/carrito');
+    navigate('/cart');
     return null;
   }
 
@@ -31,10 +31,10 @@ const CheckoutPage: React.FC = () => {
   };
 
   const steps = [
-    { id: 'information', label: 'Información' },
-    { id: 'shipping', label: 'Envío' },
-    { id: 'payment', label: 'Pago' },
-    { id: 'confirmation', label: 'Confirmación' },
+    { id: 'information', label: 'Information' },
+    { id: 'shipping', label: 'Shipping' },
+    { id: 'payment', label: 'Payment' },
+    { id: 'confirmation', label: 'Confirmation' },
   ];
 
   return (
@@ -93,27 +93,27 @@ const CheckoutPage: React.FC = () => {
           >
             {currentStep === 'information' && (
               <form onSubmit={handleNextStep}>
-                <h2 className="text-xl font-medium mb-6">Información de contacto</h2>
+                <h2 className="text-xl font-medium mb-6">Contact Information</h2>
                 
                 <div className="mb-6">
                   <label htmlFor="email" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Correo electrónico
+                    Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     className="input"
-                    placeholder="ejemplo@correo.com"
+                    placeholder="example@email.com"
                     required
                   />
                 </div>
                 
-                <h2 className="text-xl font-medium mb-4">Información de facturación</h2>
+                <h2 className="text-xl font-medium mb-4">Billing Information</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Nombre
+                      First Name
                     </label>
                     <input
                       type="text"
@@ -124,7 +124,7 @@ const CheckoutPage: React.FC = () => {
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Apellidos
+                      Last Name
                     </label>
                     <input
                       type="text"
@@ -137,7 +137,7 @@ const CheckoutPage: React.FC = () => {
                 
                 <div className="mb-4">
                   <label htmlFor="company" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Empresa
+                    Company
                   </label>
                   <input
                     type="text"
@@ -148,7 +148,7 @@ const CheckoutPage: React.FC = () => {
                 
                 <div className="mb-4">
                   <label htmlFor="taxId" className="block text-sm font-medium text-secondary-700 mb-1">
-                    RFC
+                    Tax ID
                   </label>
                   <input
                     type="text"
@@ -159,7 +159,7 @@ const CheckoutPage: React.FC = () => {
                 
                 <div className="mb-4">
                   <label htmlFor="phone" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Teléfono
+                    Phone
                   </label>
                   <input
                     type="tel"
@@ -176,7 +176,7 @@ const CheckoutPage: React.FC = () => {
                     fullWidth
                     rightIcon={<ChevronRight size={16} />}
                   >
-                    Continuar a envío
+                    Continue to Shipping
                   </Button>
                 </div>
               </form>
@@ -184,11 +184,11 @@ const CheckoutPage: React.FC = () => {
             
             {currentStep === 'shipping' && (
               <form onSubmit={handleNextStep}>
-                <h2 className="text-xl font-medium mb-6">Información de envío</h2>
+                <h2 className="text-xl font-medium mb-6">Shipping Information</h2>
                 
                 <div className="mb-4">
                   <label htmlFor="address" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Dirección
+                    Address
                   </label>
                   <input
                     type="text"
@@ -200,7 +200,7 @@ const CheckoutPage: React.FC = () => {
                 
                 <div className="mb-4">
                   <label htmlFor="address2" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Apartamento, suite, etc. (opcional)
+                    Apartment, suite, etc. (optional)
                   </label>
                   <input
                     type="text"
@@ -212,7 +212,7 @@ const CheckoutPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="city" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Ciudad
+                      City
                     </label>
                     <input
                       type="text"
@@ -223,14 +223,14 @@ const CheckoutPage: React.FC = () => {
                   </div>
                   <div>
                     <label htmlFor="state" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Estado
+                      State
                     </label>
                     <select id="state" className="input">
-                      <option value="">Seleccionar...</option>
-                      <option value="CDMX">Ciudad de México</option>
-                      <option value="JAL">Jalisco</option>
-                      <option value="NL">Nuevo León</option>
-                      {/* Otros estados */}
+                      <option value="">Select...</option>
+                      <option value="FL">Florida</option>
+                      <option value="TX">Texas</option>
+                      <option value="CA">California</option>
+                      {/* Other states */}
                     </select>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ const CheckoutPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
                     <label htmlFor="zipCode" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Código postal
+                      Zip Code
                     </label>
                     <input
                       type="text"
@@ -249,17 +249,17 @@ const CheckoutPage: React.FC = () => {
                   </div>
                   <div>
                     <label htmlFor="country" className="block text-sm font-medium text-secondary-700 mb-1">
-                      País
+                      Country
                     </label>
-                    <select id="country" className="input" defaultValue="MX">
-                      <option value="MX">México</option>
-                      <option value="US">Estados Unidos</option>
-                      <option value="CA">Canadá</option>
+                    <select id="country" className="input" defaultValue="US">
+                      <option value="US">United States</option>
+                      <option value="MX">Mexico</option>
+                      <option value="CA">Canada</option>
                     </select>
                   </div>
                 </div>
                 
-                <h3 className="font-medium mb-4">Método de envío</h3>
+                <h3 className="font-medium mb-4">Shipping Method</h3>
                 
                 <div className="space-y-3 mb-6">
                   <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary-300 transition-colors">
@@ -271,8 +271,8 @@ const CheckoutPage: React.FC = () => {
                       defaultChecked
                     />
                     <div className="flex-grow">
-                      <p className="font-medium">Estándar (3-5 días hábiles)</p>
-                      <p className="text-sm text-secondary-500">Entrega a domicilio</p>
+                      <p className="font-medium">Standard (3-5 business days)</p>
+                      <p className="text-sm text-secondary-500">Home delivery</p>
                     </div>
                     <p className="font-medium">$150.00</p>
                   </label>
@@ -285,8 +285,8 @@ const CheckoutPage: React.FC = () => {
                       className="mr-3"
                     />
                     <div className="flex-grow">
-                      <p className="font-medium">Express (1-2 días hábiles)</p>
-                      <p className="text-sm text-secondary-500">Entrega a domicilio</p>
+                      <p className="font-medium">Express (1-2 business days)</p>
+                      <p className="text-sm text-secondary-500">Home delivery</p>
                     </div>
                     <p className="font-medium">$350.00</p>
                   </label>
@@ -298,7 +298,7 @@ const CheckoutPage: React.FC = () => {
                     variant="outline"
                     onClick={() => setCurrentStep('information')}
                   >
-                    Volver
+                    Back
                   </Button>
                   <Button 
                     type="submit" 
@@ -306,7 +306,7 @@ const CheckoutPage: React.FC = () => {
                     fullWidth
                     rightIcon={<ChevronRight size={16} />}
                   >
-                    Continuar a pago
+                    Continue to Payment
                   </Button>
                 </div>
               </form>
@@ -314,7 +314,7 @@ const CheckoutPage: React.FC = () => {
             
             {currentStep === 'payment' && (
               <form onSubmit={handleNextStep}>
-                <h2 className="text-xl font-medium mb-6">Información de pago</h2>
+                <h2 className="text-xl font-medium mb-6">Payment Information</h2>
                 
                 <div className="space-y-3 mb-6">
                   <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary-300 transition-colors">
@@ -326,7 +326,7 @@ const CheckoutPage: React.FC = () => {
                       defaultChecked
                     />
                     <div className="flex-grow">
-                      <p className="font-medium">Tarjeta de crédito/débito</p>
+                      <p className="font-medium">Credit/Debit Card</p>
                       <p className="text-sm text-secondary-500">Visa, Mastercard, AMEX</p>
                     </div>
                     <CreditCard className="h-6 w-6 text-secondary-400" />
@@ -335,20 +335,20 @@ const CheckoutPage: React.FC = () => {
                 
                 <div className="mb-4">
                   <label htmlFor="cardHolder" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Titular de la tarjeta
+                    Card Holder
                   </label>
                   <input
                     type="text"
                     id="cardHolder"
                     className="input"
-                    placeholder="Nombre como aparece en la tarjeta"
+                    placeholder="Name as appears on card"
                     required
                   />
                 </div>
                 
                 <div className="mb-4">
                   <label htmlFor="cardNumber" className="block text-sm font-medium text-secondary-700 mb-1">
-                    Número de tarjeta
+                    Card Number
                   </label>
                   <input
                     type="text"
@@ -362,19 +362,19 @@ const CheckoutPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div>
                     <label htmlFor="expiryDate" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Fecha de expiración (MM/AA)
+                      Expiration Date (MM/YY)
                     </label>
                     <input
                       type="text"
                       id="expiryDate"
                       className="input"
-                      placeholder="MM/AA"
+                      placeholder="MM/YY"
                       required
                     />
                   </div>
                   <div>
                     <label htmlFor="cvv" className="block text-sm font-medium text-secondary-700 mb-1">
-                      Código de seguridad (CVV)
+                      Security Code (CVV)
                     </label>
                     <input
                       type="text"
@@ -392,14 +392,14 @@ const CheckoutPage: React.FC = () => {
                     variant="outline"
                     onClick={() => setCurrentStep('shipping')}
                   >
-                    Volver
+                    Back
                   </Button>
                   <Button 
                     type="submit" 
                     variant="primary" 
                     fullWidth
                   >
-                    Completar compra
+                    Complete Purchase
                   </Button>
                 </div>
               </form>
@@ -410,14 +410,14 @@ const CheckoutPage: React.FC = () => {
                 <div className="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Check className="h-8 w-8 text-success-600" />
                 </div>
-                <h2 className="text-2xl font-medium mb-2">¡Gracias por tu compra!</h2>
+                <h2 className="text-2xl font-medium mb-2">Thank you for your purchase!</h2>
                 <p className="text-secondary-600 mb-6">
-                  Tu pedido ha sido procesado correctamente. Hemos enviado un correo con los detalles de tu compra.
+                  Your order has been successfully processed. We have sent an email with your purchase details.
                 </p>
                 
                 <div className="bg-primary-50 rounded-lg p-4 mb-6 text-left">
-                  <p className="font-medium mb-2">Número de pedido: <span className="font-normal">QC-12345678</span></p>
-                  <p className="font-medium">Estado: <span className="text-success-600">Procesando</span></p>
+                  <p className="font-medium mb-2">Order number: <span className="font-normal">QC-12345678</span></p>
+                  <p className="font-medium">Status: <span className="text-success-600">Processing</span></p>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -425,7 +425,7 @@ const CheckoutPage: React.FC = () => {
                     variant="primary"
                     onClick={() => navigate('/')}
                   >
-                    Explorar catálogo
+                    Explore Catalog
                   </Button>
                 </div>
               </div>
@@ -436,7 +436,7 @@ const CheckoutPage: React.FC = () => {
         {/* Order summary */}
         <div>
           <div className="bg-white rounded-lg shadow-soft p-6 sticky top-24">
-            <h2 className="text-lg font-medium mb-4">Resumen del pedido</h2>
+            <h2 className="text-lg font-medium mb-4">Order Summary</h2>
             
             <div className="divide-y divide-gray-200">
               {items.map(item => (
@@ -470,11 +470,11 @@ const CheckoutPage: React.FC = () => {
                 <span>{formatCurrency(total)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-secondary-600">Envío</span>
-                <span>{currentStep === 'shipping' || currentStep === 'payment' || currentStep === 'confirmation' ? '$150.00' : 'A calcular'}</span>
+                <span className="text-secondary-600">Shipping</span>
+                <span>{currentStep === 'shipping' || currentStep === 'payment' || currentStep === 'confirmation' ? '$150.00' : 'To be calculated'}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-secondary-600">Impuestos (16%)</span>
+                <span className="text-secondary-600">Taxes (16%)</span>
                 <span>{formatCurrency(total * 0.16)}</span>
               </div>
             </div>
