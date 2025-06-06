@@ -21,15 +21,14 @@ const Button: React.FC<ButtonProps> = ({
   rightIcon,
   disabled,
   ...props
-}) => {
-  const baseStyles = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none';
+}) => {  const baseStyles = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-400 disabled:opacity-50 disabled:pointer-events-none shadow-button';
 
   const variants = {
-    primary: 'bg-primary-700 text-white hover:bg-primary-800',
-    secondary: 'bg-secondary-100 text-secondary-800 hover:bg-secondary-200',
-    accent: 'bg-accent-600 text-white hover:bg-accent-700',
-    outline: 'border border-primary-300 bg-transparent hover:bg-primary-50 text-primary-700',
-    ghost: 'bg-transparent hover:bg-primary-50 text-primary-700',
+    primary: 'bg-primary-600 text-white hover:bg-primary-700',
+    secondary: 'bg-white text-primary-600 hover:bg-secondary-100 border border-primary-200',
+    accent: 'bg-accent-500 text-white hover:bg-accent-600',
+    outline: 'border border-primary-300 bg-transparent hover:bg-primary-50 text-primary-600',
+    ghost: 'bg-transparent hover:bg-primary-50 text-primary-600',
   };
 
   const sizes = {

@@ -208,27 +208,25 @@ const ContactPage: React.FC = () => {
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-secondary-700 mb-1">
                       Teléfono
-                    </label>
-                    <input
+                    </label>                    <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formState.phone}
                       onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      className="w-full p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400"
                       placeholder="(opcional)"
                     />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-secondary-700 mb-1">
                       Asunto
-                    </label>
-                    <select
+                    </label>                    <select
                       id="subject"
                       name="subject"
                       value={formState.subject}
                       onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      className="w-full p-3 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400"
                     >
                       <option value="">Seleccionar asunto</option>
                       <option value="Información general">Información general</option>

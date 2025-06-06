@@ -205,7 +205,7 @@ const CatalogPage: React.FC = () => {
         <div className="flex items-center gap-2">
           <span className="text-sm text-secondary-600">Ordenar por:</span>
           <select 
-            className="border border-gray-300 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+            className="border border-primary-200 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-400"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >
@@ -392,7 +392,7 @@ const CatalogPage: React.FC = () => {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'tween' }}
-                className="absolute top-0 left-0 w-3/4 h-full bg-white overflow-auto"
+                className="absolute top-0 left-0 w-3/4 h-full bg-secondary-50 overflow-auto"
                 onClick={e => e.stopPropagation()}
               >
                 <div className="p-4">
@@ -465,15 +465,15 @@ const CatalogPage: React.FC = () => {
                                 <input 
                                   type="number" 
                                   placeholder="Min" 
-                                  className="w-full p-2 border border-gray-300 rounded text-sm" 
+                                  className="w-full p-2 border border-primary-200 rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary-400" 
                                   value={minPrice}
                                   onChange={(e) => setMinPrice(e.target.value)}
                                 />
-                                <span className="text-gray-400">-</span>
+                                <span className="text-secondary-400">-</span>
                                 <input 
                                   type="number" 
                                   placeholder="Max" 
-                                  className="w-full p-2 border border-gray-300 rounded text-sm" 
+                                  className="w-full p-2 border border-primary-200 rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary-400" 
                                   value={maxPrice}
                                   onChange={(e) => setMaxPrice(e.target.value)}
                                 />

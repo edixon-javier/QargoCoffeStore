@@ -46,9 +46,9 @@ const ProductDetailPage: React.FC = () => {
     <div className="container-custom py-8">
       {/* Breadcrumb */}
       <nav className="flex text-sm text-secondary-500 mb-6">
-        <Link to="/" className="hover:text-primary-700">Inicio</Link>
+        <Link to="/" className="hover:text-primary-700">Catálogo</Link>
         <ChevronRight size={16} className="mx-2" />
-        <Link to="/catalogo" className="hover:text-primary-700">Catálogo</Link>
+        <span className="text-secondary-700">{product.category.name}</span>
         <ChevronRight size={16} className="mx-2" />
         <Link to={`/catalogo?categoria=${product.category.slug}`} className="hover:text-primary-700">
           {product.category.name}

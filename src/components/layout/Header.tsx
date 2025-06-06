@@ -40,43 +40,42 @@ const Header: React.FC = () => {
   return (
     <header 
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled || isPortalPage ? 'bg-white shadow-md' : 'bg-transparent'
+        isScrolled || isPortalPage ? 'bg-white shadow-card' : 'bg-transparent'
       }`}
     >
       <div className="container-custom flex items-center justify-between py-4">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <Coffee 
-            className="h-8 w-8 text-primary-800" 
+            className="h-8 w-8 text-primary-600" 
             strokeWidth={2.5} 
           />
-          <span className="ml-2 font-serif font-bold text-xl text-primary-800">
+          <span className="ml-2 font-serif font-bold text-xl text-primary-600">
             Qargo Coffee
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/catalogo" className="nav-link font-medium hover:text-primary-700">
+          <Link to="/catalogo" className="nav-link font-medium hover:text-primary-600">
             Catálogo
           </Link>
-          <Link to="/sobre-nosotros" className="nav-link font-medium hover:text-primary-700">
+          <Link to="/sobre-nosotros" className="nav-link font-medium hover:text-primary-600">
             Nosotros
           </Link>
-          <Link to="/contacto" className="nav-link font-medium hover:text-primary-700">
+          <Link to="/contacto" className="nav-link font-medium hover:text-primary-600">
             Contacto
           </Link>
         </nav>
 
         {/* Right side actions */}
-        <div className="flex items-center space-x-4">
-          {/* Search button */}
+        <div className="flex items-center space-x-4">          {/* Search button */}
           <button 
             onClick={toggleSearch}
             aria-label="Buscar"
             className="p-2 rounded-full hover:bg-primary-100 transition-colors"
           >
-            <Search className="h-5 w-5 text-primary-800" />
+            <Search className="h-5 w-5 text-primary-600" />
           </button>
 
           {/* Cart link with counter */}
@@ -85,10 +84,9 @@ const Header: React.FC = () => {
               to="/carrito" 
               className="p-2 rounded-full hover:bg-primary-100 transition-colors relative"
               aria-label="Carrito de compra"
-            >
-              <ShoppingCart className="h-5 w-5 text-primary-800" />
+            >              <ShoppingCart className="h-5 w-5 text-primary-600" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-button">
                   {itemCount}
                 </span>
               )}

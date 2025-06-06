@@ -44,7 +44,7 @@ const CartPage: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="p-4 border-b border-gray-100 flex items-center"
                   >
-                    <div className="w-20 h-20 bg-gray-50 rounded overflow-hidden flex-shrink-0">
+                    <div className="w-20 h-20 bg-primary-50 rounded overflow-hidden flex-shrink-0">
                       <img 
                         src={item.product.images[0]} 
                         alt={item.product.name}
@@ -67,7 +67,7 @@ const CartPage: React.FC = () => {
                     <div className="flex items-center mr-6">
                       <button 
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                        className="p-1 rounded border border-gray-200 text-secondary-500 hover:border-primary-500 hover:text-primary-700 transition-colors"
+                        className="p-1 rounded border border-primary-200 text-primary-600 hover:border-primary-500 hover:text-primary-700 hover:bg-primary-50 transition-colors"
                         aria-label="Disminuir cantidad"
                       >
                         <Minus size={16} />
@@ -75,7 +75,7 @@ const CartPage: React.FC = () => {
                       <span className="mx-2 w-10 text-center">{item.quantity}</span>
                       <button 
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                        className="p-1 rounded border border-gray-200 text-secondary-500 hover:border-primary-500 hover:text-primary-700 transition-colors"
+                        className="p-1 rounded border border-primary-200 text-primary-600 hover:border-primary-500 hover:text-primary-700 hover:bg-primary-50 transition-colors"
                         aria-label="Aumentar cantidad"
                       >
                         <Plus size={16} />
@@ -109,7 +109,7 @@ const CartPage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-soft p-6 sticky top-24">
               <h2 className="text-lg font-medium mb-4">Resumen del pedido</h2>
               
-              <div className="space-y-3 border-b border-gray-200 pb-4">
+              <div className="space-y-3 border-b border-primary-100 pb-4">
                 <div className="flex justify-between">
                   <span className="text-secondary-600">Subtotal</span>
                   <span>{formatCurrency(total)}</span>
@@ -124,7 +124,7 @@ const CartPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex justify-between py-4 border-b border-gray-200 mb-6">
+              <div className="flex justify-between py-4 border-b border-primary-100 mb-6">
                 <span className="font-medium">Total</span>
                 <span className="font-semibold text-lg">
                   {formatCurrency(total * 1.16)}

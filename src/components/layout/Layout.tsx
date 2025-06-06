@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <motion.main 
-        className={`flex-grow ${isPortalPage ? 'bg-gray-50' : 'bg-white'}`}
+        className={`flex-grow ${isPortalPage ? 'bg-primary-50' : 'bg-secondary-50'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
