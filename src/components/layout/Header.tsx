@@ -12,12 +12,11 @@ const Header: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const { itemCount } = useCart();
   const location = useLocation();
-
   // Check if we're on an admin/portal page
   const isPortalPage = 
     location.pathname.startsWith('/admin') || 
-    location.pathname.startsWith('/proveedor') || 
-    location.pathname.startsWith('/franquiciado');
+    location.pathname.startsWith('/supplier') || 
+    location.pathname.startsWith('/franchisee');
   
   useEffect(() => {
     const handleScroll = () => {
@@ -92,20 +91,18 @@ const Header: React.FC = () => {
 
           {/* User profile / login */}
           <div className="relative">
-            {isAuthenticated ? (
-              <Link 
+            {isAuthenticated ? (              <Link 
                 to={
                   user?.role === 'admin' ? '/admin' : 
-                  user?.role === 'supplier' ? '/proveedor' : 
-                  '/franquiciado'
+                  user?.role === 'supplier' ? '/supplier' : 
+                  '/franchisee'
                 } 
                 className="flex items-center"
               >
-                <div className="w-8 h-8 bg-primary-200 rounded-full flex items-center justify-center overflow-hidden">
-                  {user.profileImage ? (
+                <div className="w-8 h-8 bg-primary-200 rounded-full flex items-center justify-center overflow-hidden">                  {user?.profileImage ? (
                     <img 
                       src={user.profileImage}
-                      alt={user.name}
+                      alt={user?.name || "User profile"}
                       className="w-full h-full object-cover"
                     />
                   ) : (
