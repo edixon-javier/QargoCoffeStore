@@ -1,0 +1,32 @@
+# Configuración de tipos MIME para GitHub Pages
+<IfModule mod_mime.c>
+  # JavaScript
+  AddType application/javascript .js
+  AddType application/javascript .mjs
+  
+  # JSON
+  AddType application/json .json
+  
+  # CSS
+  AddType text/css .css
+  
+  # SVG
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Permitir Cross-origin
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs|css|json)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# Redirección para SPA
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

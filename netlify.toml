@@ -1,0 +1,28 @@
+# Configuración para Netlify
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Redirigir todas las solicitudes a index.html para que funcione el enrutamiento del lado del cliente
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Configurar tipos MIME para los archivos JavaScript
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+# Configurar tipos MIME para los archivos CSS
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css"
+
+# Configurar tipos MIME para SVG
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Content-Type = "image/svg+xml"

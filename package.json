@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://github.com/edixon-javier.github.io/QargoCoffeStore",
+  "homepage": "https://edixon-javier.github.io/QargoCoffeStore",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp -f .nojekyll dist/",
     "build": "vite build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
