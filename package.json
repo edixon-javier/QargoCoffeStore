@@ -6,7 +6,7 @@
   "homepage": "https://edixon-javier.github.io/QargoCoffeStore",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build && cp -f .nojekyll dist/",
+    "predeploy": "npm run build && node -e \"require('fs').copyFileSync('.nojekyll', 'dist/.nojekyll')\"",
     "build": "vite build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
