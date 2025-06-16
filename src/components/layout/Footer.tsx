@@ -34,9 +34,6 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="font-serif text-sm font-semibold mb-2 text-white">Navigate</h4>
               <ul className="space-y-1 text-sm">
-                <li><Link to="/catalog" className="text-white hover:text-accent-200 transition-colors">Catalog</Link></li>
-                <li><Link to="/about-us" className="text-white hover:text-accent-200 transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="text-white hover:text-accent-200 transition-colors">Contact</Link></li>
                 <li><Link to="/terms" className="text-white hover:text-accent-200 transition-colors">Terms & Conditions</Link></li>
                 <li><Link to="/privacy" className="text-white hover:text-accent-200 transition-colors">Privacy Policy</Link></li>
               </ul>
@@ -46,11 +43,8 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="font-serif text-sm font-semibold mb-2 text-white">Access</h4>
               <ul className="space-y-1 text-sm">
-                <li><Link to="/login" className="text-white hover:text-accent-200 transition-colors">Login</Link></li>
-                <li><Link to="/register" className="text-white hover:text-accent-200 transition-colors">Register</Link></li>
                 <li><Link to="/admin" className="text-white hover:text-accent-200 transition-colors">Admin Dashboard</Link></li>
                 <li><Link to="/supplier" className="text-white hover:text-accent-200 transition-colors">Supplier Portal</Link></li>
-                <li><Link to="/franchisee" className="text-white hover:text-accent-200 transition-colors">Franchisee Portal</Link></li>
               </ul>
             </div>
 
@@ -67,12 +61,6 @@ const Footer: React.FC = () => {
                   <span className="text-white">+1 (305) 555-0123</span>
                 </li>
               </ul>            </div>
-          </div>
-        </div>
-        
-        <div className="border-t border-primary-700 mt-4 pt-4">
-          <div className="text-center text-xs text-primary-200">
-            © {new Date().getFullYear()} Qargo Coffee. All rights reserved.
           </div>
         </div>
       </div>
