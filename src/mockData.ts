@@ -9,9 +9,9 @@ export { categories, suppliers };
 export const mockProducts: Product[] = [
   {
     id: "1",
-    name: "Res tierra CASE 6 BAGS RES TIERRA SELECT 1kg BEANS",
+    name: "TIERRA CASE 6 BAGS RES TIERRA SELECT 1kg BEANS",
     description:
-      "Café de tueste medio con notas de chocolate y caramelo. Perfecto para máquinas de espresso profesionales.",
+      "Medium roast coffee with chocolate and caramel notes. Perfect for professional espresso machines.",
     sku: "COF-ESP-001",
     price: 450,
     salePrice: 399,
@@ -27,7 +27,7 @@ export const mockProducts: Product[] = [
     specifications: {
       Origin: "Italy",
       Roast: "Medium",
-      Notes: "Chocolate, Caramelo, Nueces",
+      Notes: "Chocolate, Caramel, Nuts",
       "Recommended Method": "Espresso",
       Intensity: "8/10",
       Weight: "1kg",
@@ -40,7 +40,7 @@ export const mockProducts: Product[] = [
     id: "2",
     name: "LB 300 USA CLASSY MINI 120V",
     description:
-      "Máquina de espresso profesional con 2 grupos, caldera de 10L y sistema avanzado de estabilidad térmica.",
+      "Professional espresso machine with 2 groups, 10L boiler and advanced thermal stability system.",
     sku: "MAQ-ESP-3000",
     price: 45000,
     images: [
@@ -69,7 +69,7 @@ export const mockProducts: Product[] = [
     id: "3",
     name: "BIOCAF GRINDER CLEANING TABLETS 234 G",
     description:
-      "Tamper profesional de barista con mango ergonómico y base de acero inoxidable de 58mm.",
+      "Professional barista tamper with ergonomic handle and 58mm stainless steel base.",
     sku: "ACC-TAM-001",
     price: 890,
     salePrice: 750,
@@ -93,9 +93,9 @@ export const mockProducts: Product[] = [
   },
   {
     id: "4",
-    name: "Res tierras Bras CS.6 S.P.RESTIERRA BRAS100%AR FLT 226,8",
+    name: "TIERRA BRAZILIAN CS.6 S.P.TIERRA BRAS100%AR FLT 226.8",
     description:
-      "Café orgánico certificado de comercio justo. Notas florales y afrutadas con un final limpio.",
+      "Certified organic fair trade coffee. Floral and fruity notes with a clean finish.",
     sku: "COF-ESP-002",
     price: 320,
     images: [
@@ -122,7 +122,7 @@ export const mockProducts: Product[] = [
     id: "5",
     name: "BIOCAF ESPRESSO CLEANING POWDER 500ML",
     description:
-      "Molinillo de café profesional con 45 configuraciones de molienda y temporizador digital.",
+      "Professional coffee grinder with 45 grind settings and digital timer.",
     sku: "ACC-GRD-001",
     price: 3600,
     salePrice: 2999,
@@ -135,12 +135,12 @@ export const mockProducts: Product[] = [
     stock: 15,
     minOrderQuantity: 1,
     specifications: {
-      Material: "Acero inoxidable y plástico ABS",
-      Potencia: "150W",
-      Capacidad: "250g",
-      "Ajustes de molienda": "45",
-      Dimensiones: "22 x 13 x 35 cm",
-      Peso: "2.8kg",
+      Material: "Stainless steel and ABS plastic",
+      Power: "150W",
+      Capacity: "250g",
+      "Grind settings": "45",
+      Dimensions: "22 x 13 x 35 cm",
+      Weight: "2.8kg",
     },
     isActive: true,
     createdAt: "2023-08-12T14:20:00Z",
@@ -150,7 +150,7 @@ export const mockProducts: Product[] = [
     id: "6",
     name: "FILTER GOURMET 20138",
     description:
-      "Vasos para café biodegradables y compostables con diseño térmico para bebidas calientes.",
+      "Biodegradable and compostable coffee cups with thermal design for hot beverages.",
     sku: "ACC-VAS-001",
     price: 580,
     images: [
@@ -163,10 +163,10 @@ export const mockProducts: Product[] = [
     minOrderQuantity: 5,
     specifications: {
       Material: "PLA Compostable",
-      Capacidad: "12oz (355ml)",
-      Unidades: "100",
-      Certificación: "Compostable, Sin BPA",
-      Dimensiones: "9cm (altura) x 8cm (diámetro superior)",
+      Capacity: "12oz (355ml)",
+      Units: "100",
+      Certification: "Compostable, BPA-free",
+      Dimensions: "9cm (height) x 8cm (top diameter)",
     },
     isActive: true,
     createdAt: "2023-05-30T15:45:00Z",
@@ -174,9 +174,9 @@ export const mockProducts: Product[] = [
   },
   {
     id: "7",
-    name: "Res tierra CASE 6 PC.RES TIERRA BRAS BLEND 1000 B",
+    name: "TIERRA CASE 6 PC.TIERRA BRAS BLEND 1000 B",
     description:
-      "Nuestra mezcla insignia para espresso con perfil equilibrado de chocolate, frutos rojos y caramelo.",
+      "Our signature espresso blend with balanced profile of chocolate, red fruits and caramel.",
     sku: "CAF-ESP-003",
     price: 480,
     images: [
@@ -188,12 +188,12 @@ export const mockProducts: Product[] = [
     stock: 120,
     minOrderQuantity: 5,
     specifications: {
-      Origen: "Blend (Brasil, Colombia, Etiopía)",
-      Tueste: "Medio-Oscuro",
-      Notas: "Chocolate, Frutos rojos, Caramelo",
-      "Método recomendado": "Espresso, Moka",
-      Intensidad: "9/10",
-      Peso: "1kg",
+      Origin: "Blend (Brazil, Colombia, Ethiopia)",
+      Roast: "Medium-Dark",
+      Notes: "Chocolate, Red fruits, Caramel",
+      "Recommended Method": "Espresso, Moka",
+      Intensity: "9/10",
+      Weight: "1kg",
     },
     isActive: true,
     createdAt: "2023-07-18T09:20:00Z",
@@ -203,7 +203,7 @@ export const mockProducts: Product[] = [
     id: "8",
     name: "DEK CASE 12 PACKS DECAFF FILTER 500BEANS",
     description:
-      "Filtros de papel premium para métodos de preparación V60. Sin blanquear para un sabor más puro.",
+      "Premium paper filters for V60 brewing methods. Unbleached for a purer taste.",
     sku: "ACC-FIL-001",
     price: 180,
     images: [
@@ -215,10 +215,10 @@ export const mockProducts: Product[] = [
     stock: 250,
     minOrderQuantity: 10,
     specifications: {
-      Material: "Papel sin blanquear",
-      Tipo: "V60 01-02",
-      Unidades: "100",
-      Características: "Biodegradable, Compostable",
+      Material: "Unbleached paper",
+      Type: "V60 01-02",
+      Units: "100",
+      Features: "Biodegradable, Compostable",
     },
     isActive: true,
     createdAt: "2023-06-25T12:40:00Z",
@@ -228,7 +228,7 @@ export const mockProducts: Product[] = [
     id: "9",
     name: "Cold brew concentrate 7:1",
     description:
-      "Café extraído en frío durante 18 horas. Sabor suave, dulce y menos ácido. Ideal para servir con hielo.",
+      "Coffee extracted cold for 18 hours. Smooth, sweet and less acidic flavor. Ideal for serving over ice.",
     sku: "COF-CBR-001",
     price: 280,
     images: [
@@ -240,11 +240,11 @@ export const mockProducts: Product[] = [
     stock: 60,
     minOrderQuantity: 2,
     specifications: {
-      Origen: "Colombia",
-      Extracción: "Cold Brew",
-      Notas: "Cacao, Almendra, Miel",
-      Conservación: "Refrigerado",
-      Peso: "1L",
+      Origin: "Colombia",
+      Extraction: "Cold Brew",
+      Notes: "Cocoa, Almond, Honey",
+      Storage: "Refrigerated",
+      Weight: "1L",
     },
     isActive: true,
     createdAt: "2023-06-22T11:10:00Z",
@@ -254,7 +254,7 @@ export const mockProducts: Product[] = [
     id: "10",
     name: "SOFT PACKS GRAN AROMA COSTIERA 340 Case 6",
     description:
-      "Diseño elegante con vidrio templado y filtro de acero inoxidable. Ideal para preparar café de manera manual.",
+      "Elegant design with tempered glass and stainless steel filter. Ideal for manual coffee preparation.",
     sku: "ACC-PRE-001",
     price: 690,
     salePrice: 590,
@@ -267,10 +267,10 @@ export const mockProducts: Product[] = [
     stock: 35,
     minOrderQuantity: 1,
     specifications: {
-      Capacidad: "350ml",
-      Material: "Vidrio y acero inoxidable",
-      Color: "Transparente/Negro",
-      Método: "French Press",
+      Capacity: "350ml",
+      Material: "Glass and stainless steel",
+      Color: "Transparent/Black",
+      Method: "French Press",
     },
     isActive: true,
     createdAt: "2023-07-11T10:25:00Z",
@@ -280,7 +280,7 @@ export const mockProducts: Product[] = [
     id: "11",
     name: "SOFT PACKS CLASSICO DOLCEVITA 340",
     description:
-      "Cápsulas compatibles con Nespresso. Mezcla intensa de tueste oscuro con notas de cacao y nuez.",
+      "Nespresso compatible capsules. Intense dark roast blend with cocoa and nut notes.",
     sku: "CAF-CAP-001",
     price: 150,
     images: [
@@ -292,10 +292,10 @@ export const mockProducts: Product[] = [
     stock: 180,
     minOrderQuantity: 5,
     specifications: {
-      Compatibilidad: "Nespresso",
-      Intensidad: "10/10",
-      Tueste: "Oscuro",
-      Unidades: "10 cápsulas",
+      Compatibility: "Nespresso",
+      Intensity: "10/10",
+      Roast: "Dark",
+      Units: "10 capsules",
     },
     isActive: true,
     createdAt: "2023-08-05T13:30:00Z",
@@ -305,7 +305,7 @@ export const mockProducts: Product[] = [
     id: "12",
     name: "SOFT PACKS PERF HOUSE BL 340",
     description:
-      "Incluye tamper, nivelador y alfombrilla de prensado. Ideal para quienes inician en el arte del espresso.",
+      "Includes tamper, leveler and tamping mat. Ideal for those starting in the art of espresso.",
     sku: "KIT-BAR-001",
     price: 1350,
     images: [
@@ -317,33 +317,34 @@ export const mockProducts: Product[] = [
     stock: 22,
     minOrderQuantity: 1,
     specifications: {
-      Contenido: "Tamper, Nivelador, Alfombrilla",
-      Material: "Acero inoxidable, silicona",
-      Compatible: "58mm portafiltros",
+      Contents: "Tamper, Leveler, Mat",
+      Material: "Stainless steel, silicone",
+      Compatible: "58mm portafilters",
     },
     isActive: true,
     createdAt: "2023-07-30T14:50:00Z",
     updatedAt: "2023-09-10T16:40:00Z",
-  },  {
+  },
+  {
     id: "13",
     name: "Case 100 C.BLUE RES TIERRA SELECTION",
     description:
-      "Café arábica lavado con notas florales y afrutadas. Ideal para métodos como Chemex o V60.",
+      "Washed Arabica coffee with floral and fruity notes. Ideal for methods such as Chemex or V60.",
     sku: "CAF-SIN-001",
     price: 210,
     images: [
-      "https://universaldolce.com/wp-content/uploads/catalogo/WEB_LAV2214.jpg"
+      "https://universaldolce.com/wp-content/uploads/catalogo/WEB_LAV2214.jpg",
     ],
     category: categories[0],
     supplier: suppliers[0],
     stock: 100,
     minOrderQuantity: 2,
     specifications: {
-      Origen: "Yirgacheffe, Etiopía",
-      Tueste: "Claro",
-      Notas: "Jazmín, Cítricos, Té negro",
-      "Método recomendado": "V60, Chemex",
-      Peso: "250g",
+      Origin: "Yirgacheffe, Ethiopia",
+      Roast: "Light",
+      Notes: "Jasmine, Citrus, Black tea",
+      "Recommended Method": "V60, Chemex",
+      Weight: "250g",
     },
     isActive: true,
     createdAt: "2023-08-15T10:05:00Z",

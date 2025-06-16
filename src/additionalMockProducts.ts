@@ -8,7 +8,7 @@ const createAdditionalProducts = (
     id: "10",
     name: "BIOCAF CLEANING KIT COMBO",
     description:
-      "Café brasileño de la región Santos con tueste medio-oscuro, notas de chocolate y nueces. Ideal para espresso y bebidas con leche.",
+      "Brazilian coffee from the Santos region with medium-dark roast, notes of chocolate and nuts. Ideal for espresso and milk-based drinks.",
     sku: "COF-BRA-010",
     price: 420,
     salePrice: 380,
@@ -23,7 +23,7 @@ const createAdditionalProducts = (
     specifications: {
       Origin: "Santos, São Paulo, Brazil",
       Roast: "Medium-Dark",
-      Notes: "Chocolate, Nueces, Caramelo",
+      Notes: "Chocolate, Nuts, Caramel",
       "Recommended Method": "Espresso, French Press",
       Intensity: "7/10",
       Weight: "1kg",
@@ -35,9 +35,9 @@ const createAdditionalProducts = (
     updatedAt: "2024-03-05T15:30:00Z",
   },  {
     id: "11",
-    name: "Res tierra Colombia CASE 6 S.P.RES TIERRA COL FLT 226,8 G",
+    name: "COLOMBIAN TIERRA COFFEE CASE 6 S.P.TIERRA COL FLT 226.8 G",
     description:
-      "Granos de alta calidad de las montañas colombianas, con perfil equilibrado y notas cítricas características del grado Supremo.",
+      "High-quality beans from Colombian mountains, with balanced profile and citrus notes characteristic of Supremo grade.",
     sku: "COF-COL-011",
     price: 290,
     images: [
@@ -51,7 +51,7 @@ const createAdditionalProducts = (
     specifications: {
       Origin: "Medellín, Antioquia, Colombia",
       Roast: "Medium",
-      Notes: "Citrus, Caramelo, Vainilla",
+      Notes: "Citrus, Caramel, Vanilla",
       "Recommended Method": "Pour Over, Aeropress",
       Intensity: "6/10",
       Weight: "500g",
@@ -63,9 +63,9 @@ const createAdditionalProducts = (
     updatedAt: "2024-03-10T11:25:00Z",
   },  {
     id: "120",
-    name: "Gran Riserva CASE 6 BAGS GR RISERVA FILT DARK R 1000B",
+    name: "GRAN RISERVA CASE 6 BAGS GR RISERVA FILT DARK R 1000B",
     description:
-      "Máquina de espresso semiautomática con molinillo integrado y pantalla LCD. Control preciso de temperatura y presión para uso profesional.",
+      "Semi-automatic espresso machine with integrated grinder and LCD display. Precise temperature and pressure control for professional use.",
     sku: "MAC-ESP-012",
     price: 18500,
     salePrice: 16900,
@@ -95,7 +95,7 @@ const createAdditionalProducts = (
     id: "13",
     name: "Urnex Clearly Cold – Cold Brew Cleaner",
     description:
-      "Báscula digital de alta precisión con temporizador integrado. Ideal para medir dosis exactas de café con precisión de 0.1g.",
+      "High-precision digital scale with integrated timer. Ideal for measuring exact coffee doses with 0.1g precision.",
     sku: "ACC-SCA-013",
     price: 850,
     salePrice: 750,
@@ -124,7 +124,7 @@ const createAdditionalProducts = (
     id: "14",
     name: "BIOCAF MILK FROTHER CLEANING LIQUID, 1 L",
     description:
-      "Molinillo de café con fresas de acero y 40 configuraciones de molienda. Motor silencioso con tolva de 250g para uso profesional.",
+      "Coffee grinder with steel burrs and 40 grinding settings. Silent motor with 250g hopper for professional use.",
     sku: "ACC-GRI-014",
     price: 3950,
     images: [
@@ -151,7 +151,7 @@ const createAdditionalProducts = (
     id: "15",
     name: "SPECIALTY ETHIOPIAN COFFEE",
     description:
-      "Café de origen único con notas florales y afrutadas características de la región Yirgacheffe. Procesado lavado y secado al sol.",
+      "Single-origin coffee with floral and fruity notes characteristic of the Yirgacheffe region. Washed process and sun-dried.",
     sku: "COF-ETH-015",
     price: 360,
     salePrice: 320,
@@ -180,7 +180,7 @@ const createAdditionalProducts = (
     id: "16",
     name: "MILK PITCHER PROFESSIONAL",
     description:
-      "Jarra de acero inoxidable con diseño ergonómico para vertido preciso. Ideal para crear arte latte con pico especializado.",
+      "Stainless steel pitcher with ergonomic design for precise pouring. Ideal for creating latte art with specialized spout.",
     sku: "ACC-PIT-016",
     price: 450,
     images: [
@@ -206,7 +206,7 @@ const createAdditionalProducts = (
     id: "17",
     name: "SPECIALTY COFFEE SAMPLER KIT",
     description:
-      "Cafetera de goteo de alto rendimiento con capacidad para 100 tazas por hora. Ideal para cafeterías de alto volumen.",
+      "High-performance drip coffee machine with capacity for 100 cups per hour. Ideal for high-volume coffee shops.",
     sku: "MAC-FIL-017",
     price: 12500,
     salePrice: 11000,
@@ -236,7 +236,7 @@ const createAdditionalProducts = (
     id: "18",
     name: "SOFT PACKS ITALIAN ROAST 340 GROUND",
     description:
-      "Café de origen único de la región Nyeri con notas brillantes de frutos rojos y cuerpo aterciopelado. Grado AA premium.",
+      "Single-origin coffee from the Nyeri region with bright red fruit notes and velvety body. Premium AA grade.",
     sku: "COF-KEN-018",
     price: 490,
     images: [
@@ -265,7 +265,7 @@ const createAdditionalProducts = (
     id: "19",
     name: "REUSABLE FILTER SET PREMIUM",
     description:
-      "Set de 4 filtros reutilizables de acero inoxidable compatibles con múltiples métodos de preparación. Eco-friendly y duraderos.",
+      "Set of 4 stainless steel reusable filters compatible with multiple brewing methods. Eco-friendly and durable.",
     sku: "ACC-FIL-019",
     price: 580,
     salePrice: 520,
@@ -293,7 +293,7 @@ const createAdditionalProducts = (
     id: "20",
     name: "PREMIUM COFFEE GIFT SET",
     description:
-      "Café de las tierras altas de Guatemala con perfil equilibrado y notas de chocolate y especias. Cultivado en suelo volcánico.",
+      "Coffee from the highlands of Guatemala with balanced profile and notes of chocolate and spices. Grown in volcanic soil.",
     sku: "COF-GUA-020",
     price: 310,
     salePrice: 280,
@@ -323,7 +323,7 @@ const createAdditionalProducts = (
     id: "21",
     name: "FILTER COFFEE SET DELUXE",
     description:
-      "Prensa francesa de vidrio borosilicato resistente al calor con filtro de acero inoxidable. Capacidad para 8 tazas.",
+      "Heat-resistant borosilicate glass French press with stainless steel filter. Capacity for 8 cups.",
     sku: "ACC-FRP-021",
     price: 690,
     images: [
@@ -350,7 +350,7 @@ const createAdditionalProducts = (
     id: "22",
     name: "BARISTA PROFESSIONAL TOOLKIT",
     description:
-      "Kit completo para baristas principiantes: tamper, jarra de leche, termómetro y cepillos de limpieza. Todo lo esencial incluido.",
+      "Complete kit for beginner baristas: tamper, milk pitcher, thermometer, and cleaning brushes. All essentials included.",
     sku: "ACC-KIT-022",
     price: 1850,
     salePrice: 1650,
@@ -378,7 +378,7 @@ const createAdditionalProducts = (
     id: "23",
     name: "PREMIUM CAPSULE SYSTEM PRO",
     description:
-      "Máquina de cápsulas de alta velocidad con sistema de calentamiento rápido. Compatible con sistema Nespresso para oficinas.",
+      "High-speed capsule machine with quick heating system. Compatible with Nespresso system for offices.",
     sku: "MAC-CAP-023",
     price: 8500,
     images: [
@@ -406,7 +406,7 @@ const createAdditionalProducts = (
     id: "24",
     name: "PREMIUM COLD BREW KIT",
     description:
-      "Café de alta altitud con notas de frutas tropicales y cuerpo medio-completo. Cultivo sostenible de la región Los Santos.",
+      "High-altitude coffee with tropical fruit notes and medium-full body. Sustainable cultivation from Los Santos region.",
     sku: "COF-COS-024",
     price: 460,
     salePrice: 410,
