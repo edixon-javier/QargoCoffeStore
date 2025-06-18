@@ -137,7 +137,7 @@ const CartPage: React.FC = () => {
                 fullWidth
                 size="lg"
                 rightIcon={<ArrowRight size={18} />}
-                onClick={() => window.location.href = '/checkout'}
+                onClick={() => window.location.href = '/QargoCoffeStore/#/login'}
               >
                 Proceed to checkout
               </Button>

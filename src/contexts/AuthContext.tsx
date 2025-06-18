@@ -12,19 +12,28 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const usersMock = [
+  { email: "franchisee@tienda.com", password: "123456", role: "franchisee", name: "franchisee Nort" },
+  { email: "admin@tienda.com", password: "admin123", role: "admin", name: "Admin General" }
+];
+
 // Mock function for demo purposes
 const mockAuthAPI = {
   login: async (email: string, password: string): Promise<User> => {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Mock user data
+    const user = usersMock.find(u => u.email === email && u.password === password);
+    if (!user) {
+      throw new Error('Invalid credentials');
+    }
+    
     return {
-      id: '1',
-      name: 'Usuario Demo',
-      email,
-      role: 'franchisee',
-      createdAt: new Date().toISOString(),
+      id: Math.random().toString(),
+      email: user.email,
+      name: user.name,
+      role: user.role as 'admin' | 'supplier' | 'franchisee',
+      createdAt: new Date().toISOString()
     };
   },
   register: async (name: string, email: string, password: string, role: string): Promise<User> => {

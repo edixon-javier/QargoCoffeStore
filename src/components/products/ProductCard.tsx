@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Product } from '../../lib/types';
@@ -17,12 +17,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
   layout = 'grid' 
 }) => {
   const { addItem } = useCart();
+  const navigate = useNavigate();
   const hasDiscount = !!product.salePrice && product.salePrice < product.price;
   
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, 1);
+  };
+
+  const handleClick = () => {
+    navigate(`/product/${product.id}`);
   };
 
   if (layout === 'list') {
@@ -109,6 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      onClick={handleClick}
     >
       <div className="relative overflow-hidden pb-[100%]">        <Link to={`/product/${product.id}`} className="block absolute inset-0">
           <img 
