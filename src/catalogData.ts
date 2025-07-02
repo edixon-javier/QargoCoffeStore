@@ -4,9 +4,9 @@ import { Category, Supplier } from './lib/types';
 export const categories: Category[] = [
   {
     id: '1',
-    name: 'Coffee Beans',
-    slug: 'coffee-beans',
-    description: 'Highest quality coffee beans',
+    name: 'Equipment',
+    slug: 'Bunn',
+    description: 'Highest quality coffee Bunn',
     image: 'https://images.pexels.com/photos/685527/pexels-photo-685527.jpeg',
   },
   {
@@ -75,6 +75,15 @@ export const suppliers: Supplier[] = [
     name: 'BaristaPro',
     description: 'Professional accessories for baristas and coffee shops',
     contactEmail: 'sales@baristapro.com',
+    contactPhone: '+1 555 9012 3456',
+    minOrderValue: 2000,
+    deliveryTime: '1-3 days',
+  },
+  {
+    id: '5',
+    name: 'Bunn.',
+    description: 'Professional accessories for baristas and coffee shops',
+    contactEmail: 'Bunn@baristapro.com',
     contactPhone: '+1 555 9012 3456',
     minOrderValue: 2000,
     deliveryTime: '1-3 days',

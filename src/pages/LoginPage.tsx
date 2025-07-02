@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, Coffee, LogIn } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { useAuth } from '../contexts/AuthContext';
 
+interface LocationState {
+  returnUrl?: string;
+}
+
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: 'franchisee@tienda.com',
@@ -25,17 +30,26 @@ const LoginPage: React.FC = () => {
     try {
       await login(formData.email, formData.password);
       
-      // Determinar la ruta según el rol del usuario
-      const user = JSON.parse(localStorage.getItem('qargo_user') || '{}');
-      const redirectPath = user.role === 'admin' 
-        ? '/admin'
-        : user.role === 'franchisee'
-        ? '/franchisee'
-        : user.role === 'supplier'
-        ? '/supplier'
-        : '/';
-      
-      navigate(redirectPath);
+      // Obtener el returnUrl del estado de la ubicación
+      const state = location.state as LocationState;
+      const returnUrl = state?.returnUrl;
+
+      if (returnUrl) {
+        // Si hay un returnUrl, redirigir a esa página
+        navigate(returnUrl);
+      } else {
+        // Si no hay returnUrl, determinar la ruta según el rol del usuario
+        const user = JSON.parse(localStorage.getItem('auth_state') || '{}').user;
+        const redirectPath = user?.role === 'admin' 
+          ? '/admin'
+          : user?.role === 'franchisee'
+          ? '/franchisee'
+          : user?.role === 'supplier'
+          ? '/supplier'
+          : '/';
+        
+        navigate(redirectPath);
+      }
     } catch (err) {
       setError('Invalid credentials');
     } finally {

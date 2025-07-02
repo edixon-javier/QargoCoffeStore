@@ -1,14 +1,26 @@
 // filepath: c:\Users\abata\Documentos\ConsultansGC\project\src\pages\CartPage.tsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../hooks/useAuth';
 import { formatCurrency } from '../lib/utils';
 
 const CartPage: React.FC = () => {
   const { items, updateQuantity, removeItem, total, itemCount } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (isAuthenticated) {
+      navigate('/checkout');
+    } else {
+      // Si no está autenticado, redirigir al login con returnUrl
+      navigate('/login', { state: { returnUrl: '/checkout' } });
+    }
+  };
 
   return (
     <div className="container-custom py-8">
@@ -106,46 +118,27 @@ const CartPage: React.FC = () => {
           </div>
           
           {/* Order summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-soft p-6 sticky top-24">
-              <h2 className="text-lg font-medium mb-4">Order Summary</h2>
-              
-              <div className="space-y-3 border-b border-primary-100 pb-4">
+          <div>
+            <div className="bg-white rounded-lg shadow-soft p-6">
+              <h2 className="text-xl font-medium mb-4">Order Summary</h2>
+              <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-secondary-600">Subtotal</span>
+                  <span>Subtotal ({itemCount} items)</span>
                   <span>{formatCurrency(total)}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-secondary-600">Shipping</span>
-                  <span>To be calculated</span>
+                <div className="border-t pt-4">
+                  <div className="flex justify-between font-medium">
+                    <span>Total</span>
+                    <span>{formatCurrency(total)}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-secondary-600">Taxes</span>
-                  <span>{formatCurrency(total * 0.16)}</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between py-4 border-b border-primary-100 mb-6">
-                <span className="font-medium">Total</span>
-                <span className="font-semibold text-lg">
-                  {formatCurrency(total * 1.16)}
-                </span>
-              </div>
-              
-              <Button 
-                variant="primary" 
-                fullWidth
-                size="lg"
-                rightIcon={<ArrowRight size={18} />}
-                onClick={() => window.location.href = '/QargoCoffeStore/#/login'}
-              >
-                Proceed to checkout
-              </Button>
-              
-              <div className="mt-4">
-                <Link to="/catalog" className="text-sm text-primary-700 hover:text-primary-800 flex items-center justify-center">
-                  Continue shopping
-                </Link>
+                <button
+                  onClick={handleCheckout}
+                  className="w-full bg-primary-600 text-white py-3 px-4 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2"
+                >
+                  Proceed to Checkout
+                  <ArrowRight size={20} />
+                </button>
               </div>
             </div>
           </div>

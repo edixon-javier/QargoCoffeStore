@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, Star, Truck, ShieldCheck, Clock, Heart, Share2, Minus, Plus, ShoppingCart } from 'lucide-react';
+import { ChevronRight, Star, Truck, ShieldCheck, Clock, Heart, Share2, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
 import Button from '../components/ui/Button';
+import Modal from '../components/ui/Modal';
 import { useCart } from '../contexts/CartContext';
 import { formatCurrency, getDiscountPercentage } from '../lib/utils';
 import ProductCard from '../components/products/ProductCard';
@@ -13,10 +14,13 @@ import { mockProducts } from '../mockData';
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { addItem } = useCart();
+  const navigate = useNavigate();
   
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'description' | 'specs' | 'faq'>('description');
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [lastOrderId, setLastOrderId] = useState<string>('');
   
   // Find product by ID
   const product = mockProducts.find(p => p.id === id) || mockProducts[0]; // Fallback to first product if not found
@@ -29,7 +33,26 @@ const ProductDetailPage: React.FC = () => {
     .slice(0, 4);
   
   const handleAddToCart = () => {
+    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    setLastOrderId(orderId);
+    setIsSuccessModalOpen(true);
     addItem(product, quantity);
+  };
+
+  const handleBuyNow = () => {
+    addItem(product, quantity);
+    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    setLastOrderId(orderId);
+    navigate('/cart');
+  };
+  
+  const handleCloseModal = () => {
+    setIsSuccessModalOpen(false);
+  };
+
+  const handleViewCart = () => {
+    setIsSuccessModalOpen(false);
+    navigate('/cart');
   };
   
   const incrementQuantity = () => {
@@ -139,7 +162,7 @@ const ProductDetailPage: React.FC = () => {
                 <strong>SKU:</strong> {product.sku}
               </p>
               <p className="text-secondary-500">
-                <strong>Proveedor:</strong> {product.supplier.name}
+                <strong>Supplier:</strong> {product.supplier.name}
               </p>
             </div>
             
@@ -192,18 +215,9 @@ const ProductDetailPage: React.FC = () => {
                 variant="accent"
                 size="lg"
                 fullWidth
-                onClick={() => window.location.href = '/checkout'}
+                onClick={handleBuyNow}
               >
                 Buy Now
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                fullWidth
-                leftIcon={<Heart size={18} />}
-                className="hidden md:flex"
-              >
-                Save
               </Button>
             </div>
             
@@ -336,6 +350,39 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </section>
       )}
+      
+      {/* Modal de éxito */}
+      <Modal
+        isOpen={isSuccessModalOpen}
+        onClose={handleCloseModal}
+        title="Product Added Successfully!"
+      >
+        <div className="text-center py-4">
+          <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+            <Check className="h-6 w-6 text-green-600" />
+          </div>
+          <h3 className="text-lg font-medium mb-2">
+            Product Added to Cart
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Order ID: {lastOrderId}
+          </p>
+          <div className="flex justify-center gap-3">
+            <Button
+              variant="outline"
+              onClick={handleCloseModal}
+            >
+              Continue Shopping
+            </Button>
+            <Button
+              variant="primary"
+              onClick={handleViewCart}
+            >
+              View Cart
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

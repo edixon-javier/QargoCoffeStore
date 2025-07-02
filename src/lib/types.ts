@@ -111,3 +111,29 @@ export interface ProductPerformance {
   totalSales: number;
   quantitySold: number;
 }
+
+export interface BillingInfo {
+  companyName: string;
+  dba: string;
+  billingAddress: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  shippingAddress: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  email: string;
+  phone: string;
+  paymentMethod: {
+    type: 'credit_card';
+    cardNumber: string;
+    expiryDate: string;
+    cvv: string;
+    cardholderName: string;
+  };
+}

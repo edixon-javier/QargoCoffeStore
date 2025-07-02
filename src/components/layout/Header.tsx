@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ShoppingCart, Menu, User, X, Coffee, Search } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ShoppingCart, Menu, User, X, Coffee, Search, LogOut } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useCart } from "../../contexts/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,9 +9,11 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const { itemCount } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
+  
   // Check if we're on an admin/portal page
   const isPortalPage =
     location.pathname.startsWith("/admin") ||
@@ -36,6 +38,45 @@ const Header: React.FC = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  const renderAuthButton = () => {
+    if (isAuthenticated && user) {
+      return (
+        <div className="flex items-center gap-4">
+            <Link
+            to={user.role === "franchisee" ? "/franchisee" : 
+              user.role === "admin" ? "/admin" : 
+              user.role === "supplier" ? "/supplier" : "/"}
+            className="text-sm font-medium hidden md:block"
+            >
+            {user.name}
+            </Link>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
+          >
+            <LogOut size={20} />
+            <span className="hidden md:block">Log out</span>
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <Link
+        to="/login"
+        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
+      >
+        <User size={20} />
+        <span className="hidden md:block">Log in</span>
+      </Link>
+    );
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
@@ -49,73 +90,63 @@ const Header: React.FC = () => {
           <span className="ml-2 font-serif font-bold text-xl text-primary-600">
             Qargo Coffee
           </span>
-        </Link>{" "}
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        </Link>
+
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center space-x-6">
           <Link
             to="/catalog"
-            className="nav-link font-medium hover:text-primary-600"
+            className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
           >
-            Catalog
+            Products
           </Link>
           <Link
             to="/about-us"
-            className="nav-link font-medium hover:text-primary-600"
+            className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
           >
             About Us
           </Link>
           <Link
             to="/contact"
-            className="nav-link font-medium hover:text-primary-600"
+            className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
           >
             Contact
           </Link>
         </nav>
-        {/* Right side actions */}
+
+        {/* Right section */}
         <div className="flex items-center space-x-4">
-          {" "}
-          {/* Search button */}
           <button
             onClick={toggleSearch}
-            aria-label="Search"
-            className="p-2 rounded-full hover:bg-primary-100 transition-colors"
+            className="p-2 hover:text-primary-600 transition-colors"
           >
-            <Search className="h-5 w-5 text-primary-600" />
+            <Search size={20} />
           </button>
-          {/* Cart link with counter */}{" "}
-          {!isPortalPage && (
+
+          {/* Auth button */}
+          {renderAuthButton()}
+
+          {/* Cart */}
+          {/* {isAuthenticated && ( */}
             <Link
               to="/cart"
-              className="p-2 rounded-full hover:bg-primary-100 transition-colors relative"
-              aria-label="Shopping Cart"
+              className="relative p-2 hover:text-primary-600 transition-colors"
             >
-              <ShoppingCart className="h-5 w-5 text-primary-600" />
+              <ShoppingCart size={20} />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-button">
+                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {itemCount}
                 </span>
               )}
             </Link>
-          )}
-          {/* User profile / login */}
-          <div className="relative">
+          {/* )} */}
 
-              <Link to="/login" className="hidden md:block btn-secondary">
-                Login
-              </Link>
-          
-          </div>
-          {/* Mobile menu button */}{" "}
+          {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-full hover:bg-primary-100 transition-colors"
             onClick={toggleMobileMenu}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            className="md:hidden p-2 hover:text-primary-600 transition-colors"
           >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6 text-primary-800" />
-            ) : (
-              <Menu className="h-6 w-6 text-primary-800" />
-            )}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>

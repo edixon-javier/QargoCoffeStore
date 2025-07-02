@@ -9,6 +9,7 @@ const Footer: React.FC = () => {
           {/* Brand and Social */}
           <div className="max-w-xs">
             <Link to="/" className="flex items-center mb-3">
+            
               <Coffee className="h-6 w-6 text-white" strokeWidth={2.5} />
               <span className="ml-2 font-serif font-bold text-lg text-white">Qargo Coffee</span>
             </Link>

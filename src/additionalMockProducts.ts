@@ -4,7 +4,8 @@ import { Product, Category, Supplier } from "./lib/types";
 const createAdditionalProducts = (
   categories: Category[],
   suppliers: Supplier[]
-): Product[] => [  {
+): Product[] => [
+  {
     id: "10",
     name: "BIOCAF CLEANING KIT COMBO",
     description:
@@ -33,7 +34,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-01-15T09:20:00Z",
     updatedAt: "2024-03-05T15:30:00Z",
-  },  {
+  },
+  {
     id: "11",
     name: "COLOMBIAN TIERRA COFFEE CASE 6 S.P.TIERRA COL FLT 226.8 G",
     description:
@@ -61,7 +63,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-01-20T10:15:00Z",
     updatedAt: "2024-03-10T11:25:00Z",
-  },  {
+  },
+  {
     id: "120",
     name: "GRAN RISERVA CASE 6 BAGS GR RISERVA FILT DARK R 1000B",
     description:
@@ -147,7 +150,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-02-10T14:30:00Z",
     updatedAt: "2024-03-20T16:40:00Z",
-  },  {
+  },
+  {
     id: "15",
     name: "SPECIALTY ETHIOPIAN COFFEE",
     description:
@@ -176,7 +180,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-02-15T10:45:00Z",
     updatedAt: "2024-03-22T13:20:00Z",
-  },  {
+  },
+  {
     id: "16",
     name: "MILK PITCHER PROFESSIONAL",
     description:
@@ -202,7 +207,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-02-20T09:10:00Z",
     updatedAt: "2024-03-25T11:30:00Z",
-  },  {
+  },
+  {
     id: "17",
     name: "SPECIALTY COFFEE SAMPLER KIT",
     description:
@@ -261,7 +267,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-01T08:40:00Z",
     updatedAt: "2024-03-29T10:10:00Z",
-  },  {
+  },
+  {
     id: "19",
     name: "REUSABLE FILTER SET PREMIUM",
     description:
@@ -289,7 +296,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-05T15:25:00Z",
     updatedAt: "2024-03-30T12:35:00Z",
-  },  {
+  },
+  {
     id: "20",
     name: "PREMIUM COFFEE GIFT SET",
     description:
@@ -319,7 +327,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-10T11:15:00Z",
     updatedAt: "2024-04-01T14:20:00Z",
-  },  {
+  },
+  {
     id: "21",
     name: "FILTER COFFEE SET DELUXE",
     description:
@@ -346,7 +355,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-15T09:30:00Z",
     updatedAt: "2024-04-03T13:40:00Z",
-  },  {
+  },
+  {
     id: "22",
     name: "BARISTA PROFESSIONAL TOOLKIT",
     description:
@@ -374,7 +384,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-20T13:45:00Z",
     updatedAt: "2024-04-05T10:15:00Z",
-  },  {
+  },
+  {
     id: "23",
     name: "PREMIUM CAPSULE SYSTEM PRO",
     description:
@@ -402,7 +413,8 @@ const createAdditionalProducts = (
     isActive: true,
     createdAt: "2024-03-25T16:20:00Z",
     updatedAt: "2024-04-08T11:50:00Z",
-  },  {
+  },
+  {
     id: "24",
     name: "PREMIUM COLD BREW KIT",
     description:
