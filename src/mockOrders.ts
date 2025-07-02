@@ -68,7 +68,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-002-def456',
     orderNumber: 'ORD-23456',
-    customerName: 'Qargo Coffee Polanco',
+    customerName: 'Qargo Connet Polanco',
     items: [
       {
         productId: mockProducts[2].id,
@@ -97,8 +97,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-9876543210',
     total: (mockProducts[2].price * 2) + mockProducts[3].price,
     billingInfo: {
-      companyName: 'Qargo Coffee México, S.A.',
-      dba: 'Qargo Coffee Polanco',
+      companyName: 'Qargo Connet México, S.A.',
+      dba: 'Qargo Connet Polanco',
       billingAddress: {
         street: 'Masaryk 123',
         city: 'Ciudad de México',
@@ -126,7 +126,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-003-ghi789',
     orderNumber: 'ORD-34567',
-    customerName: 'Qargo Coffee Santa Fe',
+    customerName: 'Qargo Connet Santa Fe',
     items: [
       {
         productId: mockProducts[0].id,
@@ -146,8 +146,8 @@ export const mockOrders: Order[] = [
     ],
     total: mockProducts[0].price,
     billingInfo: {
-      companyName: 'Qargo Coffee México, S.A.',
-      dba: 'Qargo Coffee Santa Fe',
+      companyName: 'Qargo Connet México, S.A.',
+      dba: 'Qargo Connet Santa Fe',
       billingAddress: {
         street: 'Av. Santa Fe 456',
         city: 'Ciudad de México',

@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 const FranchiseePortalHome = () => (
   <div>
     <h2 className="text-2xl font-serif mb-4">Franchisee Portal</h2>
-    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Coffee franchisees.</p>
+    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Connet franchisees.</p>
   </div>
 );
 

@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 const DashboardHome = () => (
   <div>
     <h2 className="text-2xl font-serif mb-4">Main Dashboard</h2>
-    <p className="text-secondary-600">Welcome to the Qargo Coffee administration dashboard.</p>
+    <p className="text-secondary-600">Welcome to the Qargo Connet administration dashboard.</p>
   </div>
 );
 
