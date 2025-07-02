@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useOrders } from '../../contexts/OrderContext';
 import { useOrderStatus } from '../../hooks/useOrderStatus';
 import { formatCurrency } from '../../lib/utils';
-import { Package, PlusCircle, Pencil, Save, X, Filter } from 'lucide-react';
-import type { Order } from '../../lib/types/order';
+import { Package, Pencil, Save, X, Filter } from 'lucide-react';
 
 const OrderManagement: React.FC = () => {
   const { orders, updateOrder } = useOrders();
@@ -19,26 +18,18 @@ const OrderManagement: React.FC = () => {
 
   const handleStatusChange = (orderId: string, newStatus: string) => {
     const order = orders.find(o => o.id === orderId);
-    if (order) {
-      const updatedOrder = {
-        ...order,
+    if (order && order.status !== newStatus) {
+      // Solo actualizamos el status y dejamos que el contexto maneje el historial
+      updateOrder(orderId, {
         status: newStatus,
-        statusHistory: [
-          ...order.statusHistory,
-          {
-            status: newStatus,
-            date: new Date().toISOString(),
-          }
-        ]
-      };
-      updateOrder(orderId, updatedOrder);
+      });
     }
   };
 
   const handleTrackingUpdate = (orderId: string, trackingNumber: string) => {
     const order = orders.find(o => o.id === orderId);
-    if (order) {
-      updateOrder(orderId, { ...order, trackingNumber });
+    if (order && order.trackingNumber !== trackingNumber) {
+      updateOrder(orderId, { trackingNumber });
     }
   };
 
