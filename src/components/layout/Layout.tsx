@@ -29,8 +29,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         {children}
       </motion.main>
-      {/* No mostrar el footer en rutas de administrador */}
-      {!isAdminRoute || !isFranchiseeRoute && <Footer />}
+      {/* No mostrar el footer en rutas de admin, proveedores y franquiciados */}
+      {!isPortalPage && <Footer />}
     </div>
   );
 };
