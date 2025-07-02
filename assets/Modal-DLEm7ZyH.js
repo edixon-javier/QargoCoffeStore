@@ -1,6 +1,0 @@
-import{c as n,j as e,A as r,m as t,X as o}from"./index-CLvT_caO.js";/**
- * @license lucide-react v0.344.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */const x=n("Check",[["path",{d:"M20 6 9 17l-5-5",key:"1gmf2c"}]]),m=({isOpen:a,onClose:s,title:l,children:c,actions:i})=>a?e.jsx(r,{children:a&&e.jsxs(e.Fragment,{children:[e.jsx(t.div,{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},className:"fixed inset-0 bg-black bg-opacity-50 z-40",onClick:s}),e.jsxs(t.div,{initial:{opacity:0,scale:.95,y:20},animate:{opacity:1,scale:1,y:0},exit:{opacity:0,scale:.95,y:20},transition:{type:"spring",duration:.3},className:"fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-lg shadow-xl z-50 overflow-hidden",children:[e.jsxs("div",{className:"flex justify-between items-center p-4 border-b",children:[e.jsx("h2",{className:"text-lg font-medium",children:l}),e.jsx("button",{onClick:s,className:"p-1 hover:bg-gray-100 rounded-full transition-colors",children:e.jsx(o,{size:20,className:"text-gray-500"})})]}),e.jsx("div",{className:"p-4",children:c}),i&&e.jsx("div",{className:"p-4 bg-gray-50 flex justify-end gap-2",children:i})]})]})}):null;export{x as C,m as M};
