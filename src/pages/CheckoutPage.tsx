@@ -8,7 +8,7 @@ import type { BillingInfo } from '../lib/types';
 
 // Mock data for Franchisee Nort
 const mockFranchiseeData: BillingInfo = {
-  companyName: "Nort Enterprises LLC",
+  companyName: "Prestige Cafe",
   dba: "Qargo Coffee Dearborne",
   billingAddress: {
     street: "22022 Michigan Ave Unit C",

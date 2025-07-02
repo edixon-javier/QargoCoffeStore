@@ -13,7 +13,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const usersMock = [
-  { email: "franchisee@tienda.com", password: "123456", role: "franchisee", name: "franchisee Nort" },
+  { email: "dearborn-22022@qargocoffee.com", password: "123456", role: "franchisee", name: "Prestige Cafe" },
   { email: "admin@tienda.com", password: "admin123", role: "admin", name: "Admin General" }
 ];
 

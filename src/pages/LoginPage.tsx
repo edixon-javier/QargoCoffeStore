@@ -13,14 +13,24 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
+  const [userType, setUserType] = useState<'franchisee' | 'admin'>('franchisee');
   const [formData, setFormData] = useState({
-    email: 'franchisee@tienda.com',
-    password: '123456',
+    email: userType === 'franchisee' ? 'dearborn-22022@qargocoffee.com' : 'admin@tienda.com',
+    password: userType === 'franchisee' ? '123456' : 'admin123',
     remember: false
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showHelp, setShowHelp] = useState(false);
+
+  const toggleUserType = () => {
+    const newType = userType === 'franchisee' ? 'admin' : 'franchisee';
+    setUserType(newType);
+    setFormData(prev => ({
+      ...prev,
+      email: newType === 'franchisee' ? 'dearborn-22022@qargocoffee.com' : 'admin@tienda.com',
+      password: userType === 'franchisee' ? 'admin123': '123456',
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,11 +74,25 @@ const LoginPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-soft relative"
       >
-        <div className="text-center">
+        <div className="text-center relative">
+          <button
+            type="button"
+            onClick={toggleUserType}
+            className="absolute -top-4 -right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+            title={`Switch to ${userType === 'franchisee' ? 'Admin' : 'Franchisee'} login`}
+          >
+            <motion.div
+              animate={{ rotate: userType === 'franchisee' ? 0 : 180 }}
+              transition={{ duration: 0.3 }}
+            >
+              <HelpCircle className="h-5 w-5" />
+            </motion.div>
+          </button>
+          
           <Coffee className="mx-auto h-12 w-12 text-primary-600" strokeWidth={2} />
           <h2 className="mt-6 text-3xl font-serif text-gray-900">Welcome back</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Sign in to your account
+            Sign in as {userType === 'franchisee' ? 'Franchisee' : 'Administrator'}
           </p>
         </div>
 
@@ -133,44 +157,6 @@ const LoginPage: React.FC = () => {
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
           </Button>
-
-          {/* Botón de ayuda */}
-          <div className="absolute top-4 right-4">
-            <button
-              type="button"
-              onClick={() => setShowHelp(!showHelp)}
-              className="p-2 text-secondary-400 hover:text-primary-600 transition-colors"
-              aria-label="Show demo credentials"
-            >
-              <HelpCircle size={20} />
-            </button>
-
-            {/* Popover con credenciales */}
-            <AnimatePresence>
-              {showHelp && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-lg p-4 border border-gray-100 z-10"
-                >
-                  <h3 className="text-sm font-medium text-gray-900 mb-2">Credenciales de prueba:</h3>
-                  <div className="space-y-3">
-                    <div className="p-2 bg-primary-50 rounded-md">
-                      <p className="text-xs font-medium text-primary-800 mb-1">Acceso Franquicia:</p>
-                      <p className="text-xs text-primary-600">Email: franchisee@tienda.com</p>
-                      <p className="text-xs text-primary-600">Password: 123456</p>
-                    </div>
-                    <div className="p-2 bg-secondary-50 rounded-md">
-                      <p className="text-xs font-medium text-secondary-800 mb-1">Acceso Corporativo:</p>
-                      <p className="text-xs text-secondary-600">Email: admin@tienda.com</p>
-                      <p className="text-xs text-secondary-600">Password: admin123</p>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
         </form>
       </motion.div>
     </div>
