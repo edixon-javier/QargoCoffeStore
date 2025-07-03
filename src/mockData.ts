@@ -451,6 +451,6 @@ export const mockProducts: Product[] = [
     createdAt: "2023-08-15T10:05:00Z",
     updatedAt: "2023-09-22T13:25:00Z",
   },
-  // Añadir productos generados dinámicamente
+  // Add dynamically generated products
   ...createAdditionalProducts(categories, suppliers),
 ];

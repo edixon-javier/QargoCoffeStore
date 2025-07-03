@@ -3,7 +3,11 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Star, Truck, ShieldCheck, Clock, Heart, Share2, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
 import Button from '../components/ui/Button';
-import Modal from '../components/ui/Modal';
+import Modal from '../compone      {/* Success modal */}
+      <Modal
+        isOpen={isSuccessModalOpen}
+        onClose={handleCloseModal}
+        title="Product Added Successfully!"i/Modal';
 import { useCart } from '../contexts/CartContext';
 import { formatCurrency, getDiscountPercentage } from '../lib/utils';
 import ProductCard from '../components/products/ProductCard';
@@ -351,7 +355,7 @@ const ProductDetailPage: React.FC = () => {
         </section>
       )}
       
-      {/* Modal de éxito */}
+      {/* Success modal */}
       <Modal
         isOpen={isSuccessModalOpen}
         onClose={handleCloseModal}

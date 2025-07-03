@@ -12,8 +12,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const isAdminRoute = location.pathname.startsWith('/admin');
-  const isSupplierRoute = location.pathname.startsWith('/proveedor');
-  const isFranchiseeRoute = location.pathname.startsWith('/franquiciado');
+  const isSupplierRoute = location.pathname.startsWith('/supplier');
+  const isFranchiseeRoute = location.pathname.startsWith('/franchisee');
   
   const isPortalPage = isAdminRoute || isSupplierRoute || isFranchiseeRoute;
 
@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         {children}
       </motion.main>
-      {/* No mostrar el footer en rutas de admin, proveedores y franquiciados */}
+      {/* Don't show footer on admin, supplier, and franchisee routes */}
       {!isPortalPage && <Footer />}
     </div>
   );

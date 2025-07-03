@@ -37,7 +37,7 @@ const CatalogPage: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const categoryParam = queryParams.get('categoria');
   
-  // Inicializa categoría desde URL si existe
+  // Initialize category from URL if it exists
   useEffect(() => {
     if (categoryParam) {
       const categoryName = categories.find(c => c.slug === categoryParam)?.name;

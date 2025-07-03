@@ -56,7 +56,7 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true);
     setErrors({});
     
-    // Simulación de envío del formulario
+    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);

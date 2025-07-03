@@ -24,6 +24,10 @@ const FranchiseeProfilePage = lazy(() => import('./pages/FranchiseeProfilePage')
 const AdminLayout = lazy(() => import('./components/admin/AdminLayout'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const OrderManagement = lazy(() => import('./pages/admin/OrderManagement'));
+const FranchiseesPage = lazy(() => import('./pages/admin/FranchiseesPage'));
+const NewFranchiseePage = lazy(() => import('./pages/admin/NewFranchiseePage'));
+const EditFranchiseePage = lazy(() => import('./pages/admin/EditFranchiseePage'));
+const FranchiseeDetailPage = lazy(() => import('./pages/admin/FranchiseeDetailPage'));
 
 
 function App() {
@@ -51,7 +55,10 @@ function App() {
             >
               <Route index element={<AdminDashboard />} />
               <Route path="orders" element={<OrderManagement />} />
-              {/* Aquí irán más rutas admin */}
+              <Route path="franchisees" element={<FranchiseesPage />} />
+              <Route path="franchisees/new" element={<NewFranchiseePage />} />
+              <Route path="franchisees/edit/:id" element={<EditFranchiseePage />} />
+              <Route path="franchisees/:id" element={<FranchiseeDetailPage />} />
             </Route>
             <Route
               path="/supplier/*"

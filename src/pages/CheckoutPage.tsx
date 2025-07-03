@@ -50,7 +50,7 @@ const CheckoutPage: React.FC = () => {
     localStorage.setItem('franchiseeBillingInfo', JSON.stringify(billingInfo));
   }, [billingInfo]);
 
-  // Si no hay items en el carrito, redirigir al carrito
+  // If there are no items in the cart, redirect to cart
   React.useEffect(() => {
     if (items.length === 0) {
       navigate('/cart');
@@ -62,7 +62,7 @@ const CheckoutPage: React.FC = () => {
     setIsProcessing(true);
 
     try {
-      // Crear nueva orden
+      // Create new order
       const order = addOrder({
         customerName: billingInfo.companyName,
         items: items.map(item => ({
@@ -79,17 +79,17 @@ const CheckoutPage: React.FC = () => {
         billingInfo
       });
 
-      // Limpiar carrito
+      // Clear cart
       clearCart();
 
-      // Mostrar mensaje de éxito
-      alert('¡Orden realizada con éxito! ID de la orden: ' + order.id);
+      // Show success message
+      alert('Order successfully placed! Order ID: ' + order.id);
 
-      // Redirigir al panel de franquicias
+      // Redirect to franchisee panel
       navigate('/franchisee');
     } catch (error) {
-      console.error('Error al crear la orden:', error);
-      alert('Hubo un error al procesar su orden. Por favor, inténtelo de nuevo.');
+      console.error('Error creating order:', error);
+      alert('There was an error processing your order. Please try again.');
     } finally {
       setIsProcessing(false);
     }

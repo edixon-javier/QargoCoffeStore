@@ -115,6 +115,16 @@ const mockAuthAPI = {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
+    // Add to mock users (in a real application this would be saved in the database)
+    const newUser = {
+      email,
+      password,
+      role,
+      name
+    };
+    
+    usersMock.push(newUser);
+    
     return {
       id: Math.random().toString(),
       name,

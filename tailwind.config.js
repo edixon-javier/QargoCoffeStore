@@ -37,11 +37,11 @@ export default {
           200: '#FFE082', // Beige medio
           300: '#FFD54F', // Ocre claro
           400: '#FFCA28', // Ocre
-          500: '#FFC107', // Ámbar
-          600: '#FFB300', // Ámbar intenso
-          700: '#FFA000', // Ámbar oscuro
-          800: '#FF8F00', // Marrón claro
-          900: '#FF6F00', // Marrón cálido
+          500: '#FFC107', // Amber
+          600: '#FFB300', // Intense amber
+          700: '#FFA000', // Dark amber
+          800: '#FF8F00', // Light brown
+          900: '#FF6F00', // Warm brown
         },        success: {
           50: '#EDFCF2', // Verde muy claro
           100: '#D1FADF', // Verde claro

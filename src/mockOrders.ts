@@ -1,7 +1,7 @@
 import { Order } from './contexts/OrderContext';
 import { mockProducts } from './mockData';
 
-// Función para generar una fecha aleatoria dentro de un rango
+// Function to generate a random date within a range
 const randomDate = (start: Date, end: Date) => {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toISOString();
 };

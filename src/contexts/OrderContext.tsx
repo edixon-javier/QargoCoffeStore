@@ -50,7 +50,7 @@ export const useOrders = () => {
 };
 
 export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Primero inicializamos las órdenes de prueba si es necesario
+  // First we initialize test orders if necessary
   useEffect(() => {
     initializeMockOrders();
   }, []);
@@ -60,7 +60,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return savedOrders ? JSON.parse(savedOrders) : [];
   });
   
-  // Guardar órdenes en localStorage cada vez que cambien
+  // Save orders to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('orders', JSON.stringify(orders));
   }, [orders]);

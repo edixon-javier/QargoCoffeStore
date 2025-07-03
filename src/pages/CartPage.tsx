@@ -17,7 +17,7 @@ const CartPage: React.FC = () => {
     if (isAuthenticated) {
       navigate('/checkout');
     } else {
-      // Si no está autenticado, redirigir al login con returnUrl
+      // If not authenticated, redirect to login with returnUrl
       navigate('/login', { state: { returnUrl: '/checkout' } });
     }
   };

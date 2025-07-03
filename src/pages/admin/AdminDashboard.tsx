@@ -30,7 +30,7 @@ const StatCard: React.FC<{
 const AdminDashboard: React.FC = () => {
   const { orders } = useOrders();
 
-  // Calcular estadísticas
+  // Calculate statistics
   const totalOrders = orders.length;
   const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
   const pendingOrders = orders.filter(order => order.status === 'Pending').length;

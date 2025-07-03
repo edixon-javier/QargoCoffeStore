@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
     try {
       await login(formData.email, formData.password);
       
-      // Obtener el returnUrl del estado de la ubicación
+      // Get returnUrl from location state
       const state = location.state as LocationState;
       const returnUrl = state?.returnUrl;
 
