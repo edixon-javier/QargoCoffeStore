@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, Star, Truck, ShieldCheck, Clock, Heart, Share2, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
+import { ChevronRight, Star, Truck, ShieldCheck, Clock, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
 import Button from '../components/ui/Button';
-import Modal from '../compone      {/* Success modal */}
-      <Modal
-        isOpen={isSuccessModalOpen}
-        onClose={handleCloseModal}
-        title="Product Added Successfully!"i/Modal';
+import Modal from '../components/ui/Modal';
 import { useCart } from '../contexts/CartContext';
 import { formatCurrency, getDiscountPercentage } from '../lib/utils';
 import ProductCard from '../components/products/ProductCard';
@@ -41,7 +37,7 @@ const ProductDetailPage: React.FC = () => {
     setLastOrderId(orderId);
     setIsSuccessModalOpen(true);
     addItem(product, quantity);
-  };
+    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 
   const handleBuyNow = () => {
     addItem(product, quantity);
