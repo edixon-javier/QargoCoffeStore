@@ -1,0 +1,1 @@
+import{j as r}from"./index-GBJRG4u5.js";import{F as e}from"./FranchiseeForm-DxA9RO_j.js";import"./vendor-BulALN1u.js";import"./credit-card-BRfGJ2bZ.js";import"./store-Pd0818Pi.js";import"./save-9MZvUcmr.js";const p=()=>r.jsx(e,{mode:"create"});export{p as default};
