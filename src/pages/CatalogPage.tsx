@@ -326,6 +326,43 @@ const CatalogPage: React.FC = () => {
               <SlidersHorizontal size={18} className="text-secondary-400" />
             </div>
 
+             {/* Suppliers */}
+            <div className="mb-6">
+              <button 
+                className="flex items-center justify-between w-full text-left font-medium mb-2"
+                onClick={() => toggleSection('suppliers')}
+              >
+                <span>Suppliers</span>
+                {expandedSections.suppliers ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+              
+              <AnimatePresence>
+                {expandedSections.suppliers && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="space-y-2 ml-1">
+                      {suppliers.map((sup) => (
+                        <div key={sup.id} className="flex items-center">
+                          <input 
+                            type="checkbox" 
+                            id={`sup-${sup.id}`} 
+                            checked={selectedSuppliers.includes(sup.name)}
+                            className="rounded text-primary-600 focus:ring-primary-500 mr-2"
+                            onChange={(e) => handleSupplierChange(sup.name, e.target.checked)}
+                          />
+                          <label htmlFor={`sup-${sup.id}`} className="text-sm">{sup.name}</label>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Categories */}
             <div className="mb-6">
               <button 
@@ -412,42 +449,6 @@ const CatalogPage: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Suppliers */}
-            <div className="mb-6">
-              <button 
-                className="flex items-center justify-between w-full text-left font-medium mb-2"
-                onClick={() => toggleSection('suppliers')}
-              >
-                <span>Suppliers</span>
-                {expandedSections.suppliers ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </button>
-              
-              <AnimatePresence>
-                {expandedSections.suppliers && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="space-y-2 ml-1">
-                      {suppliers.map((sup) => (
-                        <div key={sup.id} className="flex items-center">
-                          <input 
-                            type="checkbox" 
-                            id={`sup-${sup.id}`} 
-                            checked={selectedSuppliers.includes(sup.name)}
-                            className="rounded text-primary-600 focus:ring-primary-500 mr-2"
-                            onChange={(e) => handleSupplierChange(sup.name, e.target.checked)}
-                          />
-                          <label htmlFor={`sup-${sup.id}`} className="text-sm">{sup.name}</label>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
         </div>
 

@@ -1,21 +1,16 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import { motion } from 'framer-motion';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC = () => {
   const location = useLocation();
   
-  const isAdminRoute = location.pathname.startsWith('/admin');
   const isSupplierRoute = location.pathname.startsWith('/supplier');
   const isFranchiseeRoute = location.pathname.startsWith('/franchisee');
   
-  const isPortalPage = isAdminRoute || isSupplierRoute || isFranchiseeRoute;
+  const isPortalPage = isSupplierRoute || isFranchiseeRoute;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -27,9 +22,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         transition={{ duration: 0.3 }}
         key={location.pathname}
       >
-        {children}
+        <Outlet />
       </motion.main>
-      {/* Don't show footer on admin, supplier, and franchisee routes */}
+      {/* Don't show footer on supplier and franchisee routes */}
       {!isPortalPage && <Footer />}
     </div>
   );

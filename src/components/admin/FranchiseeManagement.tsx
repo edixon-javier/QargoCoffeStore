@@ -198,7 +198,7 @@ const FranchiseeManagement: React.FC = () => {
             <Search className="text-gray-400" />
             <input
               type="text"
-              placeholder="Buscar franquiciados..."
+              placeholder="Search for franchisees..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full border-0 focus:ring-0 text-sm"
@@ -207,7 +207,7 @@ const FranchiseeManagement: React.FC = () => {
           <div className="flex items-center gap-3">
             <div>
               <label htmlFor="status" className="text-sm font-medium text-gray-700 mr-2">
-                Estado:
+                Status:
               </label>
               <select
                 id="status"
@@ -215,9 +215,9 @@ const FranchiseeManagement: React.FC = () => {
                 onChange={(e) => setFilter(e.target.value)}
                 className="text-sm border-gray-300 rounded-md"
               >
-                <option value="all">Todos</option>
-                <option value="active">Activos</option>
-                <option value="inactive">Inactivos</option>
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
               </select>
             </div>
           </div>
@@ -242,9 +242,9 @@ const FranchiseeManagement: React.FC = () => {
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Orders
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Registered
-                </th>
+                </th> */}
                 <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
@@ -349,8 +349,8 @@ const FranchiseeManagement: React.FC = () => {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-700">
-                  Mostrando de <span className="font-medium">{startItem}</span> a <span className="font-medium">{endItem}</span> de{' '}
-                  <span className="font-medium">{totalItems}</span> franquiciados
+                  Showing <span className="font-medium">{startItem}</span> to <span className="font-medium">{endItem}</span> of{' '}
+                  <span className="font-medium">{totalItems}</span> franchisees
                 </p>
               </div>
               <div>

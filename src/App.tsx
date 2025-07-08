@@ -10,9 +10,7 @@ const CatalogPage = lazy(() => import('./pages/CatalogPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const CartPage = lazy(() => import('./pages/CartPage'));
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const SupplierPortalPage = lazy(() => import('./pages/SupplierPortalPage'));
-const FranchiseePortalPage = lazy(() => import('./pages/FranchiseePortalPage'));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -33,9 +31,27 @@ const FranchiseeDetailPage = lazy(() => import('./pages/admin/FranchiseeDetailPa
 function App() {
   return (
     <OrderStatusProvider>
-      <Layout>
-        <Suspense fallback={<LoadingSpinner />}>
-          <Routes>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          {/* Admin Routes - Fuera del Layout principal */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<AdminDashboard />} />
+            <Route path="orders" element={<OrderManagement />} />
+            <Route path="franchisees" element={<FranchiseesPage />} />
+            <Route path="franchisees/new" element={<NewFranchiseePage />} />
+            <Route path="franchisees/edit/:id" element={<EditFranchiseePage />} />
+            <Route path="franchisees/:id" element={<FranchiseeDetailPage />} />
+          </Route>
+
+          {/* Todas las demás rutas dentro del Layout principal */}
+          <Route element={<Layout />}>
             {/* Public routes */}
             <Route path="/" element={<CatalogPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -43,23 +59,7 @@ function App() {
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
-
-            {/* Admin Routes */}
-            <Route
-              path="/admin"
-              element={
-                <ProtectedRoute allowedRoles={['admin']}>
-                  <AdminLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<AdminDashboard />} />
-              <Route path="orders" element={<OrderManagement />} />
-              <Route path="franchisees" element={<FranchiseesPage />} />
-              <Route path="franchisees/new" element={<NewFranchiseePage />} />
-              <Route path="franchisees/edit/:id" element={<EditFranchiseePage />} />
-              <Route path="franchisees/:id" element={<FranchiseeDetailPage />} />
-            </Route>
+            
             <Route
               path="/supplier/*"
               element={
@@ -75,11 +75,10 @@ function App() {
             {/* Other Protected Routes */}
             <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
             <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
-            <Route path="/admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
             <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </Layout>
+          </Route>
+        </Routes>
+      </Suspense>
     </OrderStatusProvider>
   );
 }

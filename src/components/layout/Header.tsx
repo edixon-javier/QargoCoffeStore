@@ -14,26 +14,35 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Check if we're on an admin/portal page
+  // Check if we're on a portal page or admin page
   const isPortalPage =
-    location.pathname.startsWith("/admin") ||
     location.pathname.startsWith("/supplier") ||
     location.pathname.startsWith("/franchisee");
 
+  const isAdminPage = location.pathname.startsWith("/admin");
+
+  // Maneja el scroll
   useEffect(() => {
+    if (isAdminPage) return; // No ejecutamos este efecto en páginas de admin
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isAdminPage]);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setSearchOpen(false);
   }, [location]);
+  
+  // No mostrar el header en páginas de admin, ya que estas tienen su propio layout
+  if (isAdminPage) {
+    return null;
+  }
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
@@ -60,7 +69,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
           >
             <LogOut size={20} />
-            <span className="hidden md:block">Log out</span>
+            <span className="hidden md:block">Cerrar sesión</span>
           </button>
         </div>
       );
@@ -72,11 +81,14 @@ const Header: React.FC = () => {
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
       >
         <User size={20} />
-        <span className="hidden md:block">Log in</span>
+        <span className="hidden md:block">Iniciar sesión</span>
       </Link>
     );
   };
 
+
+
+  // Encabezado normal para el resto de páginas
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
