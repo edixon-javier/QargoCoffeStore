@@ -33,11 +33,11 @@ const ProductDetailPage: React.FC = () => {
     .slice(0, 4);
   
   const handleAddToCart = () => {
-    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
     setLastOrderId(orderId);
     setIsSuccessModalOpen(true);
     addItem(product, quantity);
-    const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+  };
 
   const handleBuyNow = () => {
     addItem(product, quantity);
