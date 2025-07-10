@@ -26,6 +26,14 @@ const FranchiseesPage = lazy(() => import('./pages/admin/FranchiseesPage'));
 const NewFranchiseePage = lazy(() => import('./pages/admin/NewFranchiseePage'));
 const EditFranchiseePage = lazy(() => import('./pages/admin/EditFranchiseePage'));
 const FranchiseeDetailPage = lazy(() => import('./pages/admin/FranchiseeDetailPage'));
+const SuppliersPage = lazy(() => import('./pages/admin/SuppliersPage'));
+const SupplierDetailPage = lazy(() => import('./pages/admin/SupplierDetailPage'));
+const NewSupplierPage = lazy(() => import('./pages/admin/NewSupplierPage'));
+const EditSupplierPage = lazy(() => import('./pages/admin/EditSupplierPage'));
+const ProductsPage = lazy(() => import('./pages/admin/ProductsPage'));
+const AdminProductDetailPage = lazy(() => import('./pages/admin/ProductDetailPage'));
+const NewProductPage = lazy(() => import('./pages/admin/NewProductPage'));
+const EditProductPage = lazy(() => import('./pages/admin/EditProductPage'));
 
 
 function App() {
@@ -48,6 +56,14 @@ function App() {
             <Route path="franchisees/new" element={<NewFranchiseePage />} />
             <Route path="franchisees/edit/:id" element={<EditFranchiseePage />} />
             <Route path="franchisees/:id" element={<FranchiseeDetailPage />} />
+            <Route path="suppliers" element={<SuppliersPage />} />
+            <Route path="suppliers/new" element={<NewSupplierPage />} />
+            <Route path="suppliers/edit/:id" element={<EditSupplierPage />} />
+            <Route path="suppliers/:id" element={<SupplierDetailPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="products/new" element={<NewProductPage />} />
+            <Route path="products/edit/:id" element={<EditProductPage />} />
+            <Route path="products/:id" element={<AdminProductDetailPage />} />
           </Route>
 
           {/* Todas las demás rutas dentro del Layout principal */}

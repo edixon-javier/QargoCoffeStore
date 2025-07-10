@@ -4,7 +4,11 @@ import AdminSidebar from './AdminSidebar';
 import { useAuth } from '../../contexts/AuthContext';
 import { Menu } from 'lucide-react';
 
-const AdminLayout: React.FC = () => {
+interface AdminLayoutProps {
+  children?: React.ReactNode;
+}
+
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { user } = useAuth();
   // Por defecto, el sidebar está abierto en desktop y cerrado en móvil
   const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -42,8 +46,8 @@ const AdminLayout: React.FC = () => {
         </header>
 
         {/* Main Content */}
-        <main className="pt-16 px-4 md:px-8 py-6">
-          <Outlet />
+        <main className="pt-24 px-4 md:px-8 py-6">
+          {children || <Outlet />}
         </main>
       </div>
     </div>

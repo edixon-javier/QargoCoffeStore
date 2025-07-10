@@ -39,10 +39,22 @@ export interface Category {
 export interface Supplier {
   id: string;
   name: string;
+  companyName?: string;
   logo?: string;
   description?: string;
   contactEmail: string;
-  contactPhone?: string;
+  contactPhone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+  status: 'active' | 'inactive';
+  notes?: string;
+  createdAt: string;
+  updatedAt?: string;
   minOrderValue?: number;
   deliveryTime?: string;
 }

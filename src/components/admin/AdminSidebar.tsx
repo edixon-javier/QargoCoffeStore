@@ -7,7 +7,8 @@ import {
   Store,
   ShoppingCart,
   LogOut,
-  X
+  X,
+  Truck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
@@ -33,6 +34,11 @@ const menuItems = [
     title: 'Franchisees',
     icon: Store,
     path: '/admin/franchisees'
+  },
+  {
+    title: 'Suppliers',
+    icon: Truck,
+    path: '/admin/suppliers'
   },
   {
     title: 'Products',
