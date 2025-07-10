@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { Product } from '../../lib/types';
 import { mockProducts } from '../../mockData';
+import { formatCurrency } from '../../lib/utils';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
 const ProductDetail: React.FC = () => {
@@ -153,10 +154,10 @@ const ProductDetail: React.FC = () => {
                   <p className="text-sm text-gray-500">Price</p>
                   <div className="flex items-center gap-2">
                     <DollarSign size={18} className="text-gray-600" />
-                    <p className="text-xl font-semibold text-gray-800">${product.price.toFixed(2)}</p>
+                    <p className="text-xl font-semibold text-gray-800">{formatCurrency(product.price)}</p>
                     {product.salePrice && product.salePrice < product.price && (
                       <p className="text-sm text-green-600">
-                        Sale: ${product.salePrice.toFixed(2)}
+                        Sale: {formatCurrency(product.salePrice)}
                       </p>
                     )}
                   </div>

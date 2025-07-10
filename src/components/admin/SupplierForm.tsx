@@ -373,7 +373,7 @@ const SupplierForm: React.FC<SupplierFormProps> = ({ mode }) => {
           <div className="grid grid-cols-1 gap-6">
             <div>
               <label htmlFor="minOrderValue" className="block text-sm font-medium text-gray-700 mb-1">
-                Minimum Order Value ($)
+                Minimum Order Value (USD)
               </label>
               <input
                 type="number"

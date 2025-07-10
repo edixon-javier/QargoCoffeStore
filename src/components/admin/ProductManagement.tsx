@@ -19,6 +19,7 @@ import { categories } from '../../catalogData';
 import { mockSuppliers } from '../../mockSuppliers';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import Modal from '../ui/Modal';
+import { formatCurrency } from '../../lib/utils';
 
 const ProductManagement: React.FC = () => {
   const navigate = useNavigate();
@@ -371,10 +372,10 @@ const ProductManagement: React.FC = () => {
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="text-sm font-medium text-gray-900">
-                      ${product.price.toFixed(2)}
+                      {formatCurrency(product.price)}
                       {product.salePrice && product.salePrice < product.price && (
                         <span className="ml-2 text-xs text-green-600">
-                          Sale: ${product.salePrice.toFixed(2)}
+                          Sale: {formatCurrency(product.salePrice)}
                         </span>
                       )}
                     </div>

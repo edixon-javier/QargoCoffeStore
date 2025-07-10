@@ -5,14 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(amount: number, locale = 'es-MX', currency = 'MXN'): string {
+export function formatCurrency(amount: number, locale = 'en-US', currency = 'USD'): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
   }).format(amount);
 }
 
-export function formatDate(date: string | Date, locale = 'es-MX'): string {
+export function formatDate(date: string | Date, locale = 'en-US'): string {
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',

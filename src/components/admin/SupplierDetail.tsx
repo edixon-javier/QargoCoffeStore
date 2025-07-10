@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Supplier, Product } from '../../lib/types';
 import { mockSuppliers } from '../../mockSuppliers';
+import { formatCurrency } from '../../lib/utils';
 import { Edit, ExternalLink, Package, Calendar, CheckCircle, XCircle, MapPin, Phone, Mail, FileText } from 'lucide-react';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
@@ -150,9 +151,9 @@ const SupplierDetail: React.FC = () => {
           <div>
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium text-gray-500">Minimum Order Value</h3>
+                <h3 className="text-sm font-medium text-gray-500">Minimum Order Value (USD)</h3>
                 <p className="mt-1 text-gray-800">
-                  {supplier.minOrderValue ? `$${supplier.minOrderValue.toFixed(2)}` : 'Not specified'}
+                  {supplier.minOrderValue ? formatCurrency(supplier.minOrderValue) : 'Not specified'}
                 </p>
               </div>
               

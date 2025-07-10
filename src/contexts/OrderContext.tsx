@@ -34,9 +34,14 @@ export interface Order {
 
 interface OrderContextType {
   orders: Order[];
-  addOrder: (newOrder: Omit<Order, 'id' | 'orderDate' | 'status' | 'statusHistory'>) => void;
+  addOrder: (newOrder: Omit<Order, 'id' | 'orderDate' | 'status' | 'statusHistory'>) => Order;
   updateOrderStatus: (orderId: string, status: string) => void;
   updateOrder: (orderId: string, orderUpdates: Partial<Order>) => void;
+  getOrdersByStatus: (status: string) => Order[];
+  getOrdersByCustomer: (franchiseeId: string) => Order[];
+  getOrdersByDateRange: (startDate: Date, endDate: Date) => Order[];
+  calculateRevenue: (orders?: Order[]) => number;
+  getOrderById: (orderId: string) => Order | undefined;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
@@ -65,6 +70,35 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('orders', JSON.stringify(orders));
   }, [orders]);
 
+  // Get order by ID
+  const getOrderById = (orderId: string): Order | undefined => {
+    return orders.find(order => order.id === orderId);
+  };
+
+  // Get orders by status
+  const getOrdersByStatus = (status: string): Order[] => {
+    return orders.filter(order => order.status === status);
+  };
+
+  // Get orders by customer
+  const getOrdersByCustomer = (franchiseeId: string): Order[] => {
+    return orders.filter(order => order.franchiseeId === franchiseeId);
+  };
+
+  // Get orders by date range
+  const getOrdersByDateRange = (startDate: Date, endDate: Date): Order[] => {
+    return orders.filter(order => {
+      const orderDate = new Date(order.orderDate);
+      return orderDate >= startDate && orderDate <= endDate;
+    });
+  };
+
+  // Calculate total revenue from a set of orders
+  const calculateRevenue = (orderSet?: Order[]): number => {
+    const ordersToCalculate = orderSet || orders;
+    return ordersToCalculate.reduce((sum, order) => sum + order.total, 0);
+  };
+
   const addOrder = (newOrder: Omit<Order, 'id' | 'orderDate' | 'status' | 'statusHistory'>) => {
     const orderNumber = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
     const order: Order = {
@@ -72,9 +106,9 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       id: `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       orderNumber,
       orderDate: new Date().toISOString(),
-      status: 'Pending',
+      status: 'Pendiente', // Usando el estado en español
       statusHistory: [
-        { status: 'Pending', date: new Date().toISOString() }
+        { status: 'Pendiente', date: new Date().toISOString() }
       ]
     };
 
@@ -133,7 +167,17 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <OrderContext.Provider value={{ orders, addOrder, updateOrderStatus, updateOrder }}>
+    <OrderContext.Provider value={{ 
+      orders, 
+      addOrder, 
+      updateOrderStatus, 
+      updateOrder,
+      getOrdersByStatus,
+      getOrdersByCustomer,
+      getOrdersByDateRange,
+      calculateRevenue,
+      getOrderById
+    }}>
       {children}
     </OrderContext.Provider>
   );

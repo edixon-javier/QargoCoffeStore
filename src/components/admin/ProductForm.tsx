@@ -342,7 +342,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <label htmlFor="price" className="mb-1 block text-sm font-medium text-gray-700">
-                Price ($) *
+                Price (USD) *
               </label>
               <input
                 id="price"
@@ -363,7 +363,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
 
             <div>
               <label htmlFor="salePrice" className="mb-1 block text-sm font-medium text-gray-700">
-                Sale Price ($) (Optional)
+                Sale Price (USD) (Optional)
               </label>
               <input
                 id="salePrice"

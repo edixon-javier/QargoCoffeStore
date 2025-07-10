@@ -170,7 +170,7 @@ const CatalogPage: React.FC = () => {
       setSelectedCategories(prev => prev.filter(c => c !== filter));
     } else if (selectedSuppliers.includes(filter)) {
       setSelectedSuppliers(prev => prev.filter(s => s !== filter));
-    } else if (filter.includes('Precio:')) {
+    } else if (filter.includes('Price:')) {
       setPriceRange({min: null, max: null});
       setMinPrice('');
       setMaxPrice('');

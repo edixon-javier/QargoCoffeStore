@@ -14,13 +14,16 @@ interface OrderStatusContextType {
   deleteStatus: (id: string) => void;
 }
 
-// Default statuses
+// Default statuses with Spanish translations
 const defaultStatuses = [
-  { id: '1', name: 'Pending', color: '#FFA500' },
-  { id: '2', name: 'Processing', color: '#0000FF' },
-  { id: '3', name: 'Shipped', color: '#008000' },
-  { id: '4', name: 'Delivered', color: '#006400' },
-  { id: '5', name: 'Cancelled', color: '#FF0000' }
+  { id: '1', name: 'Pendiente', color: '#FFA500' },
+  { id: '2', name: 'Procesando', color: '#3B82F6' },
+  { id: '3', name: 'Enviado', color: '#10B981' },
+  { id: '4', name: 'Entregado', color: '#047857' },
+  { id: '5', name: 'Cancelado', color: '#EF4444' },
+  { id: '6', name: 'Esperando Pago', color: '#6B7280' },
+  { id: '7', name: 'Devuelto', color: '#8B5CF6' },
+  { id: '8', name: 'Pago Confirmado', color: '#F59E0B' }
 ] as const;
 
 // Create context
