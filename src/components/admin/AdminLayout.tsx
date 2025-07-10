@@ -25,21 +25,22 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       <AdminSidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       
       {/* Contenido principal */}
-      <div className={`transition-all duration-300 ${sidebarOpen ? 'md:pl-64' : ''}`}>
+      <div className={`transition-all duration-300 ${sidebarOpen ? 'md:pl-64' : 'md:pl-20'}`}>
         {/* Header */}
-        <header className={`bg-white border-b border-gray-200 h-16 fixed top-0 right-0 left-0 z-10 transition-all duration-300 ${sidebarOpen ? 'md:left-64' : ''}`}>
+        <header className={`bg-white border-b border-gray-200 h-16 fixed top-0 right-0 left-0 z-10 transition-all duration-300 ${
+          sidebarOpen ? 'md:left-64' : 'md:left-20'
+        }`}>
           <div className="px-4 md:px-8 h-full flex items-center justify-between">
             <div className="flex items-center">
-              {/* Botón para mostrar/ocultar el drawer (visible en móvil y también en desktop cuando el sidebar está oculto) */}
               <button 
                 className="mr-4 p-2 rounded-md hover:bg-gray-100"
                 onClick={toggleSidebar}
-                aria-label="Menu"
+                aria-label={sidebarOpen ? "Colapsar menú" : "Expandir menú"}
               >
                 <Menu className="h-6 w-6 text-gray-700" />
               </button>
               <h2 className="text-lg font-medium text-gray-800">
-                Welcome, {user?.name}
+                Bienvenido, {user?.name}
               </h2>
             </div>
           </div>
