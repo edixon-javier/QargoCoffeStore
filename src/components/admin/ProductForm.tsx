@@ -338,7 +338,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
 
         {/* Pricing and Inventory */}
         <div className="overflow-hidden rounded-lg bg-white p-6 shadow-md">
-          <h2 className="mb-4 text-xl font-semibold text-gray-800">Pricing & Inventory</h2>
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">Pricing and Inventory</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <label htmlFor="price" className="mb-1 block text-sm font-medium text-gray-700">
@@ -437,7 +437,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
 
         {/* Categories and Supplier */}
         <div className="overflow-hidden rounded-lg bg-white p-6 shadow-md">
-          <h2 className="mb-4 text-xl font-semibold text-gray-800">Categories & Supplier</h2>
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">Categorías y Proveedor</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <label htmlFor="category.id" className="mb-1 block text-sm font-medium text-gray-700">
@@ -514,7 +514,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
                     value={url}
                     onChange={(e) => handleImageUrlChange(index, e.target.value)}
                     className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-primary focus:outline-none"
-                    placeholder="https://example.com/image.jpg"
                   />
                 </div>
                 {url && (
@@ -532,7 +531,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
                 )}
                 <button
                   type="button"
-                  onClick={() => handleRemoveImageField(index)}
+                  onClick={() => handleRemoveImage(index)}
                   className="flex h-10 w-10 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-red-600"
                 >
                   <Trash2 size={18} />
@@ -627,7 +626,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode }) => {
           <button
             type="submit"
             disabled={saving || Object.keys(errors).length > 0}
-            className="flex items-center gap-2 rounded-lg bg-primary px-6 py-2 text-white hover:bg-primary-dark disabled:bg-gray-400"
+            className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors"
           >
             {saving ? (
               <>

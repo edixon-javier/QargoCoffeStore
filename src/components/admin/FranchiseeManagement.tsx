@@ -114,7 +114,7 @@ const FranchiseeManagement: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
 
-  // Cargar datos de franquiciados
+  // Load franchisee data
   useEffect(() => {
     // Simular carga de datos
     const timer = setTimeout(() => {
@@ -191,7 +191,7 @@ const FranchiseeManagement: React.FC = () => {
         </button>
       </div>
 
-      {/* Filtros y búsqueda */}
+      {/* Filters and search */}
       <div className="bg-white p-4 rounded-lg shadow mb-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-2 flex-1">
@@ -224,7 +224,7 @@ const FranchiseeManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* Lista de franquiciados */}
+      {/* Franchisee list */}
       <div className="bg-white overflow-hidden shadow rounded-lg">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -286,14 +286,14 @@ const FranchiseeManagement: React.FC = () => {
                         <button
                           onClick={() => handleViewDetails(franchisee)}
                           className="text-primary-600 hover:text-primary-900 p-1"
-                          title="Ver detalles"
+                          title="View details"
                         >
                           <Eye className="h-5 w-5" />
                         </button>
                         <button
                           onClick={() => handleEdit(franchisee)}
                           className="text-blue-600 hover:text-blue-900 p-1"
-                          title="Editar franquiciado"
+                          title="Edit franchisee"
                         >
                           <Edit className="h-5 w-5" />
                         </button>

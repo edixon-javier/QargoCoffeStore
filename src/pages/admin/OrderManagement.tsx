@@ -259,7 +259,7 @@ const OrderManagement: React.FC = () => {
   // Function to export orders data as CSV
   const exportOrdersCSV = () => {
     // Create CSV header
-    let csv = 'ID,Order Number,Customer,Date,Status,Total (USD),Payment Method,Tracking Number\n';
+    let csv = 'ID,Número de Orden,Cliente,Fecha,Estado,Total (USD),Método de Pago,Número de Seguimiento\n';
     
     // Add each order as a row
     processedOrders.forEach(order => {
@@ -267,9 +267,9 @@ const OrderManagement: React.FC = () => {
         order.id,
         order.orderNumber || '',
         order.customerName,
-        new Date(order.orderDate).toLocaleDateString('en-US'),
+        new Date(order.orderDate).toLocaleDateString('es-ES'),
         order.status,
-        `$${order.total.toFixed(2)}`,
+        formatCurrency(order.total).replace('$', ''),
         order.paymentMethod.type,
         order.trackingNumber || ''
       ];
@@ -288,7 +288,7 @@ const OrderManagement: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `orders_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `pedidos_${new Date().toISOString().slice(0, 10)}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();

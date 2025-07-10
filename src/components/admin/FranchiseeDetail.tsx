@@ -206,7 +206,7 @@ const FranchiseeDetail: React.FC = () => {
         </button>
       </div>
       
-      {/* Información General */}
+      {/* General Information */}
       <div className="bg-white rounded-lg shadow-soft p-6">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
           <div className="w-20 h-20 rounded-full bg-primary-100 flex items-center justify-center">
@@ -250,11 +250,11 @@ const FranchiseeDetail: React.FC = () => {
         </div>
       </div>
       
-      {/* Estadísticas */}
+      {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-500">Total Pedidos</span>
+            <span className="text-sm font-medium text-gray-500">Total Orders</span>
             <Package className="h-6 w-6 text-primary-600" />
           </div>
           <div className="mt-2">
@@ -264,7 +264,7 @@ const FranchiseeDetail: React.FC = () => {
         
         <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-500">Total Gastado</span>
+            <span className="text-sm font-medium text-gray-500">Total Spent</span>
             <CreditCard className="h-6 w-6 text-green-600" />
           </div>
           <div className="mt-2">
@@ -274,7 +274,7 @@ const FranchiseeDetail: React.FC = () => {
         
         <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-500">Valor Promedio</span>
+            <span className="text-sm font-medium text-gray-500">Average Order Value</span>
             <CreditCard className="h-6 w-6 text-blue-600" />
           </div>
           <div className="mt-2">
@@ -284,7 +284,7 @@ const FranchiseeDetail: React.FC = () => {
         
         <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-500">Último Pedido</span>
+            <span className="text-sm font-medium text-gray-500">Last Order</span>
             <Clock className="h-6 w-6 text-purple-600" />
           </div>
           <div className="mt-2">
@@ -295,7 +295,7 @@ const FranchiseeDetail: React.FC = () => {
         </div>
       </div>
       
-      {/* Información de contacto y ubicación */}
+      {/* Contact and Location Information */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow-soft p-6">
           <h3 className="text-lg font-medium mb-4">Contact Information</h3>

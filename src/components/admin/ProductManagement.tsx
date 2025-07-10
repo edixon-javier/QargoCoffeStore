@@ -165,14 +165,14 @@ const ProductManagement: React.FC = () => {
         <h1 className="text-2xl font-bold text-gray-800">Product Management</h1>
         <button
           onClick={handleCreateNew}
-          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-white hover:bg-primary-dark"
+          className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors"
         >
           <PlusCircle size={18} />
-          <span>Add New Product</span>
+          <span className="font-medium">Add New Product</span>
         </button>
       </div>
 
-      {/* Filtros y búsqueda */}
+      {/* Filters and search */}
       <div className="rounded-lg bg-white p-4 shadow-md">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="relative flex-grow max-w-md">
@@ -185,54 +185,56 @@ const ProductManagement: React.FC = () => {
               className="w-full rounded-md border border-gray-200 py-2 pl-10 pr-4 focus:border-primary focus:outline-none"
             />
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Filter size={16} className="text-gray-500" />
-              <span className="text-sm font-medium text-gray-600">Filter:</span>
-            </div>
-
-            {/* Filtro de estado */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-
-            {/* Filtro de categoría */}
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-            >
-              <option value="all">All Categories</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-
-            {/* Filtro de proveedor */}
-            <select
-              value={supplierFilter}
-              onChange={(e) => setSupplierFilter(e.target.value)}
-              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-            >
-              <option value="all">All Suppliers</option>
-              {suppliers.map((supplier) => (
-                <option key={supplier.id} value={supplier.id}>
-                  {supplier.name}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
 
-        {/* Filtro de precio */}
+        {/* Category and supplier filters */}
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Filter size={16} className="text-gray-500" />
+            <span className="text-sm font-medium text-gray-600">Filter:</span>
+          </div>
+
+          {/* Status filter */}
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+          >
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+
+          {/* Category filter */}
+          <select
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+          >
+            <option value="all">All Categories</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+
+          {/* Supplier filter */}
+          <select
+            value={supplierFilter}
+            onChange={(e) => setSupplierFilter(e.target.value)}
+            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+          >
+            <option value="all">All Suppliers</option>
+            {suppliers.map((supplier) => (
+              <option key={supplier.id} value={supplier.id}>
+                {supplier.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Price range filter */}
         <div className="mt-4 flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <DollarSign size={16} className="text-gray-500" />
@@ -264,7 +266,7 @@ const ProductManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* Tabla de productos */}
+      {/* Products table */}
       <div className="overflow-x-auto rounded-lg bg-white shadow-md">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -559,26 +561,28 @@ const ProductManagement: React.FC = () => {
         </div>
       )}
 
-      {/* Modal de confirmación de eliminación */}
+      {/* Delete confirmation modal */}
       {isDeleteModalOpen && selectedProduct && (
         <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
           <div className="p-6">
             <h3 className="text-lg font-semibold text-gray-900">Confirm Deletion</h3>
             <p className="mt-2 text-sm text-gray-600">
-              Are you sure you want to delete the product "{selectedProduct.name}"? This action cannot be undone.
+              Are you sure you want to delete this product? This action cannot be undone.
             </p>
-            <div className="mt-4 flex justify-end space-x-3">
+            <div className="mt-4 flex justify-end gap-3">
               <button
+                type="button"
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
               >
                 Cancel
               </button>
               <button
+                type="button"
                 onClick={handleDeleteProduct}
-                className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                className="rounded-lg bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700"
               >
-                Delete
+                Delete Product
               </button>
             </div>
           </div>

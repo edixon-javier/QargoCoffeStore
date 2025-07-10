@@ -8,6 +8,7 @@ import {
   ShoppingCart,
   LogOut,
   X,
+  Coffee,
   Truck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,7 +19,18 @@ interface AdminSidebarProps {
   toggleSidebar: () => void;
 }
 
-const menuItems = [
+interface MenuItem {
+  title: string;
+  icon: React.ElementType;
+  path: string;
+  exact?: boolean;
+  submenu?: Array<{
+    title: string;
+    path: string;
+  }>;
+}
+
+const menuItems: MenuItem[] = [
   {
     title: 'Dashboard',
     icon: LayoutDashboard,
@@ -64,10 +76,26 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
 
   // Drawer para móviles y escritorio
   const sidebarContent = (
-    <div className={`h-full flex flex-col bg-white border-r border-gray-200 overflow-y-auto`}>
+    <div
+      className={`h-full flex flex-col bg-white border-r border-gray-200 overflow-y-auto`}
+    >
       <div className="px-6 py-6 flex justify-between items-center border-b border-gray-200">
-        <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
-        <button 
+        <div className="flex flex-col gap-1">
+          {/* Logo + Marca */}
+          <div className="flex items-center gap-2">
+            <Coffee className="h-8 w-8 text-primary-600" strokeWidth={2.5} />
+            <span className="font-serif font-bold text-xl text-primary-600">
+              Qargo Connet
+            </span>
+          </div>
+
+          {/* Subtítulo */}
+          <h1 className="text-sm font-semibold text-gray-700 ml-1">
+            Admin Panel
+          </h1>
+        </div>
+
+        <button
           className="p-2 rounded-full hover:bg-gray-100"
           onClick={toggleSidebar}
         >
@@ -77,18 +105,62 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
 
       <nav className="px-4 py-4 flex-grow">
         {menuItems.map((item) => {
-          const isActive = item.exact 
+          const isActive = item.exact
             ? location.pathname === item.path
             : location.pathname.startsWith(item.path);
 
+          // Verificamos si el item tiene submenu
+          if (item.submenu) {
+            return (
+              <div key={item.path} className="mb-2">
+                <div
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                    isActive
+                      ? "bg-primary-50 text-primary-700"
+                      : "text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span className="font-medium">{item.title}</span>
+                </div>
+
+                {/* Submenu items */}
+                <div className="ml-9 mt-1 space-y-1">
+                  {item.submenu.map((subItem) => {
+                    const isSubActive = location.pathname === subItem.path;
+                    return (
+                      <Link
+                        key={subItem.path}
+                        to={subItem.path}
+                        className={`block px-4 py-2 text-sm rounded-md transition-colors ${
+                          isSubActive
+                            ? "bg-primary-50 text-primary-700"
+                            : "text-gray-600 hover:bg-gray-50"
+                        }`}
+                        onClick={() => {
+                          if (window.innerWidth < 768) {
+                            toggleSidebar();
+                          }
+                        }}
+                      >
+                        {subItem.title}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          }
+
+          // Item sin submenu (comportamiento original)
           return (
             <Link
               key={item.path}
               to={item.path}
               className={`flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors ${
                 isActive
-                  ? 'bg-primary-50 text-primary-700'
-                  : 'text-gray-600 hover:bg-gray-50'
+                  ? "bg-primary-50 text-primary-700"
+                  : "text-gray-600 hover:bg-gray-50"
               }`}
               onClick={() => {
                 // En móviles, cerrar el drawer al hacer clic en un elemento del menú

@@ -39,7 +39,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                 <Menu className="h-6 w-6 text-gray-700" />
               </button>
               <h2 className="text-lg font-medium text-gray-800">
-                Bienvenido, {user?.name}
+                Welcome, {user?.name}
               </h2>
             </div>
           </div>
