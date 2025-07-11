@@ -300,44 +300,46 @@ const OrderManagement: React.FC = () => {
       <div className="flex flex-wrap justify-between items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Order Management</h1>
-          <p className="text-gray-600 mt-1">Manage and track all orders from a centralized dashboard</p>
+          <p className="text-gray-600 mt-1">
+            Manage and track all orders from a centralized dashboard
+          </p>
         </div>
-        
+
         {/* Tab Selector */}
         <div className="flex bg-gray-100 p-1 rounded-lg">
           <button
-            onClick={() => setActivePage('orders')}
+            onClick={() => setActivePage("orders")}
             className={`px-4 py-2 rounded-md ${
-              activePage === 'orders' 
-                ? 'bg-white shadow-sm text-gray-800' 
-                : 'text-gray-600 hover:text-gray-800'
+              activePage === "orders"
+                ? "bg-white shadow-sm text-gray-800"
+                : "text-gray-600 hover:text-gray-800"
             }`}
           >
             Orders
           </button>
           <button
-            onClick={() => setActivePage('stats')}
+            onClick={() => setActivePage("stats")}
             className={`px-4 py-2 rounded-md ${
-              activePage === 'stats' 
-                ? 'bg-white shadow-sm text-gray-800' 
-                : 'text-gray-600 hover:text-gray-800'
+              activePage === "stats"
+                ? "bg-white shadow-sm text-gray-800"
+                : "text-gray-600 hover:text-gray-800"
             }`}
           >
             Statistics
           </button>
         </div>
-        
+
         {/* Action buttons */}
         <div className="flex gap-3">
-          <button 
-            onClick={exportOrdersCSV} 
+          <button
+            onClick={exportOrdersCSV}
             className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 flex items-center gap-2 text-sm font-medium"
           >
             <Download size={16} />
             Export CSV
           </button>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 flex items-center gap-2 text-sm font-medium text-gray-700"
           >
             <RefreshCw size={16} />
@@ -346,70 +348,86 @@ const OrderManagement: React.FC = () => {
         </div>
       </div>
 
-      {activePage === 'orders' ? (
+      {activePage === "orders" ? (
         <>
           {/* Advanced Filters */}
           <div className="bg-white rounded-lg shadow-soft p-6">
             <h3 className="text-lg font-medium mb-4">Filters</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {/* Search field */}
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
+              <div>
+               <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Search
+                </label>
+              <div className="relative w-full max-w-md">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 ">
+                  <Search
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                 </div>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Search by order number, customer or product..." 
-                  className="pl-10 p-2 w-full border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  placeholder="Search orders, customers, or products"
+                  aria-label="Search orders, customers, or products"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
                 />
               </div>
-              
+              </div>
+
               {/* Status filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Status
+                </label>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
                   className="p-2 w-full border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="all">All statuses</option>
-                  {customStatuses.map(status => (
-                    <option key={status.id} value={status.name}>
+                  <option value="all">All states</option>
+                  {customStatuses.map((status) => (
+                    <option key={status.name} value={status.name}>
                       {status.name}
                     </option>
                   ))}
                 </select>
               </div>
-              
+
               {/* Date filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Date
+                </label>
                 <select
                   value={dateFilter}
                   onChange={(e) => setDateFilter(e.target.value)}
                   className="p-2 w-full border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="all">All dates</option>
+                  <option value="all">All Dates</option>
                   <option value="today">Today</option>
                   <option value="yesterday">Yesterday</option>
-                  <option value="this-week">This week</option>
-                  <option value="this-month">This month</option>
-                  <option value="last-month">Last month</option>
+                  <option value="this-week">This Week</option>
+                  <option value="this-month">This Month</option>
+                  <option value="last-month">Last Month</option>
+
                 </select>
               </div>
-              
+
               {/* Customer filter */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Customer
+                </label>
                 <select
                   value={customerFilter}
                   onChange={(e) => setCustomerFilter(e.target.value)}
                   className="p-2 w-full border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="all">All customers</option>
-                  {uniqueCustomers.map(customer => (
+                  {uniqueCustomers.map((customer) => (
                     <option key={customer.id} value={customer.id}>
                       {customer.name}
                     </option>
@@ -417,24 +435,24 @@ const OrderManagement: React.FC = () => {
                 </select>
               </div>
             </div>
-            
+
             <div className="mt-4 flex justify-between items-center">
               {/* Sort options */}
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Sort by:</span>
+                <span className="text-sm text-gray-600">Order By:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="p-2 border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="date-desc">Date (newest)</option>
-                  <option value="date-asc">Date (oldest)</option>
-                  <option value="total-desc">Amount (highest)</option>
-                  <option value="total-asc">Amount (lowest)</option>
-                  <option value="status">Status</option>
+                <option value="date-desc">Date (Newest First)</option>
+                <option value="date-asc">Date (Oldest First)</option>
+                <option value="total-desc">Total (Highest First)</option>
+                <option value="total-asc">Total (Lowest First)</option>
+                <option value="status">Status</option>
                 </select>
               </div>
-              
+
               {/* Results count */}
               <div className="text-sm text-gray-600">
                 Showing {processedOrders.length} of {orders.length} orders
@@ -446,17 +464,20 @@ const OrderManagement: React.FC = () => {
           <div className="bg-white rounded-lg shadow-soft p-6">
             <h3 className="text-lg font-medium mb-4">Status Overview</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {customStatuses.map(status => (
+              {customStatuses.map((status) => (
                 <div
                   key={status.id}
                   className="p-3 rounded-lg text-center border"
-                  style={{ backgroundColor: status.color + '20', borderColor: status.color }}
+                  style={{
+                    backgroundColor: status.color + "20",
+                    borderColor: status.color,
+                  }}
                 >
                   <span className="font-medium" style={{ color: status.color }}>
                     {status.name}
                   </span>
                   <div className="text-2xl font-bold mt-1">
-                    {orders.filter(o => o.status === status.name).length}
+                    {orders.filter((o) => o.status === status.name).length}
                   </div>
                   <div className="text-xs text-gray-500">orders</div>
                 </div>
@@ -470,32 +491,47 @@ const OrderManagement: React.FC = () => {
               <div className="text-center py-12">
                 <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-500">No orders found</p>
-                <p className="text-sm text-gray-400 mt-2">Try different filters</p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Try different filters
+                </p>
               </div>
             ) : (
               <div className="divide-y divide-gray-200">
-                {processedOrders.map(order => (
+                {processedOrders.map((order) => (
                   <div key={order.id} className="p-6">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <h3 className="text-lg font-medium">Order #{order.orderNumber}</h3>
+                          <h3 className="text-lg font-medium">
+                            Order #{order.orderNumber}
+                          </h3>
                           <div
                             className="px-2 py-1 text-xs rounded-full"
-                            style={{ 
-                              backgroundColor: customStatuses.find(s => s.name === order.status)?.color + '20',
-                              color: customStatuses.find(s => s.name === order.status)?.color
+                            style={{
+                              backgroundColor:
+                                customStatuses.find(
+                                  (s) => s.name === order.status
+                                )?.color + "20",
+                              color: customStatuses.find(
+                                (s) => s.name === order.status
+                              )?.color,
                             }}
                           >
                             {order.status}
                           </div>
                         </div>
                         <p className="text-sm text-gray-600">
-                          {order.billingInfo.companyName} - {formatCurrency(order.total)}
+                          {order.billingInfo.companyName} -{" "}
+                          {formatCurrency(order.total)}
                         </p>
                         <div className="flex items-center gap-4 text-sm text-gray-500">
-                          <span>{new Date(order.orderDate).toLocaleDateString()}</span>
-                          <span>{order.items.length} {order.items.length === 1 ? 'product' : 'products'}</span>
+                          <span>
+                            {new Date(order.orderDate).toLocaleDateString()}
+                          </span>
+                          <span>
+                            {order.items.length}{" "}
+                            {order.items.length === 1 ? "product" : "products"}
+                          </span>
                           <span>{order.paymentMethod.type}</span>
                         </div>
                       </div>
@@ -503,10 +539,12 @@ const OrderManagement: React.FC = () => {
                       <div className="flex items-center gap-4">
                         <select
                           value={order.status}
-                          onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                          onChange={(e) =>
+                            handleStatusChange(order.id, e.target.value)
+                          }
                           className="p-2 border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         >
-                          {customStatuses.map(status => (
+                          {customStatuses.map((status) => (
                             <option key={status.id} value={status.name}>
                               {status.name}
                             </option>
@@ -520,14 +558,20 @@ const OrderManagement: React.FC = () => {
                           <input
                             type="text"
                             placeholder="Tracking #"
-                            value={order.trackingNumber || ''}
-                            onChange={(e) => handleTrackingUpdate(order.id, e.target.value)}
+                            value={order.trackingNumber || ""}
+                            onChange={(e) =>
+                              handleTrackingUpdate(order.id, e.target.value)
+                            }
                             className="pl-9 p-2 border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                           />
                         </div>
 
                         <button
-                          onClick={() => setExpandedOrderId(expandedOrderId === order.id ? null : order.id)}
+                          onClick={() =>
+                            setExpandedOrderId(
+                              expandedOrderId === order.id ? null : order.id
+                            )
+                          }
                           className="p-2 text-gray-500 hover:text-gray-700 border rounded-md hover:bg-gray-50"
                         >
                           {expandedOrderId === order.id ? (
@@ -547,22 +591,34 @@ const OrderManagement: React.FC = () => {
                             <h4 className="font-medium mb-4">Order Details</h4>
                             <div className="space-y-3">
                               <div>
-                                <div className="text-sm text-gray-500">Order ID</div>
+                                <div className="text-sm text-gray-500">
+                                  Order ID
+                                </div>
                                 <div>{order.id}</div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">Customer</div>
+                                <div className="text-sm text-gray-500">
+                                  Customer
+                                </div>
                                 <div>{order.customerName}</div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">Shipping Address</div>
-                                <div>{order.billingInfo.shippingAddress.street}</div>
+                                <div className="text-sm text-gray-500">
+                                  Shipping Address
+                                </div>
                                 <div>
-                                  {order.billingInfo.shippingAddress.city}, {order.billingInfo.shippingAddress.state} {order.billingInfo.shippingAddress.zipCode}
+                                  {order.billingInfo.shippingAddress.street}
+                                </div>
+                                <div>
+                                  {order.billingInfo.shippingAddress.city},{" "}
+                                  {order.billingInfo.shippingAddress.state}{" "}
+                                  {order.billingInfo.shippingAddress.zipCode}
                                 </div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">Contact</div>
+                                <div className="text-sm text-gray-500">
+                                  Contact
+                                </div>
                                 <div>{order.billingInfo.email}</div>
                                 <div>{order.billingInfo.phone}</div>
                               </div>
@@ -571,31 +627,57 @@ const OrderManagement: React.FC = () => {
 
                           {/* Payment and Tracking */}
                           <div>
-                            <h4 className="font-medium mb-4">Payment & Tracking</h4>
+                            <h4 className="font-medium mb-4">
+                              Payment & Tracking
+                            </h4>
                             <div className="space-y-3">
                               <div>
-                                <div className="text-sm text-gray-500">Payment Method</div>
-                                <div>{order.paymentMethod.type} **** {order.paymentMethod.lastFourDigits}</div>
+                                <div className="text-sm text-gray-500">
+                                  Payment Method
+                                </div>
+                                <div>
+                                  {order.paymentMethod.type} ****{" "}
+                                  {order.paymentMethod.lastFourDigits}
+                                </div>
                               </div>
                               {order.trackingNumber && (
                                 <div>
-                                  <div className="text-sm text-gray-500">Tracking Number</div>
+                                  <div className="text-sm text-gray-500">
+                                    Tracking Number
+                                  </div>
                                   <div>{order.trackingNumber}</div>
                                 </div>
                               )}
                               <div>
-                                <div className="text-sm text-gray-500">Status History</div>
+                                <div className="text-sm text-gray-500">
+                                  Status History
+                                </div>
                                 <div className="ml-0 space-y-1 mt-2">
                                   {order.statusHistory.map((history, idx) => (
-                                    <div key={idx} className="flex items-center gap-2">
-                                      <div 
+                                    <div
+                                      key={idx}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <div
                                         className="w-2 h-2 rounded-full"
                                         style={{
-                                          backgroundColor: customStatuses.find(s => s.name === history.status)?.color || '#888'
+                                          backgroundColor:
+                                            customStatuses.find(
+                                              (s) => s.name === history.status
+                                            )?.color || "#888",
                                         }}
                                       />
                                       <div className="text-sm">
-                                        <span className="font-medium">{history.status}</span> - {new Date(history.date).toLocaleDateString()} {new Date(history.date).toLocaleTimeString()}
+                                        <span className="font-medium">
+                                          {history.status}
+                                        </span>{" "}
+                                        -{" "}
+                                        {new Date(
+                                          history.date
+                                        ).toLocaleDateString()}{" "}
+                                        {new Date(
+                                          history.date
+                                        ).toLocaleTimeString()}
                                       </div>
                                     </div>
                                   ))}
@@ -609,10 +691,15 @@ const OrderManagement: React.FC = () => {
                             <h4 className="font-medium mb-4">Order Items</h4>
                             <div className="space-y-3">
                               {order.items.map((item, idx) => (
-                                <div key={idx} className="flex justify-between border-b pb-2">
+                                <div
+                                  key={idx}
+                                  className="flex justify-between border-b pb-2"
+                                >
                                   <div>
                                     <div>{item.name}</div>
-                                    <div className="text-sm text-gray-500">Quantity: {item.quantity}</div>
+                                    <div className="text-sm text-gray-500">
+                                      Quantity: {item.quantity}
+                                    </div>
                                   </div>
                                   <div className="font-medium">
                                     {formatCurrency(item.price * item.quantity)}
@@ -645,41 +732,41 @@ const OrderManagement: React.FC = () => {
               <h3 className="text-lg font-medium">Statistics & Analytics</h3>
               <div className="flex bg-gray-100 p-1 rounded-lg">
                 <button
-                  onClick={() => setSelectedTimeFrame('day')}
+                  onClick={() => setSelectedTimeFrame("day")}
                   className={`px-3 py-1 text-sm rounded-md ${
-                    selectedTimeFrame === 'day' 
-                      ? 'bg-white shadow-sm text-gray-800' 
-                      : 'text-gray-600 hover:text-gray-800'
+                    selectedTimeFrame === "day"
+                      ? "bg-white shadow-sm text-gray-800"
+                      : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
                   Today
                 </button>
                 <button
-                  onClick={() => setSelectedTimeFrame('week')}
+                  onClick={() => setSelectedTimeFrame("week")}
                   className={`px-3 py-1 text-sm rounded-md ${
-                    selectedTimeFrame === 'week' 
-                      ? 'bg-white shadow-sm text-gray-800' 
-                      : 'text-gray-600 hover:text-gray-800'
+                    selectedTimeFrame === "week"
+                      ? "bg-white shadow-sm text-gray-800"
+                      : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
                   This Week
                 </button>
                 <button
-                  onClick={() => setSelectedTimeFrame('month')}
+                  onClick={() => setSelectedTimeFrame("month")}
                   className={`px-3 py-1 text-sm rounded-md ${
-                    selectedTimeFrame === 'month' 
-                      ? 'bg-white shadow-sm text-gray-800' 
-                      : 'text-gray-600 hover:text-gray-800'
+                    selectedTimeFrame === "month"
+                      ? "bg-white shadow-sm text-gray-800"
+                      : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
                   This Month
                 </button>
                 <button
-                  onClick={() => setSelectedTimeFrame('year')}
+                  onClick={() => setSelectedTimeFrame("year")}
                   className={`px-3 py-1 text-sm rounded-md ${
-                    selectedTimeFrame === 'year' 
-                      ? 'bg-white shadow-sm text-gray-800' 
-                      : 'text-gray-600 hover:text-gray-800'
+                    selectedTimeFrame === "year"
+                      ? "bg-white shadow-sm text-gray-800"
+                      : "text-gray-600 hover:text-gray-800"
                   }`}
                 >
                   This Year
@@ -687,7 +774,7 @@ const OrderManagement: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Key metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Total Orders */}
@@ -695,45 +782,56 @@ const OrderManagement: React.FC = () => {
               <div className="flex justify-between">
                 <div>
                   <p className="text-sm text-gray-500">Total Orders</p>
-                  <p className="text-3xl font-bold mt-2">{statistics.totalOrders}</p>
+                  <p className="text-3xl font-bold mt-2">
+                    {statistics.totalOrders}
+                  </p>
                 </div>
                 <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center">
                   <ShoppingBag className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
-              {selectedTimeFrame !== 'day' && (
+              {selectedTimeFrame !== "day" && (
                 <div className="mt-4 text-sm text-gray-500">
-                  In the last {selectedTimeFrame === 'week' ? '7 days' : selectedTimeFrame === 'month' ? '30 days' : '12 months'}
+                  In the last{" "}
+                  {selectedTimeFrame === "week"
+                    ? "7 days"
+                    : selectedTimeFrame === "month"
+                    ? "30 days"
+                    : "12 months"}
                 </div>
               )}
             </div>
-            
+
             {/* Revenue */}
             <div className="bg-white rounded-lg shadow-soft p-6">
               <div className="flex justify-between">
                 <div>
                   <p className="text-sm text-gray-500">Total Revenue</p>
-                  <p className="text-3xl font-bold mt-2">{formatCurrency(statistics.totalRevenue)}</p>
+                  <p className="text-3xl font-bold mt-2">
+                    {formatCurrency(statistics.totalRevenue)}
+                  </p>
                 </div>
                 <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center">
                   <DollarSign className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </div>
-            
+
             {/* Customers */}
             <div className="bg-white rounded-lg shadow-soft p-6">
               <div className="flex justify-between">
                 <div>
                   <p className="text-sm text-gray-500">Active Customers</p>
-                  <p className="text-3xl font-bold mt-2">{statistics.uniqueCustomers}</p>
+                  <p className="text-3xl font-bold mt-2">
+                    {statistics.uniqueCustomers}
+                  </p>
                 </div>
                 <div className="h-12 w-12 bg-purple-100 rounded-full flex items-center justify-center">
                   <Users className="h-6 w-6 text-purple-600" />
                 </div>
               </div>
             </div>
-            
+
             {/* Avg Delivery Time */}
             <div className="bg-white rounded-lg shadow-soft p-6">
               <div className="flex justify-between">
@@ -749,53 +847,66 @@ const OrderManagement: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Charts and detailed stats */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Orders by Status Chart */}
             <div className="bg-white rounded-lg shadow-soft p-6">
               <h3 className="text-lg font-medium mb-4">Orders by Status</h3>
               <div className="h-64 flex items-end justify-around">
-                {Object.entries(statistics.ordersByStatus).map(([status, count]) => {
-                  const statusObj = customStatuses.find(s => s.name === status);
-                  const maxCount = Math.max(...Object.values(statistics.ordersByStatus));
-                  const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-                  
-                  return (
-                    <div key={status} className="flex flex-col items-center">
-                      <div className="text-sm font-medium mb-1">{count}</div>
-                      <div 
-                        className="w-12 rounded-t-md"
-                        style={{
-                          height: `${Math.max(percentage, 5)}%`,
-                          backgroundColor: statusObj?.color || '#888'
-                        }}
-                      />
-                      <div className="text-xs mt-2 text-center max-w-[80px] truncate">{status}</div>
-                    </div>
-                  );
-                })}
+                {Object.entries(statistics.ordersByStatus).map(
+                  ([status, count]) => {
+                    const statusObj = customStatuses.find(
+                      (s) => s.name === status
+                    );
+                    const maxCount = Math.max(
+                      ...Object.values(statistics.ordersByStatus)
+                    );
+                    const percentage =
+                      maxCount > 0 ? (count / maxCount) * 100 : 0;
+
+                    return (
+                      <div key={status} className="flex flex-col items-center">
+                        <div className="text-sm font-medium mb-1">{count}</div>
+                        <div
+                          className="w-12 rounded-t-md"
+                          style={{
+                            height: `${Math.max(percentage, 5)}%`,
+                            backgroundColor: statusObj?.color || "#888",
+                          }}
+                        />
+                        <div className="text-xs mt-2 text-center max-w-[80px] truncate">
+                          {status}
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
               </div>
             </div>
-            
+
             {/* Top Products */}
             <div className="bg-white rounded-lg shadow-soft p-6">
-              <h3 className="text-lg font-medium mb-4">Most Popular Products</h3>
+              <h3 className="text-lg font-medium mb-4">
+                Most Popular Products
+              </h3>
               <div className="space-y-4">
                 {statistics.topProducts.length > 0 ? (
                   statistics.topProducts.map((product, index) => {
                     const maxCount = statistics.topProducts[0].count;
                     const percentage = (product.count / maxCount) * 100;
-                    
+
                     return (
                       <div key={index} className="space-y-1">
                         <div className="flex justify-between text-sm">
                           <span>{product.name}</span>
-                          <span className="font-medium">{product.count} units</span>
+                          <span className="font-medium">
+                            {product.count} units
+                          </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-blue-600 h-2 rounded-full" 
+                          <div
+                            className="bg-blue-600 h-2 rounded-full"
                             style={{ width: `${percentage}%` }}
                           />
                         </div>
@@ -809,31 +920,40 @@ const OrderManagement: React.FC = () => {
                 )}
               </div>
             </div>
-            
+
             {/* Orders Over Time Chart */}
             <div className="bg-white rounded-lg shadow-soft p-6 lg:col-span-2">
               <h3 className="text-lg font-medium mb-4">Order Trends</h3>
-              {selectedTimeFrame !== 'day' && Object.keys(statistics.ordersPerDay).length > 0 ? (
+              {selectedTimeFrame !== "day" &&
+              Object.keys(statistics.ordersPerDay).length > 0 ? (
                 <div className="h-64 flex items-end justify-between">
                   {Object.entries(statistics.ordersPerDay)
                     .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
                     .slice(-14) // Show last 14 data points
                     .map(([date, count]) => {
-                      const maxCount = Math.max(...Object.values(statistics.ordersPerDay));
-                      const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-                      const displayDate = new Date(date).toLocaleDateString('en-US', { 
-                        day: '2-digit',
-                        month: 'short'
-                      });
-                      
+                      const maxCount = Math.max(
+                        ...Object.values(statistics.ordersPerDay)
+                      );
+                      const percentage =
+                        maxCount > 0 ? (count / maxCount) * 100 : 0;
+                      const displayDate = new Date(date).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "2-digit",
+                          month: "short",
+                        }
+                      );
+
                       return (
                         <div key={date} className="flex flex-col items-center">
                           <div className="text-sm mb-1">{count}</div>
-                          <div 
+                          <div
                             className="w-8 rounded-t-md bg-blue-500"
                             style={{ height: `${Math.max(percentage, 5)}%` }}
                           />
-                          <div className="text-xs mt-2 rotate-45 origin-top-left">{displayDate}</div>
+                          <div className="text-xs mt-2 rotate-45 origin-top-left">
+                            {displayDate}
+                          </div>
                         </div>
                       );
                     })}
@@ -844,21 +964,25 @@ const OrderManagement: React.FC = () => {
                 </div>
               )}
             </div>
-            
+
             {/* Orders needing attention */}
             <div className="bg-white rounded-lg shadow-soft p-6 lg:col-span-2">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium">Orders Requiring Attention</h3>
+                <h3 className="text-lg font-medium">
+                  Orders Requiring Attention
+                </h3>
                 <div className="flex items-center gap-2 text-sm text-red-500">
                   <AlertTriangle size={16} />
                   Requires immediate action
                 </div>
               </div>
-              
-              {orders.filter(o => 
-                // Criteria for orders needing attention: Pending for more than 3 days or issues
-                (o.status === 'Pending' || o.status === 'Pendiente') && 
-                (new Date().getTime() - new Date(o.orderDate).getTime()) > 3 * 24 * 60 * 60 * 1000
+
+              {orders.filter(
+                (o) =>
+                  // Criteria for orders needing attention: Pending for more than 3 days or issues
+                  (o.status === "Pending" || o.status === "Pendiente") &&
+                  new Date().getTime() - new Date(o.orderDate).getTime() >
+                    3 * 24 * 60 * 60 * 1000
               ).length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
                   <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
@@ -867,26 +991,43 @@ const OrderManagement: React.FC = () => {
               ) : (
                 <div className="space-y-4">
                   {orders
-                    .filter(o => 
-                      (o.status === 'Pending' || o.status === 'Pendiente') && 
-                      (new Date().getTime() - new Date(o.orderDate).getTime()) > 3 * 24 * 60 * 60 * 1000
+                    .filter(
+                      (o) =>
+                        (o.status === "Pending" || o.status === "Pendiente") &&
+                        new Date().getTime() - new Date(o.orderDate).getTime() >
+                          3 * 24 * 60 * 60 * 1000
                     )
-                    .map(order => (
-                      <div key={order.id} className="flex justify-between items-center p-4 border rounded-lg bg-red-50 border-red-200">
+                    .map((order) => (
+                      <div
+                        key={order.id}
+                        className="flex justify-between items-center p-4 border rounded-lg bg-red-50 border-red-200"
+                      >
                         <div>
-                          <div className="font-medium">Order #{order.orderNumber}</div>
-                          <div className="text-sm text-gray-600">{order.customerName}</div>
+                          <div className="font-medium">
+                            Order #{order.orderNumber}
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            {order.customerName}
+                          </div>
                           <div className="text-xs text-gray-500">
-                            {new Date(order.orderDate).toLocaleDateString()} ({Math.floor((new Date().getTime() - new Date(order.orderDate).getTime()) / (1000 * 60 * 60 * 24))} days)
+                            {new Date(order.orderDate).toLocaleDateString()} (
+                            {Math.floor(
+                              (new Date().getTime() -
+                                new Date(order.orderDate).getTime()) /
+                                (1000 * 60 * 60 * 24)
+                            )}{" "}
+                            days)
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
                           <select
                             value={order.status}
-                            onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                            onChange={(e) =>
+                              handleStatusChange(order.id, e.target.value)
+                            }
                             className="p-2 border rounded focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                           >
-                            {customStatuses.map(status => (
+                            {customStatuses.map((status) => (
                               <option key={status.id} value={status.name}>
                                 {status.name}
                               </option>

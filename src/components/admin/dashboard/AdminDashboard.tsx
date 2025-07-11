@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  DollarSign, ShoppingBag, Users, Clock, Activity, 
+  DollarSign, ShoppingBag, Users, Activity, 
   Package, AlertTriangle, TrendingUp
 } from 'lucide-react';
 import { useOrders } from '../../../contexts/OrderContext';
@@ -341,29 +341,16 @@ const AdminDashboard: React.FC = () => {
         />
       </div>
       
-      {/* Charts and graphs */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-soft p-6">
-          <h3 className="text-lg font-medium mb-4">Revenue Over Time</h3>
-          <RevenueLineChart data={statistics.revenueChartData} />
-        </div>
-        
-        <div className="bg-white rounded-lg shadow-soft p-6">
-          <h3 className="text-lg font-medium mb-4">Orders by Status</h3>
-          <OrderStatusPieChart data={statistics.ordersByStatus} />
-        </div>
-      </div>
-      
       {/* Segunda fila de gráficos */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow-soft p-6">
           <h3 className="text-lg font-medium mb-4">Top Selling Products</h3>
           <TopProductsBarChart data={statistics.topProducts} />
         </div>
-        
+
         <div className="bg-white rounded-lg shadow-soft p-6">
-          <h3 className="text-lg font-medium mb-4">Supplier Performance</h3>
-          <SupplierPerformanceRadar data={statistics.supplierPerformanceData} />
+          <h3 className="text-lg font-medium mb-4">Orders by Status</h3>
+          <OrderStatusPieChart data={statistics.ordersByStatus} />
         </div>
       </div>
       
@@ -380,16 +367,16 @@ const AdminDashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow-soft p-6">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-medium">Delivery Time</h3>
-            <div className="h-10 w-10 bg-yellow-100 rounded-full flex items-center justify-center">
-              <Clock className="h-5 w-5 text-yellow-600" />
+            <h3 className="text-lg font-medium">Supplier Performance</h3>
+            <div className="h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
+              <ShoppingBag className="h-5 w-5 text-teal-600" />
             </div>
           </div>
           <div className="text-3xl font-bold">
-            {statistics.avgDeliveryTime.toFixed(1)} days
+            {statistics.supplierPerformanceData.length}
           </div>
           <p className="text-sm text-gray-500 mt-2">
-            Average time from order creation to delivery
+            Active suppliers in your network
           </p>
         </div>
 
@@ -424,50 +411,6 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
       
-      {/* Important alerts and notifications */}
-      <div className="bg-white rounded-lg shadow-soft p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-medium">Important Alerts</h3>
-          <div className="flex items-center text-sm text-amber-600">
-            <AlertTriangle className="h-5 w-5 mr-2" />
-            Requires attention
-          </div>
-        </div>
-        
-        <div className="space-y-4">
-          {orders.filter(o => 
-            (o.status === 'Pending' || o.status === 'Pendiente') && 
-            (new Date().getTime() - new Date(o.orderDate).getTime()) > 3 * 24 * 60 * 60 * 1000
-          ).length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Package className="h-6 w-6 text-green-600" />
-              </div>
-              <p>No hay alertas pendientes</p>
-            </div>
-          ) : (
-            orders
-              .filter(o => 
-                (o.status === 'Pending' || o.status === 'Pendiente') && 
-                (new Date().getTime() - new Date(o.orderDate).getTime()) > 3 * 24 * 60 * 60 * 1000
-              )
-              .map(order => (
-                <div key={order.id} className="flex justify-between items-center p-4 border rounded-lg bg-red-50 border-red-200">
-                  <div>
-                    <div className="font-medium">Pedido #{order.orderNumber}</div>
-                    <div className="text-sm text-gray-600">{order.customerName}</div>
-                    <div className="text-xs text-gray-500">
-                      {new Date(order.orderDate).toLocaleDateString()} ({Math.floor((new Date().getTime() - new Date(order.orderDate).getTime()) / (1000 * 60 * 60 * 24))} días)
-                    </div>
-                  </div>
-                  <button className="px-3 py-1 bg-red-600 text-white rounded-md text-sm">
-                    Ver detalles
-                  </button>
-                </div>
-              ))
-          )}
-        </div>
-      </div>
     </div>
   );
 };

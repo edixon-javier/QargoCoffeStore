@@ -188,7 +188,7 @@ export const SupplierPerformanceRadar: React.FC<{
     "Price Competitiveness": supplier.priceCompetitiveness,
   }));
 
-  const keys = ["Tasa de cumplimiento", "Velocidad de entrega", "Calidad", "Competitividad de precios"];
+  const keys = ["Fulfillment Rate", "Delivery Speed", "Quality", "Price Competitiveness"];
 
   return (
     <div className="h-80">
