@@ -76,7 +76,7 @@ export const TopProductsBarChart: React.FC<{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: -45,
-          legend: 'Productos',
+          legend: 'Products',
           legendPosition: 'middle',
           legendOffset: 65
         }}
@@ -84,7 +84,7 @@ export const TopProductsBarChart: React.FC<{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'Cantidad',
+          legend: 'Quantity',
           legendPosition: 'middle',
           legendOffset: -50
         }}
@@ -132,7 +132,7 @@ export const RevenueLineChart: React.FC<{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: -45,
-          legend: 'Fecha',
+          legend: 'Date',
           legendOffset: 60,
           legendPosition: 'middle'
         }}
@@ -140,7 +140,7 @@ export const RevenueLineChart: React.FC<{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'Ingresos (USD)',
+          legend: 'Revenue (USD)',
           legendOffset: -60,
           legendPosition: 'middle',
           format: value => `$${value}`
@@ -182,10 +182,10 @@ export const SupplierPerformanceRadar: React.FC<{
   // Transformar los datos para el formato que espera el gráfico
   const chartData = data.map(supplier => ({
     supplier: supplier.supplier,
-    "Tasa de cumplimiento": supplier.fulfillmentRate,
-    "Velocidad de entrega": supplier.deliverySpeed,
-    "Calidad": supplier.qualityScore,
-    "Competitividad de precios": supplier.priceCompetitiveness,
+    "Fulfillment Rate": supplier.fulfillmentRate,
+    "Delivery Speed": supplier.deliverySpeed,
+    "Quality": supplier.qualityScore,
+    "Price Competitiveness": supplier.priceCompetitiveness,
   }));
 
   const keys = ["Tasa de cumplimiento", "Velocidad de entrega", "Calidad", "Competitividad de precios"];

@@ -35,12 +35,12 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
               <button 
                 className="mr-4 p-2 rounded-md hover:bg-gray-100"
                 onClick={toggleSidebar}
-                aria-label={sidebarOpen ? "Colapsar menú" : "Expandir menú"}
+                aria-label={sidebarOpen ? "Collapse menu" : "Expand menu"}
               >
                 <Menu className="h-6 w-6 text-gray-700" />
               </button>
               <h2 className="text-lg font-medium text-gray-800">
-                Bienvenido, {user?.name}
+                Welcome, {user?.name}
               </h2>
             </div>
           </div>

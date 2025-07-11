@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useOrders, type Order } from '../../contexts/OrderContext';
 import { formatCurrency } from '../../lib/utils';
-import { ChevronDown, ChevronUp, Package } from 'lucide-react';
+import { ChevronDown, ChevronUp, Package, FileText } from 'lucide-react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import InvoicePDF from '../pdf/InvoicePDF';
 
 const OrderStatusBadge: React.FC<{ status: string }> = ({ status }) => {
   // Paleta de colores para los estados predefinidos
@@ -186,7 +188,27 @@ const RecentOrders: React.FC = () => {
                 )}
               </div>
             </button>
-            {expandedOrderId === order.id && <OrderDetails order={order} />}
+            {expandedOrderId === order.id && (
+              <div>
+                <OrderDetails order={order} />
+                <div className="p-4 bg-gray-50 rounded-b-lg">
+                  <PDFDownloadLink
+                    document={<InvoicePDF order={order} />}
+                    fileName={`invoice_${order.orderNumber || order.id.substring(0, 10)}.pdf`}
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors"
+                  >
+                    {({ loading }) =>
+                      loading ? 'Generating PDF...' : (
+                        <>
+                          <FileText className="w-4 h-4 mr-2" />
+                          Download Invoice
+                        </>
+                      )
+                    }
+                  </PDFDownloadLink>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

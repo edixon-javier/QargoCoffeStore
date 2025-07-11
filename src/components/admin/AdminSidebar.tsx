@@ -57,12 +57,13 @@ const menuItems: MenuItem[] = [
     title: 'Products',
     icon: Package,
     path: '/admin/products'
-  },
-  {
-    title: 'Settings',
-    icon: Settings,
-    path: '/admin/settings'
   }
+  // ,
+  // {
+  //   title: 'Settings',
+  //   icon: Settings,
+  //   path: '/admin/settings'
+  // }
 ];
 
 const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) => {
@@ -159,13 +160,13 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
           }`}
         >
           {!isOpen ? (
-            <Tooltip content="Cerrar sesión">
+            <Tooltip content="Logout">
               <LogOut className="h-5 w-5" />
             </Tooltip>
           ) : (
             <>
               <LogOut className="h-5 w-5" />
-              <span className="font-medium">Cerrar sesión</span>
+              <span className="font-medium">Logout</span>
             </>
           )}
         </button>

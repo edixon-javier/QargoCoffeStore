@@ -220,12 +220,12 @@ const AdminDashboard: React.FC = () => {
   
   // Columnas para la tabla de órdenes recientes
   const recentOrderColumns = [
-    { key: 'orderNumber', label: '# Pedido' },
-    { key: 'customer', label: 'Cliente' },
-    { key: 'date', label: 'Fecha' },
+    { key: 'orderNumber', label: 'Order #' },
+    { key: 'customer', label: 'Customer' },
+    { key: 'date', label: 'Date' },
     { 
       key: 'status', 
-      label: 'Estado',
+      label: 'Status',
       render: (value: unknown) => (
         <span 
           className="px-2 py-1 text-xs rounded-full"
@@ -301,42 +301,42 @@ const AdminDashboard: React.FC = () => {
       {/* Métricas clave */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <KeyMetricCard
-          title="Total de Pedidos"
+          title="Total Orders"
           value={statistics.totalOrders}
           icon={<ShoppingBag className="h-6 w-6 text-blue-600" />}
           trend={{
             value: Math.round(statistics.ordersTrend * 10) / 10,
-            label: "vs periodo anterior"
+            label: "vs previous period"
           }}
         />
         
         <KeyMetricCard
-          title="Ingresos Totales"
+          title="Total Revenue"
           value={formatCurrency(statistics.totalRevenue)}
           icon={<DollarSign className="h-6 w-6 text-green-600" />}
           trend={{
             value: Math.round(statistics.revenueTrend * 10) / 10,
-            label: "vs periodo anterior"
+            label: "vs previous period"
           }}
         />
         
         <KeyMetricCard
-          title="Clientes Activos"
+          title="Active Customers"
           value={statistics.uniqueCustomers}
           icon={<Users className="h-6 w-6 text-purple-600" />}
           trend={{
             value: Math.round(statistics.customerTrend * 10) / 10,
-            label: "vs periodo anterior"
+            label: "vs previous period"
           }}
         />
         
         <KeyMetricCard
-          title="Valor Promedio por Pedido"
+          title="Average Order Value"
           value={formatCurrency(statistics.averageOrderValue)}
           icon={<Activity className="h-6 w-6 text-amber-600" />}
           trend={{
             value: Math.round(statistics.aovTrend * 10) / 10,
-            label: "vs periodo anterior"
+            label: "vs previous period"
           }}
         />
       </div>

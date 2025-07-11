@@ -23,10 +23,7 @@ const FranchiseeDashboard: React.FC = () => {
       <DashboardNav />
 
       {/* Recent Orders Section */}
-      <div className="bg-white shadow-soft rounded-lg p-6">
-        <h2 className="text-xl font-medium mb-6">Recent Orders</h2>
         <RecentOrders />
-      </div>
     </div>
   );
 };
