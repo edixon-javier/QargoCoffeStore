@@ -16,6 +16,7 @@ import { Supplier } from '../../lib/types';
 import { mockSuppliers } from '../../mockSuppliers';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import Modal from '../ui/Modal';
+import { Pagination } from '../ui';
 
 const SupplierManagement: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const SupplierManagement: React.FC = () => {
 
   // Función para ordenar la lista
   const sortedSuppliers = React.useMemo(() => {
-    let sortableItems = [...suppliers];
+    const sortableItems = [...suppliers];
     if (sortConfig.key) {
       sortableItems.sort((a, b) => {
         if (sortConfig.key === 'productsCount') {
@@ -55,10 +56,18 @@ const SupplierManagement: React.FC = () => {
           return sortConfig.direction === 'asc' ? aCount - bCount : bCount - aCount;
         }
 
-        if (a[sortConfig.key] < b[sortConfig.key]) {
+        // Comprobamos que ambos objetos tienen la propiedad antes de comparar
+        const aValue = a[sortConfig.key as keyof Supplier];
+        const bValue = b[sortConfig.key as keyof Supplier];
+        
+        // Comparación segura usando String para evitar problemas con valores nulos/indefinidos
+        const aString = String(aValue || '');
+        const bString = String(bValue || '');
+        
+        if (aString < bString) {
           return sortConfig.direction === 'asc' ? -1 : 1;
         }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
+        if (aString > bString) {
           return sortConfig.direction === 'asc' ? 1 : -1;
         }
         return 0;
@@ -325,48 +334,18 @@ const SupplierManagement: React.FC = () => {
         
         {/* Paginación */}
         {totalPages > 1 && (
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-            <div className="text-sm text-gray-500">
-              Showing <span className="font-medium">{startItem + 1}</span> to <span className="font-medium">{endItem}</span> of{' '}
-              <span className="font-medium">{totalItems}</span> suppliers
-            </div>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className={`px-3 py-1 rounded-md ${
-                  currentPage === 1
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Previous
-              </button>
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => handlePageChange(i + 1)}
-                  className={`px-3 py-1 rounded-md ${
-                    currentPage === i + 1
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className={`px-3 py-1 rounded-md ${
-                  currentPage === totalPages
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Next
-              </button>
-            </div>
+          <div className="px-6 py-4 border-t border-gray-200">
+            <Pagination
+              totalItems={filteredSuppliers.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              itemName="proveedores"
+              variant="full"
+              size="md"
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+            />
           </div>
         )}
       </div>

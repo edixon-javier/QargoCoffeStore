@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp, Grid, List, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp, Grid, List } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
+import { Select, Pagination } from '../components/ui';
 import ProductCard from '../components/products/ProductCard';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import ProductCardSkeleton from '../components/ui/ProductCardSkeleton';
@@ -188,49 +189,11 @@ const CatalogPage: React.FC = () => {
     setCurrentPage(1); // Resetear a la primera página al limpiar filtros
   };
 
-  // Funciones de paginación
+  // Función para obtener los productos de la página actual
   const getCurrentPageProducts = () => {
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     return filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-  };
-
-  const goToNextPage = () => {
-    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      window.scrollTo(0, 0); // Scroll al inicio para mejor experiencia de usuario
-    }
-  };
-
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-      window.scrollTo(0, 0);
-    }
-  };
-
-  // Devuelve un rango de páginas para la paginación
-  const getPaginationRange = () => {
-    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-    
-    // Si hay menos de 6 páginas, mostrar todas
-    if (totalPages <= 5) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-    
-    // Si estamos en las primeras 3 páginas
-    if (currentPage <= 3) {
-      return [1, 2, 3, 4, 5];
-    }
-    
-    // Si estamos en las últimas 3 páginas
-    if (currentPage >= totalPages - 2) {
-      return [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-    }
-    
-    // En cualquier otro caso, mostrar la página actual y 2 en cada dirección
-    return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
   };
 
   return (
@@ -278,15 +241,17 @@ const CatalogPage: React.FC = () => {
 
         <div className="flex items-center gap-2">
           <span className="text-sm text-secondary-600">Sort by:</span>
-          <select 
-            className="border border-primary-200 rounded p-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary-400"
+          <Select 
+            size="sm"
+            options={[
+              { value: 'relevance', label: 'Relevance' },
+              { value: 'price-asc', label: 'Price: Low to High' },
+              { value: 'price-desc', label: 'Price: High to Low' }
+            ]}
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="relevance">Relevance</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
+            className="min-w-[160px]"
+          />
         </div>
       </div>
 
@@ -636,40 +601,18 @@ const CatalogPage: React.FC = () => {
 
           {/* Pagination */}
           {!isLoading && filteredProducts.length > 0 && (
-            <div className="mt-8 flex justify-center">
-              <nav className="flex items-center gap-1">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="px-3"
-                  onClick={goToPreviousPage}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft size={16} />
-                </Button>
-                
-                {getPaginationRange().map(page => (
-                  <Button 
-                    key={page} 
-                    variant={page === currentPage ? 'primary' : 'outline'} 
-                    size="sm" 
-                    className="px-3"
-                    onClick={() => setCurrentPage(page)}
-                  >
-                    {page}
-                  </Button>
-                ))}
-                
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="px-3"
-                  onClick={goToNextPage}
-                  disabled={currentPage === Math.ceil(filteredProducts.length / productsPerPage)}
-                >
-                  <ChevronRight size={16} />
-                </Button>
-              </nav>
+            <div className="mt-8">
+              <Pagination 
+                totalItems={filteredProducts.length}
+                itemsPerPage={productsPerPage}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                itemName="productos"
+                variant="simple"
+                size="sm"
+                maxPageButtons={5}
+                className="justify-center"
+              />
             </div>
           )}
         </div>

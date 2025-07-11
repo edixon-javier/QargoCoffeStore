@@ -1,0 +1,101 @@
+
+.pagination-container {
+  @apply w-full font-['Inter','Roboto','sans-serif'];
+}
+
+.pagination-container.full {
+  @apply flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between;
+}
+
+/* Pagination information */
+.pagination-info {
+  @apply text-sm text-gray-600 font-medium;
+}
+
+/* Mobile pagination */
+.pagination-mobile {
+  @apply flex justify-between gap-2 sm:hidden;
+}
+
+.pagination-btn-mobile {
+  @apply relative inline-flex items-center justify-center w-10 h-10 border-none rounded-full bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 transition-all duration-200 ease-in-out shadow-sm;
+}
+
+.pagination-btn-mobile.disabled {
+  @apply text-gray-300 bg-gray-50 cursor-not-allowed shadow-none;
+}
+
+/* Desktop pagination */
+.pagination-desktop {
+  @apply hidden sm:block;
+}
+
+.pagination-list {
+  @apply inline-flex gap-1 rounded-lg;
+}
+
+.pagination-btn {
+  @apply relative inline-flex items-center justify-center w-10 h-10 border-none rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 transition-all duration-200 ease-in-out shadow-sm;
+}
+
+.pagination-btn:first-child,
+.pagination-btn:last-child {
+  @apply rounded-md;
+}
+
+.pagination-btn.active {
+  @apply z-10 bg-blue-600 text-white hover:bg-blue-700 shadow-md;
+}
+
+.pagination-arrow {
+  @apply p-0;
+}
+
+.pagination-icon {
+  @apply h-5 w-5;
+}
+
+.pagination-ellipsis {
+  @apply relative inline-flex items-center justify-center w-10 h-10 border-none rounded-md bg-transparent text-sm font-medium text-gray-400;
+}
+
+/* Size variants */
+.pagination-sm .pagination-btn,
+.pagination-sm .pagination-btn-mobile,
+.pagination-sm .pagination-ellipsis {
+  @apply w-8 h-8 text-xs;
+}
+
+.pagination-md .pagination-btn,
+.pagination-md .pagination-btn-mobile,
+.pagination-md .pagination-ellipsis {
+  @apply w-10 h-10 text-sm;
+}
+
+.pagination-lg .pagination-btn,
+.pagination-lg .pagination-btn-mobile,
+.pagination-lg .pagination-ellipsis {
+  @apply w-12 h-12 text-base;
+}
+
+/* Disabled state */
+.pagination-btn.disabled,
+.pagination-arrow.disabled {
+  @apply text-gray-300 cursor-not-allowed shadow-none hover:bg-white;
+}
+
+/* Additional elegance adjustments */
+.pagination-btn:not(.disabled):hover,
+.pagination-btn-mobile:not(.disabled):hover {
+  @apply transform scale-105 shadow-md;
+}
+
+.pagination-btn.active {
+  @apply transform scale-105;
+}
+
+/* Smooth transition effects */
+.pagination-btn,
+.pagination-btn-mobile {
+  @apply transition-all duration-200 ease-in-out;
+}

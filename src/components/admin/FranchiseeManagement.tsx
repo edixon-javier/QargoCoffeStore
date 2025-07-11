@@ -2,114 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlusCircle, Search, Edit, Eye, Trash2, Users } from 'lucide-react';
 import LoadingSpinner from '../ui/LoadingSpinner';
+import { Pagination } from '../ui';
+import { mockFranchisees } from '../../mockData/franchiseesData';
+import { User, BillingInfo } from '../../lib/types';
 
-// Mock data para franquiciados
-const mockFranchisees: (User & { billingInfo?: BillingInfo })[] = [
-  {
-    id: "f1",
-    name: "Prestige Cafe",
-    email: "dearborn-22022@qargocoffee.com",
-    role: "franchisee",
-    createdAt: "2023-01-15T08:00:00Z",
-    billingInfo: {
-      companyName: "Prestige Cafe",
-      dba: "Qargo Connect Dearborne",
-      billingAddress: {
-        street: "22022 Michigan Ave Unit C",
-        city: "Dearborn",
-        state: "MI",
-        zipCode: "48124-2889"
-      },
-      shippingAddress: {
-        street: "22022 Michigan Ave Unit C",
-        city: "Dearborn",
-        state: "MI",
-        zipCode: "48124-2889"
-      },
-      email: "dearborn-22022@qargocoffee.com",
-      phone: "(734) 686-1192",
-      paymentMethod: {
-        type: 'credit_card',
-        cardNumber: "**** **** **** 4242",
-        expiryDate: "12/25",
-        cvv: "***",
-        cardholderName: "JOHN NORT"
-      }
-    }
-  },
-  {
-    id: "f2",
-    name: "Coffee Central",
-    email: "chicagocentral@qargocoffee.com",
-    role: "franchisee",
-    createdAt: "2023-03-22T10:30:00Z",
-    billingInfo: {
-      companyName: "Coffee Central LLC",
-      dba: "Qargo Connect Chicago Central",
-      billingAddress: {
-        street: "322 N Michigan Ave",
-        city: "Chicago",
-        state: "IL",
-        zipCode: "60601"
-      },
-      shippingAddress: {
-        street: "322 N Michigan Ave",
-        city: "Chicago",
-        state: "IL",
-        zipCode: "60601"
-      },
-      email: "chicagocentral@qargocoffee.com",
-      phone: "(312) 555-1234",
-      paymentMethod: {
-        type: 'credit_card',
-        cardNumber: "**** **** **** 5678",
-        expiryDate: "09/24",
-        cvv: "***",
-        cardholderName: "SARAH JOHNSON"
-      }
-    }
-  },
-  {
-    id: "f3",
-    name: "Urban Brews",
-    email: "newark-downtown@qargocoffee.com",
-    role: "franchisee",
-    createdAt: "2023-05-10T09:15:00Z",
-    billingInfo: {
-      companyName: "Urban Brews Inc.",
-      dba: "Qargo Connect Newark",
-      billingAddress: {
-        street: "744 Broad Street",
-        city: "Newark",
-        state: "NJ",
-        zipCode: "07102"
-      },
-      shippingAddress: {
-        street: "744 Broad Street",
-        city: "Newark",
-        state: "NJ",
-        zipCode: "07102"
-      },
-      email: "newark-downtown@qargocoffee.com",
-      phone: "(973) 555-9876",
-      paymentMethod: {
-        type: 'credit_card',
-        cardNumber: "**** **** **** 9012",
-        expiryDate: "03/26",
-        cvv: "***",
-        cardholderName: "MICHAEL CHEN"
-      }
-    }
-  }
-];
 
 const FranchiseeManagement: React.FC = () => {
   const navigate = useNavigate();
-  const [franchisees, setFranchisees] = useState<(User & { billingInfo?: BillingInfo })[]>([]);
+  const [franchisees, setFranchisees] = useState<(User & { billingInfo?: BillingInfo, status: string, orders: number })[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedFranchisee, setSelectedFranchisee] = useState<(User & { billingInfo?: BillingInfo }) | null>(null);
+  const [selectedFranchisee, setSelectedFranchisee] = useState<(User & { billingInfo?: BillingInfo, status: string, orders: number }) | null>(null);
   const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -134,9 +38,10 @@ const FranchiseeManagement: React.FC = () => {
       franchisee.billingInfo?.dba.toLowerCase().includes(searchTerm.toLowerCase());
     
     if (filter === 'all') return matchesSearch;
+    if (filter === 'active' && franchisee.status === 'active') return matchesSearch;
+    if (filter === 'inactive' && franchisee.status === 'inactive') return matchesSearch;
     
-    // Aquí se pueden agregar otros filtros como 'active', 'inactive', etc.
-    return matchesSearch;
+    return false;
   });
 
   // Paginación
@@ -149,15 +54,15 @@ const FranchiseeManagement: React.FC = () => {
     navigate('/admin/franchisees/new');
   };
 
-  const handleEdit = (franchisee: User & { billingInfo?: BillingInfo }) => {
+  const handleEdit = (franchisee: User & { billingInfo?: BillingInfo, status: string, orders: number }) => {
     navigate(`/admin/franchisees/edit/${franchisee.id}`);
   };
 
-  const handleViewDetails = (franchisee: User & { billingInfo?: BillingInfo }) => {
+  const handleViewDetails = (franchisee: User & { billingInfo?: BillingInfo, status: string, orders: number }) => {
     navigate(`/admin/franchisees/${franchisee.id}`);
   };
 
-  const handleDeleteClick = (franchisee: User & { billingInfo?: BillingInfo }) => {
+  const handleDeleteClick = (franchisee: User & { billingInfo?: BillingInfo, status: string, orders: number }) => {
     setSelectedFranchisee(franchisee);
     setIsDeleteModalOpen(true);
   };
@@ -266,20 +171,20 @@ const FranchiseeManagement: React.FC = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{franchisee.city}</div>
-                      <div className="text-sm text-gray-500">{franchisee.address}</div>
+                      <div className="text-sm text-gray-900">{franchisee.billingInfo?.billingAddress?.city}, {franchisee.billingInfo?.billingAddress?.state}</div>
+                      <div className="text-sm text-gray-500">{franchisee.billingInfo?.billingAddress?.street}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        franchisee.isActive 
+                        franchisee.status === 'active' 
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-red-100 text-red-800'
                       }`}>
-                        {franchisee.isActive ? 'Active' : 'Inactive'}
+                        {franchisee.status === 'active' ? 'Active' : 'Inactive'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {new Date(franchisee.createdAt).toLocaleDateString()}
+                      {franchisee.orders}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex justify-end space-x-2">
@@ -320,101 +225,18 @@ const FranchiseeManagement: React.FC = () => {
         </div>
         
         {/* Pagination */}
-        <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-          <div className="flex items-center justify-between">
-            <div className="flex-1 flex justify-between sm:hidden">
-              <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-                  currentPage === 1 
-                    ? 'text-gray-300 bg-gray-50' 
-                    : 'text-gray-700 bg-white hover:bg-gray-50'
-                }`}
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages || totalPages === 0}
-                className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-                  currentPage === totalPages || totalPages === 0
-                    ? 'text-gray-300 bg-gray-50' 
-                    : 'text-gray-700 bg-white hover:bg-gray-50'
-                }`}
-              >
-                Next
-              </button>
-            </div>
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">{startItem}</span> to <span className="font-medium">{endItem}</span> of{' '}
-                  <span className="font-medium">{totalItems}</span> franchisees
-                </p>
-              </div>
-              <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
-                      currentPage === 1 
-                        ? 'text-gray-300' 
-                        : 'text-gray-500 hover:bg-gray-50'
-                    }`}
-                  >
-                    <span className="sr-only">Previous</span>
-                    <span>&laquo;</span>
-                  </button>
-                  
-                  {/* Page numbers */}
-                  {Array.from({ length: totalPages }, (_, i) => i + 1)
-                    .filter(page => 
-                      page === 1 || 
-                      page === totalPages || 
-                      (page >= currentPage - 1 && page <= currentPage + 1)
-                    )
-                    .map((page, index, array) => {
-                      const showEllipsis = index > 0 && page - array[index - 1] > 1;
-                      return (
-                        <React.Fragment key={page}>
-                          {showEllipsis && (
-                            <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                              ...
-                            </span>
-                          )}
-                          <button
-                            onClick={() => setCurrentPage(page)}
-                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                              page === currentPage 
-                                ? 'z-10 bg-primary-600 text-white' 
-                                : 'text-gray-500 bg-white hover:bg-gray-50'
-                            }`}
-                          >
-                            {page}
-                          </button>
-                        </React.Fragment>
-                      );
-                    })}
-                  
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages || totalPages === 0}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
-                      currentPage === totalPages || totalPages === 0
-                        ? 'text-gray-300' 
-                        : 'text-gray-500 hover:bg-gray-50'
-                    }`}
-                  >
-                    <span className="sr-only">Next</span>
-                    <span>&raquo;</span>
-                  </button>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
+         <div className="px-6 py-4 border-t border-gray-200">
+          <Pagination 
+            totalItems={totalItems}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            itemName="franquiciados"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+            variant="full"
+          />
+         </div>
       </div>
 
       {/* Delete Confirmation Modal */}

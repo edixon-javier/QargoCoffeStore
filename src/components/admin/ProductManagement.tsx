@@ -18,6 +18,7 @@ import { mockProducts } from '../../mockData';
 import { categories } from '../../catalogData';
 import { mockSuppliers } from '../../mockSuppliers';
 import LoadingSpinner from '../ui/LoadingSpinner';
+import { Pagination } from '../ui';
 import Modal from '../ui/Modal';
 import { formatCurrency } from '../../lib/utils';
 
@@ -185,67 +186,71 @@ const ProductManagement: React.FC = () => {
               className="w-full rounded-md border border-gray-200 py-2 pl-10 pr-4 focus:border-primary focus:outline-none"
             />
           </div>
-        </div>
+          
+          {/* Category and supplier filters */}
+          <div className="mt-4 flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Filter size={16} className="text-gray-500" />
+              <span className="text-sm font-medium text-gray-600">Filter:</span>
+            </div>
 
-        {/* Category and supplier filters */}
-        <div className="mt-4 flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Filter size={16} className="text-gray-500" />
-            <span className="text-sm font-medium text-gray-600">Filter:</span>
+            {/* Status filter */}
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+            >
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+            {/* Category filter */}
+            <select
+              value={categoryFilter}
+              onChange={(e) => setCategoryFilter(e.target.value)}
+              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+            >
+              <option value="all">All Categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+
+            {/* Supplier filter */}
+            <select
+              value={supplierFilter}
+              onChange={(e) => setSupplierFilter(e.target.value)}
+              className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
+            >
+              <option value="all">All Suppliers</option>
+              {suppliers.map((supplier) => (
+                <option key={supplier.id} value={supplier.id}>
+                  {supplier.name}
+                </option>
+              ))}
+            </select>
           </div>
-
-          {/* Status filter */}
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-          >
-            <option value="all">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-
-          {/* Category filter */}
-          <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-
-          {/* Supplier filter */}
-          <select
-            value={supplierFilter}
-            onChange={(e) => setSupplierFilter(e.target.value)}
-            className="rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
-          >
-            <option value="all">All Suppliers</option>
-            {suppliers.map((supplier) => (
-              <option key={supplier.id} value={supplier.id}>
-                {supplier.name}
-              </option>
-            ))}
-          </select>
         </div>
 
         {/* Price range filter */}
         <div className="mt-4 flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <DollarSign size={16} className="text-gray-500" />
-            <span className="text-sm font-medium text-gray-600">Price Range:</span>
+            <span className="text-sm font-medium text-gray-600">
+              Price Range:
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <input
               type="number"
               placeholder="Min"
               value={priceRange.min}
-              onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
+              onChange={(e) =>
+                setPriceRange({ ...priceRange, min: e.target.value })
+              }
               className="w-24 rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
             />
             <span className="text-gray-500">-</span>
@@ -253,7 +258,9 @@ const ProductManagement: React.FC = () => {
               type="number"
               placeholder="Max"
               value={priceRange.max}
-              onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
+              onChange={(e) =>
+                setPriceRange({ ...priceRange, max: e.target.value })
+              }
               className="w-24 rounded-md border border-gray-200 px-3 py-2 focus:border-primary focus:outline-none"
             />
           </div>
@@ -271,76 +278,142 @@ const ProductManagement: React.FC = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('name')}
+                  onClick={() => handleRequestSort("name")}
                 >
                   Product Name
-                  {sortConfig.key === 'name' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "name" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('sku')}
+                  onClick={() => handleRequestSort("sku")}
                 >
                   SKU
-                  {sortConfig.key === 'sku' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "sku" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('price')}
+                  onClick={() => handleRequestSort("price")}
                 >
                   Price
-                  {sortConfig.key === 'price' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "price" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('category.name')}
+                  onClick={() => handleRequestSort("category.name")}
                 >
                   Category
-                  {sortConfig.key === 'category.name' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "category.name" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('supplier.name')}
+                  onClick={() => handleRequestSort("supplier.name")}
                 >
                   Supplier
-                  {sortConfig.key === 'supplier.name' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "supplier.name" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                <div 
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
+                <div
                   className="flex cursor-pointer items-center gap-1"
-                  onClick={() => handleRequestSort('stock')}
+                  onClick={() => handleRequestSort("stock")}
                 >
                   Stock
-                  {sortConfig.key === 'stock' && (
-                    <ArrowUpDown size={16} className={sortConfig.direction === 'asc' ? 'transform rotate-180' : ''} />
+                  {sortConfig.key === "stock" && (
+                    <ArrowUpDown
+                      size={16}
+                      className={
+                        sortConfig.direction === "asc"
+                          ? "transform rotate-180"
+                          : ""
+                      }
+                    />
                   )}
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
                 Status
               </th>
-              <th scope="col" className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+              <th
+                scope="col"
+                className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
+              >
                 Actions
               </th>
             </tr>
@@ -365,7 +438,9 @@ const ProductManagement: React.FC = () => {
                         )}
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">{product.name}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {product.name}
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -375,21 +450,32 @@ const ProductManagement: React.FC = () => {
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="text-sm font-medium text-gray-900">
                       {formatCurrency(product.price)}
-                      {product.salePrice && product.salePrice < product.price && (
-                        <span className="ml-2 text-xs text-green-600">
-                          Sale: {formatCurrency(product.salePrice)}
-                        </span>
-                      )}
+                      {product.salePrice &&
+                        product.salePrice < product.price && (
+                          <span className="ml-2 text-xs text-green-600">
+                            Sale: {formatCurrency(product.salePrice)}
+                          </span>
+                        )}
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className="text-sm text-gray-500">{product.category.name}</div>
+                    <div className="text-sm text-gray-500">
+                      {product.category.name}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className="text-sm text-gray-500">{product.supplier.name}</div>
+                    <div className="text-sm text-gray-500">
+                      {product.supplier.name}
+                    </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className={`text-sm ${product.stock < 5 ? 'text-red-600 font-medium' : 'text-gray-500'}`}>
+                    <div
+                      className={`text-sm ${
+                        product.stock < 5
+                          ? "text-red-600 font-medium"
+                          : "text-gray-500"
+                      }`}
+                    >
                       {product.stock}
                     </div>
                   </td>
@@ -397,11 +483,11 @@ const ProductManagement: React.FC = () => {
                     <span
                       className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${
                         product.isActive
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-red-100 text-red-800'
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
                       }`}
                     >
-                      {product.isActive ? 'Active' : 'Inactive'}
+                      {product.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
@@ -423,11 +509,17 @@ const ProductManagement: React.FC = () => {
                       <button
                         onClick={() => handleToggleActive(product)}
                         className={`${
-                          product.isActive ? 'text-red-400 hover:text-red-500' : 'text-green-400 hover:text-green-500'
+                          product.isActive
+                            ? "text-red-400 hover:text-red-500"
+                            : "text-green-400 hover:text-green-500"
                         }`}
-                        title={product.isActive ? 'Disable' : 'Enable'}
+                        title={product.isActive ? "Disable" : "Enable"}
                       >
-                        {product.isActive ? <XCircle size={18} /> : <CheckCircle size={18} />}
+                        {product.isActive ? (
+                          <XCircle size={18} />
+                        ) : (
+                          <CheckCircle size={18} />
+                        )}
                       </button>
                       <button
                         onClick={() => handleDeleteClick(product)}
@@ -453,121 +545,33 @@ const ProductManagement: React.FC = () => {
 
       {/* Paginación */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-          <div className="flex flex-1 justify-between sm:hidden">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className={`relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium ${
-                currentPage === 1
-                  ? 'text-gray-300'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className={`relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium ${
-                currentPage === totalPages
-                  ? 'text-gray-300'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              Next
-            </button>
-          </div>
-          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700">
-                Showing <span className="font-medium">{startItem + 1}</span> to{' '}
-                <span className="font-medium">{endItem}</span> of{' '}
-                <span className="font-medium">{totalItems}</span> results
-              </p>
-            </div>
-            <div>
-              <nav
-                className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-                aria-label="Pagination"
-              >
-                <button
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className={`relative inline-flex items-center rounded-l-md px-2 py-2 ${
-                    currentPage === 1
-                      ? 'text-gray-300'
-                      : 'text-gray-400 hover:bg-gray-50'
-                  }`}
-                >
-                  <span className="sr-only">Previous</span>
-                  <svg
-                    className="h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  const pageNumber = i + 1;
-                  return (
-                    <button
-                      key={pageNumber}
-                      onClick={() => setCurrentPage(pageNumber)}
-                      className={`relative inline-flex items-center border px-4 py-2 text-sm font-medium ${
-                        pageNumber === currentPage
-                          ? 'z-10 border-primary bg-primary text-white'
-                          : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
-                      }`}
-                    >
-                      {pageNumber}
-                    </button>
-                  );
-                })}
-                <button
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className={`relative inline-flex items-center rounded-r-md px-2 py-2 ${
-                    currentPage === totalPages
-                      ? 'text-gray-300'
-                      : 'text-gray-400 hover:bg-gray-50'
-                  }`}
-                >
-                  <span className="sr-only">Next</span>
-                  <svg
-                    className="h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </nav>
-            </div>
-          </div>
-        </div>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+          itemName="productos"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          variant="full"
+          maxPageButtons={5}
+        />
       )}
 
       {/* Delete confirmation modal */}
       {isDeleteModalOpen && selectedProduct && (
-        <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
+        <Modal
+          title="Delete Product"
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+        >
           <div className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900">Confirm Deletion</h3>
+            <h3 className="text-lg font-semibold text-gray-900">
+              Confirm Deletion
+            </h3>
             <p className="mt-2 text-sm text-gray-600">
-              Are you sure you want to delete this product? This action cannot be undone.
+              Are you sure you want to delete this product? This action cannot
+              be undone.
             </p>
             <div className="mt-4 flex justify-end gap-3">
               <button
