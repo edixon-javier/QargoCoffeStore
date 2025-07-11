@@ -200,8 +200,7 @@ export const mockProducts: Product[] = [
     sku: "COF-ESP-002",
     price: 320,
     images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCQyTFA7o-daq9xe1yUcsiRkfvu1wGwB6hw&s",
-      "https://www.organicfacts.net/wp-content/uploads/organic-coffee-beans.jpg",
+      "https://kimbo.uy/wp-content/themes/yootheme/cache/61/Kimbo-intenso-molido250g-61436081.webp"
     ],
     category: categories[4],
     supplier: suppliers[0],

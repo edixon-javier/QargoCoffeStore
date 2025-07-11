@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { OrderStatusProvider } from './contexts/orderStatus';
 
 // Lazy-loaded pages
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 const CatalogPage = lazy(() => import('./pages/CatalogPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const CartPage = lazy(() => import('./pages/CartPage'));
@@ -69,7 +70,7 @@ function App() {
           {/* Todas las demás rutas dentro del Layout principal */}
           <Route element={<Layout />}>
             {/* Public routes */}
-            <Route path="/" element={<CatalogPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
