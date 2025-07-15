@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Store size={20} />
-                <span className="text-sm font-medium">Franquiciado</span>
+                <span className="text-sm font-medium">Franchisee</span>
               </motion.button>
               <motion.button
                 type="button"
@@ -111,7 +111,7 @@ const LoginPage: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Building2 size={20} />
-                <span className="text-sm font-medium">Administrador</span>
+                <span className="text-sm font-medium">Administrator</span>
               </motion.button>
             </motion.div>
           </div>
