@@ -201,7 +201,7 @@ const RecentOrders: React.FC = () => {
                       loading ? 'Generating PDF...' : (
                         <>
                           <FileText className="w-4 h-4 mr-2" />
-                          Download Invoice
+                          Download Purchase Order PDF
                         </>
                       )
                     }

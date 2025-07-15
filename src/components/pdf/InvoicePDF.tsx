@@ -118,7 +118,7 @@ const InvoicePDF: React.FC<InvoicePDFProps> = ({ order }) => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.title}>INVOICE</Text>
+            <Text style={styles.title}>PURCHASE ORDER</Text>
             <Text style={styles.subtitle}>Order #{order.orderNumber}</Text>
             <Text style={styles.text}>{new Date(order.orderDate).toLocaleDateString()}</Text>
           </View>

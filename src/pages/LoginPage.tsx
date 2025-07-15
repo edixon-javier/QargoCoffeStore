@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, Coffee, LogIn } from 'lucide-react';
+import { Coffee, LogIn, Store, Building2 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -22,15 +22,6 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const toggleUserType = () => {
-    const newType = userType === 'franchisee' ? 'admin' : 'franchisee';
-    setUserType(newType);
-    setFormData(prev => ({
-      ...prev,
-      email: newType === 'franchisee' ? 'dearborn-22022@qargocoffee.com' : 'admin@tienda.com',
-      password: userType === 'franchisee' ? 'admin123': '123456',
-    }));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,25 +65,61 @@ const LoginPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-soft relative"
       >
-        <div className="text-center relative">
-          <button
-            type="button"
-            onClick={toggleUserType}
-            className="absolute -top-4 -right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
-            title={`Switch to ${userType === 'franchisee' ? 'Admin' : 'Franchisee'} login`}
-          >
+        <div className="text-center">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-md p-2">
             <motion.div
-              animate={{ rotate: userType === 'franchisee' ? 0 : 180 }}
-              transition={{ duration: 0.3 }}
+              className="flex items-center space-x-8 p-1 bg-gray-100 rounded-full"
+              animate={{ backgroundColor: userType === 'franchisee' ? '#E5E7EB' : '#F3F4F6' }}
             >
-              <HelpCircle className="h-5 w-5" />
+              <motion.button
+                type="button"
+                onClick={() => {
+                  setUserType('franchisee');
+                  setFormData(prev => ({
+                    ...prev,
+                    email: 'dearborn-22022@qargocoffee.com',
+                    password: '123456'
+                  }));
+                }}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full ${
+                  userType === 'franchisee' 
+                    ? 'bg-white text-primary-600 shadow-sm' 
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Store size={20} />
+                <span className="text-sm font-medium">Franquiciado</span>
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => {
+                  setUserType('admin');
+                  setFormData(prev => ({
+                    ...prev,
+                    email: 'admin@tienda.com',
+                    password: 'admin123'
+                  }));
+                }}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full ${
+                  userType === 'admin' 
+                    ? 'bg-white text-primary-600 shadow-sm' 
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Building2 size={20} />
+                <span className="text-sm font-medium">Administrador</span>
+              </motion.button>
             </motion.div>
-          </button>
+          </div>
           
-          <Coffee className="mx-auto h-12 w-12 text-primary-600" strokeWidth={2} />
-          <h2 className="mt-6 text-3xl font-serif text-gray-900">Welcome back</h2>
+          <Coffee className="mx-auto h-12 w-12 text-primary-600 mt-8" strokeWidth={2} />
+          <h2 className="mt-6 text-3xl font-serif text-gray-900">Bienvenido de nuevo</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Sign in as {userType === 'franchisee' ? 'Franchisee' : 'Administrator'}
+            Ingresa como {userType === 'franchisee' ? 'Franquiciado' : 'Administrador'}
           </p>
         </div>
 
