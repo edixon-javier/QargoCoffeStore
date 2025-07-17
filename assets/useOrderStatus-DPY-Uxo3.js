@@ -1,1 +1,0 @@
-import{r}from"./vendor-CuftA7A4.js";import{O as e}from"./index-C7lvD-aF.js";function u(){const t=r.useContext(e);if(!t)throw new Error("useOrderStatus must be used within an OrderStatusProvider");return t}export{u};
