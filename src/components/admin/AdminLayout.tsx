@@ -11,9 +11,7 @@ interface AdminLayoutProps {
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { user } = useAuth();
   // Por defecto, el sidebar está abierto en desktop y cerrado en móvil
-  const [sidebarOpen, setSidebarOpen] = useState(() => {
-    return window.innerWidth >= 768; // md breakpoint en Tailwind
-  });
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

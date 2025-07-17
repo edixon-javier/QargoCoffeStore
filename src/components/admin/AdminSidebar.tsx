@@ -112,7 +112,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
         )}
       </div>
 
-      <nav className={`px-4 py-4 flex-grow ${!isOpen ? 'lg:px-2' : ''}`}>
+      <nav className={`px-4 py-4 flex-grow `}>
         {menuItems.map((item) => {
           const isActive = item.exact
             ? location.pathname === item.path

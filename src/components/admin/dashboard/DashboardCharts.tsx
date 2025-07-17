@@ -249,7 +249,7 @@ export const KeyMetricCard: React.FC<{
   className?: string;
 }> = ({ title, value, icon, trend, className }) => {
   return (
-    <div className={`bg-white rounded-lg shadow-soft p-6 ${className}`}>
+    <div className={`rounded-lg shadow-soft p-6 ${className}`}>
       <div className="flex justify-between">
         <div>
           <p className="text-sm text-black-900">{title}</p>
