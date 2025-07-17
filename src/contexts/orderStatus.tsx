@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 
 // Types
 interface OrderStatus {
@@ -15,7 +15,7 @@ interface OrderStatusContextType {
 }
 
 // Default statuses in English
-const defaultStatuses = [
+const defaultStatuses: OrderStatus[] = [
   { id: '1', name: 'Pending', color: '#FFA500' },
   { id: '2', name: 'Processing', color: '#3B82F6' },
   { id: '3', name: 'Shipped', color: '#10B981' },
@@ -24,7 +24,7 @@ const defaultStatuses = [
   { id: '6', name: 'Awaiting Payment', color: '#6B7280' },
   { id: '7', name: 'Returned', color: '#8B5CF6' },
   { id: '8', name: 'Payment Confirmed', color: '#F59E0B' }
-] as const;
+];
 
 // Create context
 const OrderStatusContext = createContext<OrderStatusContextType>({
@@ -36,14 +36,10 @@ const OrderStatusContext = createContext<OrderStatusContextType>({
 
 // Provider component
 const OrderStatusProvider = ({ children }: { children: React.ReactNode }) => {
-  const [customStatuses, setCustomStatuses] = useState(() => {
-    const savedStatuses = localStorage.getItem('orderStatuses');
-    return savedStatuses ? JSON.parse(savedStatuses) : defaultStatuses;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('orderStatuses', JSON.stringify(customStatuses));
-  }, [customStatuses]);
+  // Usar directamente los estados por defecto como datos permanentes
+  const [customStatuses, setCustomStatuses] = useState(defaultStatuses);
+  
+  // No necesitamos sincronizar con localStorage
 
   const addStatus = (newStatus: Omit<OrderStatus, 'id'>) => {
     const status: OrderStatus = {

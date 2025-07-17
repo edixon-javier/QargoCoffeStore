@@ -38,17 +38,11 @@ const CheckoutPage: React.FC = () => {
   const { user } = useAuth();
   const { addOrder } = useOrders();
   const navigate = useNavigate();
-  // Get stored billing info or use mock data as fallback
-  const storedBillingInfo = localStorage.getItem('franchiseeBillingInfo');
-  const [billingInfo, setBillingInfo] = useState<BillingInfo>(
-    storedBillingInfo ? JSON.parse(storedBillingInfo) : mockFranchiseeData
-  );
+  // Usar directamente datos mock para la información de facturación
+  const [billingInfo, setBillingInfo] = useState<BillingInfo>(mockFranchiseeData);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Save billing info changes to localStorage
-  React.useEffect(() => {
-    localStorage.setItem('franchiseeBillingInfo', JSON.stringify(billingInfo));
-  }, [billingInfo]);
+  // No es necesario guardar en localStorage ya que estamos usando datos mock permanentes
 
   // If there are no items in the cart, redirect to cart
   React.useEffect(() => {

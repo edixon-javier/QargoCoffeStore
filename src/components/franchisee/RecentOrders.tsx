@@ -145,17 +145,16 @@ const RecentOrders: React.FC = () => {
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
   const [localOrders, setLocalOrders] = useState<Order[]>([]);
   
-  // Recargar órdenes al montar el componente y cuando cambia el usuario
+  // Recargar órdenes al montar el componente y cuando cambia el usuario o las órdenes
   useEffect(() => {
     // Verificamos que el usuario tenga franchiseeId
     if (user?.franchiseeId) {
+      // Obtenemos directamente las órdenes del franchisee desde el contexto
       const franchiseeOrders = getOrdersByCustomer(user.franchiseeId);
       setLocalOrders(franchiseeOrders);
       
-      // Logs para depuración
-      console.log('Recargando órdenes para franchiseeId:', user.franchiseeId);
-      console.log('Total de órdenes disponibles:', orders.length);
-      console.log('Órdenes encontradas para este franchisee:', franchiseeOrders.length);
+      // Logs optimizados para información relevante
+      console.log(`Cargando ${franchiseeOrders.length} órdenes para franchiseeId: ${user.franchiseeId}`);
     }
   }, [user, orders, getOrdersByCustomer]);
 
@@ -163,11 +162,11 @@ const RecentOrders: React.FC = () => {
   const userOrders = localOrders
     .sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
   
-  // Log para depuración
-  console.log('Usuario actual:', user);
-  console.log('Total de órdenes:', orders.length);
-  console.log('Órdenes del usuario:', userOrders.length, 'franchiseeId:', user?.franchiseeId);
-  console.log('Primera orden en la lista:', userOrders[0]);
+  // Log simplificado para mostrar solo información relevante
+  console.log(`Mostrando ${userOrders.length} órdenes recientes para ${user?.name || 'usuario'} (ID: ${user?.franchiseeId})`);
+  if (userOrders.length > 0) {
+    console.log('Orden más reciente:', userOrders[0].orderNumber, '- Estado:', userOrders[0].status);
+  }
 
   if (userOrders.length === 0) {
     return (

@@ -1344,15 +1344,6 @@ export const mockOrders: Order[] = [
   }
 ];
 
-export const initializeMockOrders = () => {
-  // Verificamos si ya existen órdenes en localStorage
-  const existingOrders = localStorage.getItem('orders');
-  
-  // Solo inicializamos las órdenes mock si no hay órdenes existentes
-  if (!existingOrders || JSON.parse(existingOrders).length === 0) {
-    localStorage.setItem('orders', JSON.stringify(mockOrders));
-    console.log('Mock orders initialized:', mockOrders.length, 'orders');
-  } else {
-    console.log('Existing orders found:', JSON.parse(existingOrders).length, 'orders');
-  }
-};
+// Ya no necesitamos la función initializeMockOrders porque estamos utilizando
+// las órdenes mock directamente como datos permanentes en la aplicación.
+// Las órdenes ahora se gestionan completamente en memoria durante la sesión.

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import { OrderStatusContextType, defaultStatuses } from '../types/orderStatus';
 
 export const OrderStatusContext = createContext<OrderStatusContextType>({
@@ -9,14 +9,10 @@ export const OrderStatusContext = createContext<OrderStatusContextType>({
 });
 
 export function OrderStatusProvider({ children }: { children: React.ReactNode }) {
-  const [customStatuses, setCustomStatuses] = useState(() => {
-    const savedStatuses = localStorage.getItem('orderStatuses');
-    return savedStatuses ? JSON.parse(savedStatuses) : defaultStatuses;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('orderStatuses', JSON.stringify(customStatuses));
-  }, [customStatuses]);
+  // Usar directamente los estados por defecto
+  const [customStatuses, setCustomStatuses] = useState(defaultStatuses);
+  
+  // No es necesario sincronizar con localStorage
 
   const addStatus = (newStatus: Omit<{ id: string; name: string; color: string }, 'id'>) => {
     const status = {

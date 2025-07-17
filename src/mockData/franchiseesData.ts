@@ -514,11 +514,5 @@ export const mockFranchisees: (User & { billingInfo?: BillingInfo, status: strin
   }
 ];
 
-// Función para inicializar los datos de franquiciados en localStorage
-export const initializeMockFranchisees = () => {
-  const savedFranchisees = localStorage.getItem('franchisees');
-  if (!savedFranchisees) {
-    localStorage.setItem('franchisees', JSON.stringify(mockFranchisees));
-    console.log('Datos de franquiciados inicializados:', mockFranchisees.length, 'franquiciados');
-  }
-};
+// Ya no necesitamos la función para inicializar los datos en localStorage
+// Ya que estamos utilizando datos mock permanentes directamente en la aplicación

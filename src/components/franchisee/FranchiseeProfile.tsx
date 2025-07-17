@@ -14,17 +14,12 @@ const FranchiseeProfile: React.FC = () => {
   // Buscar los datos del franquiciado autenticado
   const getFranchiseeData = () => {
     if (user?.franchiseeId) {
+      // Buscar datos permanentes en los datos mock
       const franchiseeData = mockFranchisees.find(f => f.id === user.franchiseeId);
       if (franchiseeData?.billingInfo) {
-        console.log('Datos de franquiciado encontrados:', franchiseeData.billingInfo);
+        console.log('Datos de franquiciado encontrados:', franchiseeData.name);
         return franchiseeData.billingInfo;
       }
-    }
-
-    // Si no encontramos datos o el usuario no tiene franchiseeId, buscamos en localStorage
-    const storedBillingInfo = localStorage.getItem('franchiseeBillingInfo');
-    if (storedBillingInfo) {
-      return JSON.parse(storedBillingInfo);
     }
 
     // Datos por defecto si no hay información disponible
@@ -140,8 +135,11 @@ const FranchiseeProfile: React.FC = () => {
       return;
     }
 
-    // Save to localStorage
-    localStorage.setItem('franchiseeBillingInfo', JSON.stringify(billingInfo));
+    // Guardar los cambios en memoria (solo durante la sesión actual)
+    // Como estamos usando datos mock permanentes, no necesitamos guardarlos en localStorage
+    console.log('Guardando cambios de perfil en memoria:', billingInfo);
+    
+    // Solo cambiamos el estado de la UI para mostrar el éxito
     setIsEditing(false);
     setIsModalOpen(true);
   };

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BillingInfo } from '../lib/types';
-import { initializeMockOrders } from '../mockOrders';
+import { mockOrders } from '../mockOrders';
 
 export interface OrderItem {
   productId: string;
@@ -55,21 +55,13 @@ export const useOrders = () => {
 };
 
 export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Siempre inicializamos las órdenes mock al cargar el contexto
+  // Usar directamente las órdenes mock como estado inicial
+  const [orders, setOrders] = useState<Order[]>(mockOrders);
+  
+  // Registramos en consola que estamos usando órdenes mock permanentes
   useEffect(() => {
-    initializeMockOrders();
-    console.log('Órdenes mock inicializadas desde OrderContext');
+    console.log('Usando órdenes mock permanentes:', mockOrders.length);
   }, []);
-  
-  const [orders, setOrders] = useState<Order[]>(() => {
-    const savedOrders = localStorage.getItem('orders');
-    return savedOrders ? JSON.parse(savedOrders) : [];
-  });
-  
-  // Save orders to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem('orders', JSON.stringify(orders));
-  }, [orders]);
 
   // Get order by ID
   const getOrderById = (orderId: string): Order | undefined => {
@@ -113,11 +105,10 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       ]
     };
 
-    // Añadir la nueva orden al principio de la lista y actualizar localStorage inmediatamente
+    // Añadir la nueva orden al principio de la lista
     setOrders(prevOrders => {
       const updatedOrders = [order, ...prevOrders];
-      console.log('Órdenes actualizadas después de añadir:', updatedOrders.length);
-      localStorage.setItem('orders', JSON.stringify(updatedOrders));
+      console.log('Orden añadida:', order.id, 'Total órdenes:', updatedOrders.length);
       return updatedOrders;
     });
     
