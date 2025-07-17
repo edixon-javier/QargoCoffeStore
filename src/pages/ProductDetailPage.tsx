@@ -47,8 +47,7 @@ const ProductDetailPage: React.FC = () => {
   };
   
   const handleCloseModal = () => {
-    // Redirige a la URL absoluta del catálogo
-    window.location.href = 'http://localhost:5173/QargoCoffeStore/#/catalog';
+    navigate('/catalog'); // o '/QargoCoffeStore/catalog' si tienes base
   };
 
   const handleViewCart = () => {
