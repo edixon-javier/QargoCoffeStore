@@ -69,7 +69,7 @@ const Header: React.FC = () => {
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
           >
             <LogOut size={20} />
-            <span className="hidden md:block">Cerrar sesión</span>
+            <span className="hidden md:block">Log out</span>
           </button>
         </div>
       );
@@ -81,7 +81,7 @@ const Header: React.FC = () => {
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
       >
         <User size={20} />
-        <span className="hidden md:block">Iniciar sesión</span>
+        <span className="hidden md:block">Log in</span>
       </Link>
     );
   };

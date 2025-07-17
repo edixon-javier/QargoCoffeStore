@@ -163,7 +163,10 @@ const ProductManagement: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-gray-800">Product Management</h1>
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">Product Management</h1>
+          <p className="text-gray-600">Manage your products, stock levels, and key details</p>
+        </div> 
         <button
           onClick={handleCreateNew}
           className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg transition-colors"
@@ -420,8 +423,8 @@ const ProductManagement: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
             {currentProducts.length > 0 ? (
-              currentProducts.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50">
+              currentProducts.map((product, index) => (
+                <tr key={product.id} className={`hover:bg-gray-100 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="flex items-center">
                       <div className="h-10 w-10 flex-shrink-0">

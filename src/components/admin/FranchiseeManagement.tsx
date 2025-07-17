@@ -157,12 +157,12 @@ const FranchiseeManagement: React.FC = () => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredFranchisees.length > 0 ? (
-                filteredFranchisees.map((franchisee) => (
-                  <tr key={franchisee.id} className="hover:bg-gray-50">
+                filteredFranchisees.map((franchisee, index) => (
+                  <tr key={franchisee.id}  className={`hover:bg-gray-100 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-100 flex items-center justify-center">
-                          <Users className="h-5 w-5 text-gray-400" />
+                        <div className="h-10 w-10 flex-shrink-0 rounded-full bg-blue-400 flex items-center justify-center">
+                          <Users className="h-5 w-5 text-white" />
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">{franchisee.name}</div>

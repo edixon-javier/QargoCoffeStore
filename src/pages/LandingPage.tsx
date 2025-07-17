@@ -57,7 +57,7 @@ const LandingPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-white/90">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 text-white/90">
               Professional Equipment and Premium Coffee for Your Business
             </h1>
             <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl">

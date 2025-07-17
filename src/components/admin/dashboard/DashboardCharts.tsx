@@ -252,7 +252,7 @@ export const KeyMetricCard: React.FC<{
     <div className={`bg-white rounded-lg shadow-soft p-6 ${className}`}>
       <div className="flex justify-between">
         <div>
-          <p className="text-sm text-gray-500">{title}</p>
+          <p className="text-sm text-black-900">{title}</p>
           <p className="text-3xl font-bold mt-2">{value}</p>
           {trend && (
             <div className={`flex items-center mt-2 text-sm ${trend.value >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -261,7 +261,7 @@ export const KeyMetricCard: React.FC<{
             </div>
           )}
         </div>
-        <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center">
+        <div className="h-12 w-12 bg-white rounded-full flex items-center justify-center">
           {icon}
         </div>
       </div>
@@ -295,11 +295,11 @@ export const RecentDataTable: React.FC<{
               ))}
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className=" divide-y divide-gray-200">
             {data.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
                 {columns.map((column) => (
-                  <td key={`${index}-${column.key}`} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td key={`${index}-${column.key}`} className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                     {column.render
                       ? column.render(item[column.key], item)
                       : String(item[column.key])}

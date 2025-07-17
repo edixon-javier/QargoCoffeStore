@@ -10,7 +10,8 @@ import {
   ArrowUpDown,
   CheckCircle,
   XCircle,
-  Package
+  Package,
+  Users
 } from 'lucide-react';
 import { Supplier } from '../../lib/types';
 import { mockSuppliers } from '../../mockSuppliers';
@@ -248,17 +249,15 @@ const SupplierManagement: React.FC = () => {
                   </td>
                 </tr>
               ) : (
-                currentSuppliers.map((supplier) => (
-                  <tr key={supplier.id} className="hover:bg-gray-50">
+                currentSuppliers.map((supplier, index) => (
+                  <tr key={supplier.id}className={`hover:bg-gray-100 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
                           {supplier.logo ? (
-                            <img
-                              className="h-10 w-10 rounded-full object-cover"
-                              src={supplier.logo}
-                              alt={supplier.name}
-                            />
+                            <div className="h-10 w-10 flex-shrink-0 rounded-full bg-blue-400 flex items-center justify-center">
+                               <Users className="h-5 w-5 text-white" />
+                             </div>
                           ) : (
                             <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center">
                               <span className="text-primary-700 font-medium">

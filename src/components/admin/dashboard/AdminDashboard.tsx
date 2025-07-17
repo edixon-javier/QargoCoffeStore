@@ -302,6 +302,7 @@ const AdminDashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <KeyMetricCard
           title="Total Orders"
+          className="bg-blue-200" 
           value={statistics.totalOrders}
           icon={<ShoppingBag className="h-6 w-6 text-blue-600" />}
           trend={{
@@ -312,6 +313,7 @@ const AdminDashboard: React.FC = () => {
         
         <KeyMetricCard
           title="Total Revenue"
+          className="bg-green-200" 
           value={formatCurrency(statistics.totalRevenue)}
           icon={<DollarSign className="h-6 w-6 text-green-600" />}
           trend={{
@@ -322,6 +324,7 @@ const AdminDashboard: React.FC = () => {
         
         <KeyMetricCard
           title="Active Customers"
+          className="bg-purple-200" 
           value={statistics.uniqueCustomers}
           icon={<Users className="h-6 w-6 text-purple-600" />}
           trend={{
@@ -332,6 +335,7 @@ const AdminDashboard: React.FC = () => {
         
         <KeyMetricCard
           title="Average Order Value"
+          className="bg-yellow-100" 
           value={formatCurrency(statistics.averageOrderValue)}
           icon={<Activity className="h-6 w-6 text-amber-600" />}
           trend={{
@@ -365,10 +369,10 @@ const AdminDashboard: React.FC = () => {
       
       {/* Métricas adicionales */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-soft p-6">
+        <div className="bg-teal-100  rounded-lg shadow-soft p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-medium">Supplier Performance</h3>
-            <div className="h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
+            <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center">
               <ShoppingBag className="h-5 w-5 text-teal-600" />
             </div>
           </div>
@@ -380,10 +384,10 @@ const AdminDashboard: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-soft p-6">
+        <div className="bg-orange-100 rounded-lg shadow-soft p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-medium">Pending Orders</h3>
-            <div className="h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center">
+            <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center">
               <Package className="h-5 w-5 text-orange-600" />
             </div>
           </div>
@@ -395,10 +399,10 @@ const AdminDashboard: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-soft p-6">
+        <div className="bg-indigo-100 rounded-lg shadow-soft p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-medium">Conversion Rate</h3>
-            <div className="h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+            <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center">
               <TrendingUp className="h-5 w-5 text-indigo-600" />
             </div>
           </div>

@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['IUS Sans Serif', 'sans-serif'],
-        serif: ['IUS Sans Serif', 'serif'],
+        sans: ['TikTok Sans', 'sans-serif'],
+        serif: ['TikTok Sans', 'serif'],
       },      colors: {
         primary: {
           50: '#E6F0F9',  // Azul muy claro

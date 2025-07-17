@@ -463,20 +463,19 @@ const OrderManagement: React.FC = () => {
           {/* Status Overview */}
           <div className="bg-white rounded-lg shadow-soft p-6">
             <h3 className="text-lg font-medium mb-4">Status Overview</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
               {customStatuses.map((status) => (
                 <div
                   key={status.id}
-                  className="p-3 rounded-lg text-center border"
+                  className="p-3 rounded-lg text-center shadow-soft"
                   style={{
                     backgroundColor: status.color + "20",
-                    borderColor: status.color,
                   }}
                 >
-                  <span className="font-medium" style={{ color: status.color }}>
+                  <span className="font-semibold" style={{ color: status.color }}>
                     {status.name}
                   </span>
-                  <div className="text-2xl font-bold mt-1">
+                  <div className="text-3xl font-bold mt-1">
                     {orders.filter((o) => o.status === status.name).length}
                   </div>
                   <div className="text-xs text-gray-500">orders</div>
@@ -497,8 +496,8 @@ const OrderManagement: React.FC = () => {
               </div>
             ) : (
               <div className="divide-y divide-gray-200">
-                {processedOrders.map((order) => (
-                  <div key={order.id} className="p-6">
+                {processedOrders.map((order, index) => (
+                  <div key={order.id} className={`p-6 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -566,20 +565,25 @@ const OrderManagement: React.FC = () => {
                           />
                         </div>
 
-                        <button
-                          onClick={() =>
-                            setExpandedOrderId(
-                              expandedOrderId === order.id ? null : order.id
-                            )
-                          }
-                          className="p-2 text-gray-500 hover:text-gray-700 border rounded-md hover:bg-gray-50"
-                        >
-                          {expandedOrderId === order.id ? (
-                            <ChevronUp className="h-5 w-5" />
-                          ) : (
-                            <ChevronDown className="h-5 w-5" />
-                          )}
-                        </button>
+                      <button
+                        onClick={() =>
+                          setExpandedOrderId(expandedOrderId === order.id ? null : order.id)
+                        }
+                        className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary-600 border border-gray-300 rounded-md hover:bg-gray-50 transition"
+                      >
+                        {expandedOrderId === order.id ? (
+                          <>
+                            <span>Hide details</span>
+                            <ChevronUp className="h-4 w-4 transition-transform" />
+                          </>
+                        ) : (
+                          <>
+                            <span>Show details</span>
+                            <ChevronDown className="h-4 w-4 transition-transform" />
+                          </>
+                        )}
+                      </button>
+
                       </div>
                     </div>
 
