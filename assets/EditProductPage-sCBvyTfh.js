@@ -1,0 +1,1 @@
+import{j as t}from"./index-C7lvD-aF.js";import{P as o}from"./ProductForm-D7bTprDQ.js";import"./vendor-CuftA7A4.js";import"./mockSuppliers-Buh3I-tH.js";import"./arrow-left-Bct28Xal.js";import"./trash-2-Z6-u8QMu.js";import"./plus-uo8zkPXq.js";import"./save-DORIvqOb.js";const u=()=>t.jsx(o,{mode:"edit"});export{u as default};
