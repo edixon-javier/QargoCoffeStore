@@ -17,6 +17,26 @@ const LandingPage: React.FC = () => {
   const equipmentProducts = mockProducts.filter(p => p.category.id === '1').slice(0, 2);
   const coffeeProducts = mockProducts.filter(p => p.category.id === '5').slice(0, 2);
 
+  // --- Slider de categorías ---
+  const [catIndex, setCatIndex] = React.useState(0);
+  const sliderRef = React.useRef<HTMLDivElement>(null);
+  // Determinar cuántas tarjetas mostrar según el ancho de pantalla
+  const [cardsToShow, setCardsToShow] = React.useState(3);
+  React.useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 640) setCardsToShow(1);
+      else if (window.innerWidth < 1024) setCardsToShow(2);
+      else setCardsToShow(3);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, categories.length - cardsToShow);
+  const handlePrev = () => setCatIndex((i) => Math.max(0, i - 1));
+  const handleNext = () => setCatIndex((i) => Math.min(maxIndex, i + 1));
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -67,7 +87,8 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Categorías destacadas */}
+
+      {/* Categorías destacadas con slider */}
       <section className="bg-secondary-50 py-16">
         <div className="container-custom">
           <div className="text-center mb-12">
@@ -77,32 +98,69 @@ const LandingPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categories.slice(0, 3).map((category) => (
-              <Link 
-                key={category.id} 
-                to={`/catalog?categoria=${category.slug}`}
-                className="group relative overflow-hidden rounded-lg shadow-md"
+          <div className="relative flex items-center">
+            {/* Botón Izquierda */}
+            <button
+              onClick={handlePrev}
+              disabled={catIndex === 0}
+              aria-label="Anterior"
+              className={`hidden sm:flex absolute left-0 z-10 h-12 w-12 items-center justify-center rounded-full bg-white shadow-md border border-secondary-200 text-primary-700 hover:bg-primary-50 transition disabled:opacity-40 disabled:cursor-not-allowed -translate-x-1/2`}
+              style={{ top: '50%', transform: 'translateY(-50%) translateX(-50%)' }}
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+            </button>
+
+            {/* Slider */}
+            <div
+              ref={sliderRef}
+              className="overflow-hidden w-full"
+            >
+              <div
+                className="flex transition-transform duration-500 ease-in-out gap-8"
+                style={{
+                  transform: `translateX(-${catIndex * (100 / cardsToShow)}%)`,
+                  width: `${(categories.length * 100) / cardsToShow}%`,
+                }}
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img 
-                    src={category.image || 'https://images.pexels.com/photos/2875287/pexels-photo-2875287.jpeg'} 
-                    alt={category.name} 
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{category.name}</h3>
-                  <span className="text-white/90 text-sm flex items-center">
-                    Explorar <ArrowRight size={16} className="ml-2" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+                {categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    to={`/catalog?categoria=${category.slug}`}
+                    className="group relative overflow-hidden rounded-lg shadow-md flex-shrink-0"
+                    style={{ width: `${100 / categories.length}%`, maxWidth: `100%` }}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={category.image || 'https://images.pexels.com/photos/2875287/pexels-photo-2875287.jpeg'}
+                        alt={category.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                      <h3 className="text-xl font-bold text-white mb-2">{category.name}</h3>
+                      <span className="text-white/90 text-sm flex items-center">
+                        Explorar <ArrowRight size={16} className="ml-2" />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Botón Derecha */}
+            <button
+              onClick={handleNext}
+              disabled={catIndex >= maxIndex}
+              aria-label="Siguiente"
+              className={`hidden sm:flex absolute right-0 z-10 h-12 w-12 items-center justify-center rounded-full bg-white shadow-md border border-secondary-200 text-primary-700 hover:bg-primary-50 transition disabled:opacity-40 disabled:cursor-not-allowed translate-x-1/2`}
+              style={{ top: '50%', transform: 'translateY(-50%) translateX(50%)' }}
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
 
           <div className="mt-10 text-center">
-            <Button 
+            <Button
               variant="outline"
               as={Link}
               to="/catalog"
@@ -151,7 +209,7 @@ const LandingPage: React.FC = () => {
                       <span className="text-xs ml-1">4.5</span>
                     </div>
                   </div>
-                  <h3 className="font-semibold text-lg md:text-xl leading-snug mb-2 line-clamp-2 h-24 group-hover:text-primary-700 transition-colors tracking-tight">
+                  <h3 className="font-semibold text-lg md:text-lg leading-snug line-clamp-2 h-19 group-hover:text-primary-700 transition-colors tracking-tight">
                     {product.name}
                   </h3>
                   <div className="flex items-end gap-2">
@@ -273,7 +331,7 @@ const LandingPage: React.FC = () => {
                       <span className="text-xs ml-1">4.8</span>
                     </div>
                   </div>
-                  <h3 className="font-medium mb-2 line-clamp-2 h-20 group-hover:text-primary-700 transition-colors">
+                  <h3 className="font-bold text-lg mb-2 line-clamp-2 h-18 group-hover:text-primary-700 transition-colors">
                     {product.name}
                   </h3>
                   <div className="flex items-end gap-2">
@@ -300,7 +358,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Café de especialidad */}
-      <section className="bg-earth-50 py-16">
+      <section className="bg-primary-50 py-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
@@ -319,7 +377,7 @@ const LandingPage: React.FC = () => {
                       />
                     </div>
                     <div className="p-3">
-                      <h3 className="font-medium text-sm line-clamp-2 h-10">{product.name}</h3>
+                      <h3 className="font-semibold text-sm line-clamp-2 h-10">{product.name}</h3>
                       <p className="text-earth-700 font-semibold text-sm mt-1">${product.price.toFixed(2)}</p>
                     </div>
                   </Link>
@@ -365,7 +423,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* CTA - Franquicia */}
-      <section className="bg-primary-700 text-white py-20">
+      <section className="bg-primary-700 text-black py-20">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4 text-white">Want to Open Your Own Coffee Shop?</h2>

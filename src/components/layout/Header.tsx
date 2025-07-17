@@ -92,8 +92,16 @@ const Header: React.FC = () => {
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled || isPortalPage ? "bg-white shadow-card" : "bg-transparent"
+        isScrolled || isPortalPage
+          ? "bg-white/80 backdrop-blur-md shadow-card"
+          : "bg-transparent"
       }`}
+      style={{
+        // Para navegadores que no soportan backdrop-blur
+        backgroundColor: isScrolled || isPortalPage ? "rgba(255,255,255,0.8)" : "transparent",
+        WebkitBackdropFilter: isScrolled || isPortalPage ? "blur(8px)" : undefined,
+        backdropFilter: isScrolled || isPortalPage ? "blur(8px)" : undefined,
+      }}
     >
       <div className="container-custom flex items-center justify-between py-4">
         <Link to="/" className="flex items-center">
