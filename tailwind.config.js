@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['IUS Sans Serif', 'sans-serif'],
+        serif: ['IUS Sans Serif', 'serif'],
       },      colors: {
         primary: {
           50: '#E6F0F9',  // Azul muy claro

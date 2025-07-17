@@ -55,9 +55,10 @@ export const useOrders = () => {
 };
 
 export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // First we initialize test orders if necessary
+  // Siempre inicializamos las órdenes mock al cargar el contexto
   useEffect(() => {
     initializeMockOrders();
+    console.log('Órdenes mock inicializadas desde OrderContext');
   }, []);
   
   const [orders, setOrders] = useState<Order[]>(() => {
@@ -106,13 +107,20 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       id: `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       orderNumber,
       orderDate: new Date().toISOString(),
-      status: 'Pendiente', // Usando el estado en español
+      status: 'Pending', // Usando el estado en inglés
       statusHistory: [
-        { status: 'Pendiente', date: new Date().toISOString() }
+        { status: 'Pending', date: new Date().toISOString() }
       ]
     };
 
-    setOrders(prevOrders => [order, ...prevOrders]);
+    // Añadir la nueva orden al principio de la lista y actualizar localStorage inmediatamente
+    setOrders(prevOrders => {
+      const updatedOrders = [order, ...prevOrders];
+      console.log('Órdenes actualizadas después de añadir:', updatedOrders.length);
+      localStorage.setItem('orders', JSON.stringify(updatedOrders));
+      return updatedOrders;
+    });
+    
     return order;
   };
 

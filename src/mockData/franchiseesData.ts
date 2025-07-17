@@ -513,3 +513,12 @@ export const mockFranchisees: (User & { billingInfo?: BillingInfo, status: strin
     }
   }
 ];
+
+// Función para inicializar los datos de franquiciados en localStorage
+export const initializeMockFranchisees = () => {
+  const savedFranchisees = localStorage.getItem('franchisees');
+  if (!savedFranchisees) {
+    localStorage.setItem('franchisees', JSON.stringify(mockFranchisees));
+    console.log('Datos de franquiciados inicializados:', mockFranchisees.length, 'franquiciados');
+  }
+};

@@ -20,24 +20,24 @@ const LandingPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-primary-700 text-white">
+      <section className="relative 0 text-white">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-700/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/30 to-primary-700/10"></div>
           <img 
-            src="https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg" 
+            src="https://i.ibb.co/v6dZMMT3/Image-fx.png" 
             alt="Coffee shop interior" 
             className="w-full h-full object-cover"
           />
         </div>
         
-        <div className="container-custom  relative z-10 py-20 md:py-28">
+        <div className="container-custom relative z-10 py-20 md:py-28">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <h1 className="font-serif text-white/90  text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-white/90">
               Professional Equipment and Premium Coffee for Your Business
             </h1>
             <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl">
@@ -71,7 +71,7 @@ const LandingPage: React.FC = () => {
       <section className="bg-secondary-50 py-16">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold mb-4">Complete Solutions for Your Business</h2>
+            <h2 className="text-3xl font-bold mb-4">Complete Solutions for Your Business</h2>
             <p className="text-secondary-600 max-w-2xl mx-auto">
               From cutting-edge professional equipment to the finest coffee beans. Everything you need in one place.
             </p>
@@ -92,7 +92,7 @@ const LandingPage: React.FC = () => {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
-                  <h3 className="font-serif text-xl font-bold text-white mb-2">{category.name}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{category.name}</h3>
                   <span className="text-white/90 text-sm flex items-center">
                     Explorar <ArrowRight size={16} className="ml-2" />
                   </span>
@@ -101,14 +101,15 @@ const LandingPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-10 text-center">              <Button 
-                variant="outline"
-                as={Link}
-                to="/catalog"
-                className="shadow-sm"
-              >
-                View All Categories
-              </Button>
+          <div className="mt-10 text-center">
+            <Button 
+              variant="outline"
+              as={Link}
+              to="/catalog"
+              className="shadow-sm"
+            >
+              View All Categories
+            </Button>
           </div>
         </div>
       </section>
@@ -117,7 +118,7 @@ const LandingPage: React.FC = () => {
       <section className="py-16">
         <div className="container-custom">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="font-serif text-2xl font-bold">Special Offers</h2>
+            <h2 className="text-2xl font-bold">Special Offers</h2>
             <Link to="/catalog" className="text-primary-600 hover:text-primary-800 flex items-center">
               View All <ArrowRight size={16} className="ml-1" />
             </Link>
@@ -150,7 +151,7 @@ const LandingPage: React.FC = () => {
                       <span className="text-xs ml-1">4.5</span>
                     </div>
                   </div>
-                  <h3 className="font-medium mb-2 line-clamp-2 h-22 group-hover:text-primary-700 transition-colors">
+                  <h3 className="font-semibold text-lg md:text-xl leading-snug mb-2 line-clamp-2 h-24 group-hover:text-primary-700 transition-colors tracking-tight">
                     {product.name}
                   </h3>
                   <div className="flex items-end gap-2">
@@ -177,7 +178,7 @@ const LandingPage: React.FC = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="font-serif text-3xl font-bold mb-4">Professional Equipment for Your Coffee Shop</h2>
+              <h2 className="text-3xl font-bold mb-4">Professional Equipment for Your Coffee Shop</h2>
               <p className="text-secondary-600 mb-6">
                 We offer a selection of the best Bunn equipment for brewing high-quality coffee. Our equipment is designed to meet the needs of professional coffee shops.
               </p>
@@ -239,7 +240,7 @@ const LandingPage: React.FC = () => {
       <section className="py-16">
         <div className="container-custom">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="font-serif text-2xl font-bold">Our Best Sellers</h2>
+            <h2 className="text-2xl font-bold">Our Best Sellers</h2>
             <Link to="/catalog" className="text-primary-600 hover:text-primary-800 flex items-center">
               View All <ArrowRight size={16} className="ml-1" />
             </Link>
@@ -326,7 +327,7 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
             <div className="order-1 md:order-2">
-              <h2 className="font-serif text-3xl font-bold mb-4">Specialty Coffee for Your Business</h2>
+              <h2 className="text-3xl font-bold mb-4">Specialty Coffee for Your Business</h2>
               <p className="text-secondary-600 mb-6">
                 We offer a premium selection of specialty coffee, from Italian blends to unique origins from around the world.
               </p>
@@ -364,10 +365,10 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* CTA - Franquicia */}
-      <section className="bg-primary-700  text-white py-20">
+      <section className="bg-primary-700 text-white py-20">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="font-serif text-3xl font-bold mb-4 text-white">Want to Open Your Own Coffee Shop?</h2>
+            <h2 className="text-3xl font-bold mb-4 text-white">Want to Open Your Own Coffee Shop?</h2>
             <p className="text-white/80 mb-8">
               Become a Qargo Connet franchisee and access our proven business model, exclusive products, and ongoing support to grow your coffee shop.
             </p>
@@ -388,7 +389,7 @@ const LandingPage: React.FC = () => {
       <section className="py-16">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl font-bold mb-4">What Our Customers Say</h2>
+            <h2 className="text-3xl font-bold mb-4">What Our Customers Say</h2>
             <p className="text-secondary-600 max-w-2xl mx-auto">
               Coffee shops and businesses across the country trust our products to deliver the best coffee experience.
             </p>
@@ -444,7 +445,7 @@ const LandingPage: React.FC = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-serif text-2xl font-bold mb-4">Stay Updated</h2>
+              <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
               <p className="text-secondary-700 mb-6">
                 Subscribe to our newsletter to receive news about new products, special offers, and tips for your coffee business.
               </p>
@@ -464,7 +465,7 @@ const LandingPage: React.FC = () => {
               </form>
             </div>
             <div>
-              <h2 className="font-serif text-2xl font-bold mb-4">Need Help?</h2>
+              <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
               <p className="text-secondary-700 mb-6">
                 Our customer service team is ready to assist you with any questions about our products or services.
               </p>

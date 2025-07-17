@@ -70,7 +70,7 @@ export const TopProductsBarChart: React.FC<{
         padding={0.3}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-        colors={{ scheme: 'blue_purple' }}
+        colors={['#3068bf']}
         borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
         axisBottom={{
           tickSize: 5,

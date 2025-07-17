@@ -181,7 +181,7 @@ const OrderManagement: React.FC = () => {
       .slice(0, 5);
       
     // Calculate average delivery time for completed orders
-    const deliveredOrders = ordersInTimeFrame.filter(order => order.status === 'Entregado');
+    const deliveredOrders = ordersInTimeFrame.filter(order => order.status === 'Delivered');
     let avgDeliveryTime = 0;
     
     if (deliveredOrders.length > 0) {
@@ -189,7 +189,7 @@ const OrderManagement: React.FC = () => {
         const orderDate = new Date(order.orderDate);
         const deliveryDate = new Date(
           order.statusHistory
-            .find(history => history.status === 'Entregado')?.date || order.orderDate
+            .find(history => history.status === 'Delivered')?.date || order.orderDate
         );
         return sum + (deliveryDate.getTime() - orderDate.getTime());
       }, 0);
@@ -259,7 +259,7 @@ const OrderManagement: React.FC = () => {
   // Function to export orders data as CSV
   const exportOrdersCSV = () => {
     // Create CSV header
-    let csv = 'ID,Número de Orden,Cliente,Fecha,Estado,Total (USD),Método de Pago,Número de Seguimiento\n';
+    let csv = 'ID,Order Number,Customer,Date,Status,Total (USD),Payment Method,Tracking Number\n';
     
     // Add each order as a row
     processedOrders.forEach(order => {
@@ -267,7 +267,7 @@ const OrderManagement: React.FC = () => {
         order.id,
         order.orderNumber || '',
         order.customerName,
-        new Date(order.orderDate).toLocaleDateString('es-ES'),
+        new Date(order.orderDate).toLocaleDateString('en-US'),
         order.status,
         formatCurrency(order.total).replace('$', ''),
         order.paymentMethod.type,
@@ -288,7 +288,7 @@ const OrderManagement: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `pedidos_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.setAttribute('download', `orders_${new Date().toISOString().slice(0, 10)}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -980,7 +980,7 @@ const OrderManagement: React.FC = () => {
               {orders.filter(
                 (o) =>
                   // Criteria for orders needing attention: Pending for more than 3 days or issues
-                  (o.status === "Pending" || o.status === "Pendiente") &&
+                  o.status === "Pending" &&
                   new Date().getTime() - new Date(o.orderDate).getTime() >
                     3 * 24 * 60 * 60 * 1000
               ).length === 0 ? (
@@ -993,7 +993,7 @@ const OrderManagement: React.FC = () => {
                   {orders
                     .filter(
                       (o) =>
-                        (o.status === "Pending" || o.status === "Pendiente") &&
+                        o.status === "Pending" &&
                         new Date().getTime() - new Date(o.orderDate).getTime() >
                           3 * 24 * 60 * 60 * 1000
                     )

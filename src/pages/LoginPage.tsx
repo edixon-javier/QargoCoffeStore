@@ -117,9 +117,9 @@ const LoginPage: React.FC = () => {
           </div>
           
           <Coffee className="mx-auto h-12 w-12 text-primary-600 mt-8" strokeWidth={2} />
-          <h2 className="mt-6 text-3xl font-serif text-gray-900">Bienvenido de nuevo</h2>
+          <h2 className="mt-6 text-3xl font-serif text-gray-900">Good to have you back!</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Ingresa como {userType === 'franchisee' ? 'Franquiciado' : 'Administrador'}
+            Log in as {userType === 'franchisee' ? 'Franchisee' : 'Administrator'}
           </p>
         </div>
 

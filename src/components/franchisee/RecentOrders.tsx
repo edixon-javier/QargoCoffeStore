@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useOrders, type Order } from '../../contexts/OrderContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { formatCurrency } from '../../lib/utils';
 import { ChevronDown, ChevronUp, Package, FileText } from 'lucide-react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from '../pdf/InvoicePDF';
 
 const OrderStatusBadge: React.FC<{ status: string }> = ({ status }) => {
+  // Ya no es necesario mapeo español a inglés, ya que todos los estados son en inglés
+  
   // Paleta de colores para los estados predefinidos
   const statusStyles: Record<string, string> = {
     'Pending': 'bg-yellow-100 text-yellow-800',
     'Processing': 'bg-blue-100 text-blue-800',
     'Shipped': 'bg-indigo-100 text-indigo-800',
     'Delivered': 'bg-green-100 text-green-800',
-    'Cancelled': 'bg-red-100 text-red-800'
+    'Cancelled': 'bg-red-100 text-red-800',
+    'Awaiting Payment': 'bg-gray-100 text-gray-800',
+    'Returned': 'bg-purple-100 text-purple-800',
+    'Payment Confirmed': 'bg-orange-100 text-orange-800'
   };
 
   // Si no existe un estilo predefinido para este estado, usamos un color por defecto
@@ -134,10 +140,36 @@ const OrderDetails: React.FC<{ order: Order }> = ({ order }) => {
 };
 
 const RecentOrders: React.FC = () => {
-  const { orders } = useOrders();
+  const { orders, getOrdersByCustomer } = useOrders();
+  const { user } = useAuth();
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
+  const [localOrders, setLocalOrders] = useState<Order[]>([]);
+  
+  // Recargar órdenes al montar el componente y cuando cambia el usuario
+  useEffect(() => {
+    // Verificamos que el usuario tenga franchiseeId
+    if (user?.franchiseeId) {
+      const franchiseeOrders = getOrdersByCustomer(user.franchiseeId);
+      setLocalOrders(franchiseeOrders);
+      
+      // Logs para depuración
+      console.log('Recargando órdenes para franchiseeId:', user.franchiseeId);
+      console.log('Total de órdenes disponibles:', orders.length);
+      console.log('Órdenes encontradas para este franchisee:', franchiseeOrders.length);
+    }
+  }, [user, orders, getOrdersByCustomer]);
 
-  if (orders.length === 0) {
+  // Filtrar solo las órdenes del usuario actual y ordenar por fecha
+  const userOrders = localOrders
+    .sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
+  
+  // Log para depuración
+  console.log('Usuario actual:', user);
+  console.log('Total de órdenes:', orders.length);
+  console.log('Órdenes del usuario:', userOrders.length, 'franchiseeId:', user?.franchiseeId);
+  console.log('Primera orden en la lista:', userOrders[0]);
+
+  if (userOrders.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-soft p-6">
         <h2 className="text-xl font-medium mb-4">Recent Orders</h2>
@@ -157,7 +189,7 @@ const RecentOrders: React.FC = () => {
     <div className="bg-white rounded-lg shadow-soft p-6">
       <h2 className="text-xl font-medium mb-4">Recent Orders</h2>
       <div className="space-y-4">
-        {orders.map(order => (
+        {userOrders.map(order => (
           <div key={order.id} className="border rounded-lg">
             <button
               onClick={() => toggleOrderDetails(order.id)}

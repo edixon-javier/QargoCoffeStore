@@ -6,6 +6,7 @@ export interface User {
   role: 'admin' | 'supplier' | 'franchisee';
   profileImage?: string;
   createdAt: string;
+  franchiseeId?: string; // ID del franquiciado asociado (solo para usuarios franchisee)
 }
 
 // Product types

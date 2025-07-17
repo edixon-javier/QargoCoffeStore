@@ -1,44 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { BillingInfo } from '../../lib/types';
 import { Check } from 'lucide-react';
 import Modal from '../ui/Modal';
+import { useAuth } from '../../contexts/AuthContext';
+import { mockFranchisees } from '../../mockData/franchiseesData';
 
 const FranchiseeProfile: React.FC = () => {
+  const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   
-  // Get stored billing info or use default
-  const storedBillingInfo = localStorage.getItem('franchiseeBillingInfo');
-  const initialBillingInfo: BillingInfo = storedBillingInfo 
-    ? JSON.parse(storedBillingInfo)
-    : {
-        companyName: "",
-        dba: "",
-        billingAddress: {
-          street: "",
-          city: "",
-          state: "",
-          zipCode: ""
-        },
-        shippingAddress: {
-          street: "",
-          city: "",
-          state: "",
-          zipCode: ""
-        },
-        email: "",
-        phone: "",
-        paymentMethod: {
-          type: 'credit_card',
-          cardNumber: "",
-          expiryDate: "",
-          cvv: "",
-          cardholderName: ""
-        }
-      };
+  // Buscar los datos del franquiciado autenticado
+  const getFranchiseeData = () => {
+    if (user?.franchiseeId) {
+      const franchiseeData = mockFranchisees.find(f => f.id === user.franchiseeId);
+      if (franchiseeData?.billingInfo) {
+        console.log('Datos de franquiciado encontrados:', franchiseeData.billingInfo);
+        return franchiseeData.billingInfo;
+      }
+    }
 
-  const [billingInfo, setBillingInfo] = useState<BillingInfo>(initialBillingInfo);
+    // Si no encontramos datos o el usuario no tiene franchiseeId, buscamos en localStorage
+    const storedBillingInfo = localStorage.getItem('franchiseeBillingInfo');
+    if (storedBillingInfo) {
+      return JSON.parse(storedBillingInfo);
+    }
+
+    // Datos por defecto si no hay información disponible
+    return {
+      companyName: "",
+      dba: "",
+      billingAddress: {
+        street: "",
+        city: "",
+        state: "",
+        zipCode: ""
+      },
+      shippingAddress: {
+        street: "",
+        city: "",
+        state: "",
+        zipCode: ""
+      },
+      email: "",
+      phone: "",
+      paymentMethod: {
+        type: 'credit_card',
+        cardNumber: "",
+        expiryDate: "",
+        cvv: "",
+        cardholderName: ""
+      }
+    };
+  };
+
+  const [billingInfo, setBillingInfo] = useState<BillingInfo>(getFranchiseeData());
+
+  // Actualizar los datos cuando cambie el usuario
+  useEffect(() => {
+    setBillingInfo(getFranchiseeData());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.franchiseeId]);
 
   const validateField = (name: string, value: string) => {
     if (!value) return `${name} is required`;
@@ -133,6 +156,23 @@ const FranchiseeProfile: React.FC = () => {
               <p className="text-sm text-gray-500 mt-1">
                 Manage your business profile and payment methods
               </p>
+            </div>
+            <div className="flex gap-2">
+              {!isEditing ? (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded"
+                >
+                  Edit Profile
+                </button>
+              ) : (
+                <button
+                  onClick={handleSave}
+                  className="bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded"
+                >
+                  Save Changes
+                </button>
+              )}
             </div>
           </div>
 
@@ -393,7 +433,7 @@ const FranchiseeProfile: React.FC = () => {
                     onClick={() => {
                       setIsEditing(false);
                       setErrors({});
-                      setBillingInfo(initialBillingInfo);
+                      setBillingInfo(getFranchiseeData());
                     }}
                     className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
                   >

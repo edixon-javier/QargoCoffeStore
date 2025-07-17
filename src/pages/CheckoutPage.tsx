@@ -76,8 +76,11 @@ const CheckoutPage: React.FC = () => {
           lastFourDigits: billingInfo.paymentMethod.cardNumber.slice(-4)
         },
         total,
-        billingInfo
+        billingInfo,
+        franchiseeId: user?.franchiseeId // Añadir el franchiseeId del usuario actual
       });
+      
+      console.log('Nueva orden creada:', order);
 
       // Clear cart
       clearCart();

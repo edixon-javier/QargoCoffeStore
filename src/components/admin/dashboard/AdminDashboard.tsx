@@ -21,7 +21,7 @@ type TimeFrameType = 'day' | 'week' | 'month' | 'year';
 const AdminDashboard: React.FC = () => {
   const { orders } = useOrders();
   const { customStatuses } = useOrderStatus();
-  const [timeFrame, setTimeFrame] = useState<TimeFrameType>('month');
+  const [timeFrame, setTimeFrame] = useState<TimeFrameType>('year');
   
   // Calcular estadísticas basadas en el periodo de tiempo seleccionado
   const statistics = useMemo(() => {

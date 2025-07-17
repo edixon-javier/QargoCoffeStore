@@ -13,8 +13,8 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const usersMock = [
-  { email: "dearborn-22022@qargocoffee.com", password: "123456", role: "franchisee", name: "Prestige Cafe" },
-  { email: "admin@tienda.com", password: "admin123", role: "admin", name: "Admin General" }
+  { email: "dearborn-22022@qargocoffee.com", password: "123456", role: "franchisee", name: "Prestige Cafe", franchiseeId: "f1" },
+  { email: "admin@tienda.com", password: "admin123", role: "admin", name: "Admin General", franchiseeId: undefined }
 ];
 
 const LOCAL_STORAGE_KEY = 'auth_state';
@@ -39,6 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     try {
       const user = await mockAuthAPI.login(email, password);
+      console.log('Usuario autenticado:', user);
       setUser(user);
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ user }));
     } catch (error) {
@@ -108,6 +109,7 @@ const mockAuthAPI = {
       email: user.email,
       name: user.name,
       role: user.role as 'admin' | 'supplier' | 'franchisee',
+      franchiseeId: user.franchiseeId,
       createdAt: new Date().toISOString()
     };
   },
@@ -115,12 +117,16 @@ const mockAuthAPI = {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
+    // Generar un franchiseeId para usuarios franquiciados
+    const franchiseeId = role === 'franchisee' ? `f${Math.floor(Math.random() * 10000)}` : undefined;
+    
     // Add to mock users (in a real application this would be saved in the database)
     const newUser = {
       email,
       password,
       role,
-      name
+      name,
+      franchiseeId
     };
     
     usersMock.push(newUser);
@@ -130,6 +136,7 @@ const mockAuthAPI = {
       name,
       email,
       role: role as 'admin' | 'supplier' | 'franchisee',
+      franchiseeId,
       createdAt: new Date().toISOString(),
     };
   }
