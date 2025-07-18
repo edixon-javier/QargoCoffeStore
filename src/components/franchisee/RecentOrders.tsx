@@ -5,6 +5,7 @@ import { formatCurrency } from '../../lib/utils';
 import { ChevronDown, ChevronUp, Package, FileText } from 'lucide-react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import InvoicePDF from '../pdf/InvoicePDF';
+import OrdersPaginator from './OrdersPaginator';
 
 const OrderStatusBadge: React.FC<{ status: string }> = ({ status }) => {
   // Ya no es necesario mapeo español a inglés, ya que todos los estados son en inglés
@@ -169,6 +170,7 @@ const RecentOrders: React.FC = () => {
   console.log('Órdenes del usuario:', userOrders.length, 'franchiseeId:', user?.franchiseeId);
   console.log('Primera orden en la lista:', userOrders[0]);
 
+
   if (userOrders.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-soft p-6">
@@ -181,15 +183,14 @@ const RecentOrders: React.FC = () => {
     );
   }
 
-  const toggleOrderDetails = (orderId: string) => {
-    setExpandedOrderId(expandedOrderId === orderId ? null : orderId);
-  };
-
+  // Render paginador solo si hay más de 10 órdenes
   return (
     <div className="bg-white rounded-lg shadow-soft p-6">
       <h2 className="text-xl font-medium mb-4">Recent Orders</h2>
-      <div className="space-y-4">
-        {userOrders.map(order => (
+      <OrdersPaginator
+        orders={userOrders}
+        itemsPerPage={10}
+        renderOrder={(order, expandedOrderId, toggleOrderDetails) => (
           <div key={order.id} className="border rounded-lg">
             <button
               onClick={() => toggleOrderDetails(order.id)}
@@ -242,8 +243,8 @@ const RecentOrders: React.FC = () => {
               </div>
             )}
           </div>
-        ))}
-      </div>
+        )}
+      />
     </div>
   );
 };

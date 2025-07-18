@@ -44,6 +44,9 @@ const CheckoutPage: React.FC = () => {
     storedBillingInfo ? JSON.parse(storedBillingInfo) : mockFranchiseeData
   );
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(true);
+
 
   // Save billing info changes to localStorage
   React.useEffect(() => {
@@ -52,57 +55,71 @@ const CheckoutPage: React.FC = () => {
 
   // If there are no items in the cart, redirect to cart
   React.useEffect(() => {
-    if (items.length === 0) {
-      navigate('/cart');
-    }
-  }, [items.length, navigate]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsProcessing(true);
-
-    try {
-      // Create new order
-      const order = addOrder({
-        customerName: billingInfo.companyName,
-        items: items.map(item => ({
-          productId: item.product.id,
-          name: item.product.name,
-          quantity: item.quantity,
-          price: item.product.price
-        })),
-        paymentMethod: {
-          type: 'Credit Card',
-          lastFourDigits: billingInfo.paymentMethod.cardNumber.slice(-4)
-        },
-        total,
-        billingInfo,
-        franchiseeId: user?.franchiseeId // Añadir el franchiseeId del usuario actual
-      });
-      
-      console.log('Nueva orden creada:', order);
-
-      // Clear cart
-      clearCart();
-
-      // Show success message
-      alert('Order successfully placed! Order ID: ' + order.id);
-
-      // Redirect to franchisee panel
+  if (items.length === 0 && shouldRedirect) {
       navigate('/franchisee');
-    } catch (error) {
-      console.error('Error creating order:', error);
-      alert('There was an error processing your order. Please try again.');
-    } finally {
-      setIsProcessing(false);
     }
-  };
+  }, [items.length, shouldRedirect, navigate]);
 
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsProcessing(true);
+
+  try {
+    // Crear nuevo pedido
+    const order = addOrder({
+      customerName: billingInfo.companyName,
+      items: items.map(item => ({
+        productId: item.product.id,
+        name: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price
+      })),
+      paymentMethod: {
+        type: 'Credit Card',
+        lastFourDigits: billingInfo.paymentMethod.cardNumber.slice(-4)
+      },
+      total,
+      billingInfo,
+      franchiseeId: user?.franchiseeId
+    });
+
+    console.log('Nueva orden creada:', order);
+
+    setShouldRedirect(false); 
+    clearCart();
+    setShowSuccessModal(true);
+
+    setTimeout(() => {
+      setShowSuccessModal(false);
+      navigate('/franchisee');
+    }, 1500); 
+  } catch (error) {
+    console.error('Error creating order:', error);
+    alert('There was an error processing your order. Please try again.');
+  } finally {
+    setIsProcessing(false);
+  }
+};
   return (
     <div className="container-custom py-8">
+      {/* Modal de éxito */}
+      {showSuccessModal && (
+       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity">
+          <div className="bg-white rounded-2xl shadow-2xl p-10 flex flex-col items-center space-y-4 animate-pop-in min-w-[340px] max-w-sm">
+            <svg className="w-16 h-16 text-green-500 mb-2 animate-bounce-in" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#e6f9ed" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12l3 3.5 5-6" />
+            </svg>
+            <h2 className="text-2xl font-bold text-gray-800 text-center">Order Confirmed</h2>
+            <p className="text-gray-600 text-sm text-center">
+              Your order has been successfully placed. You will be redirected to your dashboard shortly.
+            </p>
+          </div>
+        </div>
+      )}
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-serif mb-6">Checkout</h1>
-        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Billing and Shipping Information */}
           <div className="lg:col-span-2">
@@ -111,6 +128,7 @@ const CheckoutPage: React.FC = () => {
               <div className="bg-white rounded-lg shadow-soft p-6">
                 <h2 className="text-xl font-medium mb-4">Bill To</h2>
                 <div className="space-y-4">
+                  {/* ...existing code... */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Company Name
@@ -123,6 +141,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="Franchise Company Name"
                     />
                   </div>
+                  {/* ...existing code... */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       DBA (Doing Business As)
@@ -135,8 +154,7 @@ const CheckoutPage: React.FC = () => {
                       placeholder="DBA Name"
                     />
                   </div>
-
-                  {/* Billing Address */}
+                  {/* ...existing code... */}
                   <div>
                     <h3 className="font-medium mb-2">Billing Address</h3>
                     <div className="grid gap-4">
@@ -186,8 +204,7 @@ const CheckoutPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* Contact Information */}
+                  {/* ...existing code... */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -214,13 +231,14 @@ const CheckoutPage: React.FC = () => {
                       />
                     </div>
                   </div>
+                  {/* ...existing code... */}
                 </div>
               </div>
-
               {/* Payment Information */}
               <div className="bg-white rounded-lg shadow-soft p-6">
                 <h2 className="text-xl font-medium mb-4">Payment Information</h2>
                 <div className="space-y-4">
+                  {/* ...existing code... */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Card Number
@@ -284,11 +302,11 @@ const CheckoutPage: React.FC = () => {
                       />
                     </div>
                   </div>
+                  {/* ...existing code... */}
                 </div>
               </div>
             </form>
           </div>
-
           {/* Order Summary */}
           <div>
             <div className="bg-white rounded-lg shadow-soft p-6 sticky top-24">

@@ -611,7 +611,7 @@ const CatalogPage: React.FC = () => {
                 variant="simple"
                 size="sm"
                 maxPageButtons={5}
-                className="justify-center"
+                className="justify-center" 
               />
             </div>
           )}

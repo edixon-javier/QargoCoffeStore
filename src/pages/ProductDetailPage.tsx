@@ -11,6 +11,31 @@ import ProductCard from '../components/products/ProductCard';
 // Mock data
 import { mockProducts } from '../mockData';
 
+// Static mock reviews data
+const mockReviews = [
+  {
+    id: 1,
+    franchiseeName: "John Doe",
+    rating: 5,
+    comment: "Excellent product! It has significantly improved our coffee quality and customer satisfaction.",
+    date: "2023-05-15"
+  },
+  {
+    id: 2,
+    franchiseeName: "Jane Smith",
+    rating: 4,
+    comment: "Very good, but I think the price could be a bit lower for the quantity provided.",
+    date: "2023-05-10"
+  },
+  {
+    id: 3,
+    franchiseeName: "Carlos Ramirez",
+    rating: 5,
+    comment: "Perfect for our needs. The delivery was fast and the product arrived in perfect condition.",
+    date: "2023-05-05"
+  },
+];
+
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { addItem } = useCart();
@@ -47,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
   };
   
   const handleCloseModal = () => {
-    navigate('/catalog'); // o '/QargoCoffeStore/catalog' si tienes base
+    navigate('/catalog');
   };
 
   const handleViewCart = () => {
@@ -64,6 +89,9 @@ const ProductDetailPage: React.FC = () => {
       setQuantity(prev => prev - 1);
     }
   };
+
+  // Calculate average rating
+  const averageRating = mockReviews.reduce((acc, review) => acc + review.rating, 0) / mockReviews.length;
 
   return (
     <div className="container-custom py-8">
@@ -193,9 +221,8 @@ const ProductDetailPage: React.FC = () => {
                   </button>
                 </div>
                 
-                <p className="text-sm text-secondary-500">
-                  Minimum order: {product.minOrderQuantity} units
-                </p>
+                <p className="text-sm text-secondary-500">Minimum order: {product.minOrderQuantity} units</p>
+                
               </div>
             </div>
             
@@ -236,9 +263,59 @@ const ProductDetailPage: React.FC = () => {
                 <span className="text-sm">24/7 Support</span>
               </div>
             </div>
+             {/* Reviews Section */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-serif mb-4">Customer Reviews</h2>
+        <div className="flex items-center mb-4">
+          <div className="flex mr-2">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`h-5 w-5 ${
+                  i < Math.round(averageRating) ? 'text-yellow-500 fill-current' : 'text-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+          <p className="text-lg font-medium">{averageRating.toFixed(1)} out of 5 stars</p>
+          <p className="ml-2 text-gray-500">({mockReviews.length} reviews)</p>
+        </div>
+        <div className="space-y-6">
+          {mockReviews.map(review => (
+            <div key={review.id} className="border-b border-gray-200 pb-4">
+              <div className="flex items-center mb-2">
+                <p className="font-medium text-gray-800">{review.franchiseeName}</p>
+                <div className="ml-2 flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < review.rating ? 'text-yellow-500 fill-current' : 'text-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <p className="text-gray-700 mb-2">{review.comment}</p>
+              <p className="text-sm text-gray-500">
+                {new Date(review.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </p>
+            </div>
+          ))}
+        </div>
+        <Button variant="outline" className="mt-4">
+          Write a Review
+        </Button>
+      </div>
           </div>
         </div>
       </div>
+      
+     
       
       {/* Tabs */}
       <div className="mb-12">
@@ -318,7 +395,7 @@ const ProductDetailPage: React.FC = () => {
               {[
                 {
                   question: 'What is the delivery time?',
-                  answer: 'Standard delivery time is 2-3 business days for metropolitan areas and 4-7 days for the rest of the country.'
+                  answerTON: 'Standard delivery time is 2-3 business days for metropolitan areas and 4-7 days for the rest of the country.'
                 },
                 {
                   question: 'Do you offer warranty for this product?',
