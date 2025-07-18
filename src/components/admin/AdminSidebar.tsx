@@ -92,7 +92,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
               <div className="flex items-center gap-2">
                 <Coffee className="h-8 w-8 text-primary-600" strokeWidth={2.5} />
                 <span className="font-serif font-bold text-xl text-primary-600">
-                  Qargo Connet
+                  Qargo Connect
                 </span>
               </div>
             </div>
@@ -105,7 +105,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, toggleSidebar }) =>
           </>
         ) : (
           <div className="hidden lg:block">
-            <Tooltip content="Qargo Connet Admin">
+            <Tooltip content="Qargo Connect Admin">
               <Coffee className="h-8 w-8 text-primary-600" strokeWidth={2.5} />
             </Tooltip>
           </div>

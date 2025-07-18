@@ -428,7 +428,7 @@ const LandingPage: React.FC = () => {
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4 text-white">Want to Open Your Own Coffee Shop?</h2>
             <p className="text-white/80 mb-8">
-              Become a Qargo Connet franchisee and access our proven business model, exclusive products, and ongoing support to grow your coffee shop.
+              Become a Qargo Connect franchisee and access our proven business model, exclusive products, and ongoing support to grow your coffee shop.
             </p>
             <Button 
               variant="accent"
@@ -458,19 +458,19 @@ const LandingPage: React.FC = () => {
               {
                 name: "Maria Gonzalez",
                 business: "Aromatic Coffee",
-                text: "The equipment we acquired from Qargo Connet has been key to the success of our coffee shop. The quality is exceptional and the after-sales service is unbeatable.",
+                text: "The equipment we acquired from Qargo Connect has been key to the success of our coffee shop. The quality is exceptional and the after-sales service is unbeatable.",
                 avatar: "https://randomuser.me/api/portraits/women/68.jpg"
               },
               {
                 name: "Carlos Rodriguez",
                 business: "The Coffee Corner",
-                text: "Since we started working with Qargo Connet's specialty coffee, our sales have increased by 35%. Customers keep coming back for the quality and consistency.",
+                text: "Since we started working with Qargo Connect's specialty coffee, our sales have increased by 35%. Customers keep coming back for the quality and consistency.",
                 avatar: "https://randomuser.me/api/portraits/men/43.jpg"
               },
               {
                 name: "Laura Martinez",
                 business: "Park Café",
-                text: "Qargo Connet's franchise program has given us all the tools we need to succeed. The constant support has been fundamental to our growth.",
+                text: "Qargo Connect's franchise program has given us all the tools we need to succeed. The constant support has been fundamental to our growth.",
                 avatar: "https://randomuser.me/api/portraits/women/33.jpg"
               }
             ].map((testimonial, index) => (

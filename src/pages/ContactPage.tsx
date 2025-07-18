@@ -279,12 +279,12 @@ const ContactPage: React.FC = () => {
               answer: "To obtain detailed information about our franchise opportunities, you can complete the contact form by selecting 'Franchise Information' in the subject field, or write to us directly at franchise@qargocoffee.com. A member of our team will contact you to provide all the necessary information." 
             },
             { 
-              question: "Where can I find my nearest Qargo Connet?", 
-              answer: "You can find the nearest Qargo Connet location using the store locator in our mobile app or by visiting the 'Locations' section on our website. There you will find an interactive map with all our stores." 
+              question: "Where can I find my nearest Qargo Connect?", 
+              answer: "You can find the nearest Qargo Connect location using the store locator in our mobile app or by visiting the 'Locations' section on our website. There you will find an interactive map with all our stores." 
             },
             { 
-              question: "What makes Qargo Connet unique?", 
-              answer: "Qargo Connet is distinguished by its innovative approach that fuses Italian coffee tradition with the American pace of life. Our unique store design in repurposed shipping containers, our premium Lavazza coffee, and our dedication to creating exceptional experiences set us apart in the market." 
+              question: "What makes Qargo Connect unique?", 
+              answer: "Qargo Connect is distinguished by its innovative approach that fuses Italian coffee tradition with the American pace of life. Our unique store design in repurposed shipping containers, our premium Lavazza coffee, and our dedication to creating exceptional experiences set us apart in the market." 
             },
             { 
               question: "Do you offer catering options for events?", 

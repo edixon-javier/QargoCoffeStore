@@ -449,11 +449,11 @@ export const mockOrders: Order[] = [
     franchiseeId: 'f1',
   },
   
-  // Orden con Qargo Connet Polanco
+  // Orden con Qargo Connect Polanco
   {
     id: 'ORD-002-def456',
     orderNumber: 'ORD-98765',
-    customerName: 'Qargo Connet Polanco',
+    customerName: 'Qargo Connect Polanco',
     items: [
       {
         productId: mockProducts[2].id,
@@ -484,8 +484,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-9876543210',
     total: (mockProducts[2].price * 2) + mockProducts[3].price,
     billingInfo: {
-      companyName: 'Qargo Connet México, S.A.',
-      dba: 'Qargo Connet Polanco',
+      companyName: 'Qargo Connect México, S.A.',
+      dba: 'Qargo Connect Polanco',
       billingAddress: {
         street: 'Masaryk 123',
         city: 'Ciudad de México',
@@ -513,7 +513,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-003-ghi789',
     orderNumber: 'ORD-87654',
-    customerName: 'Qargo Connet Santa Fe',
+    customerName: 'Qargo Connect Santa Fe',
     items: [
       {
         productId: mockProducts[0].id,
@@ -534,8 +534,8 @@ export const mockOrders: Order[] = [
     ],
     total: mockProducts[0].price,
     billingInfo: {
-      companyName: 'Qargo Connet México, S.A.',
-      dba: 'Qargo Connet Santa Fe',
+      companyName: 'Qargo Connect México, S.A.',
+      dba: 'Qargo Connect Santa Fe',
       billingAddress: {
         street: 'Av. Santa Fe 456',
         city: 'Ciudad de México',

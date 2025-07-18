@@ -107,7 +107,7 @@ const Header: React.FC = () => {
         <Link to="/" className="flex items-center">
           <Coffee className="h-8 w-8 text-primary-600" strokeWidth={2.5} />
           <span className="ml-2 font-serif font-bold text-xl text-primary-600">
-            Qargo Connet
+            Qargo Connect
           </span>
         </Link>
 

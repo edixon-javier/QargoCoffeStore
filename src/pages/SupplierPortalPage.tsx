@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 const SupplierPortalHome = () => (
   <div>
     <h2 className="text-2xl font-serif mb-4">Supplier Portal</h2>
-    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Connet suppliers.</p>
+    <p className="text-secondary-600">Welcome to the management dashboard for Qargo Connect suppliers.</p>
   </div>
 );
 

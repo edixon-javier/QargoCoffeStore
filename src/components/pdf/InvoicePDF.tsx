@@ -212,7 +212,7 @@ const InvoicePDF: React.FC<InvoicePDFProps> = ({ order }) => {
 
         {/* Footer */}
         <Text style={styles.footer}>
-          Thank you for your purchase - Qargo Connet
+          Thank you for your purchase - Qargo Connect
         </Text>
       </Page>
     </Document>

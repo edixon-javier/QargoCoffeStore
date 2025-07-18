@@ -9,7 +9,7 @@ import type { BillingInfo } from '../lib/types';
 // Mock data for Franchisee Nort
 const mockFranchiseeData: BillingInfo = {
   companyName: "Prestige Cafe",
-  dba: "Qargo Connet Dearborne",
+  dba: "Qargo Connect Dearborne",
   billingAddress: {
     street: "22022 Michigan Ave Unit C",
     city: "Dearborn",
