@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import Pagination from '../../components/ui/Pagination';
 import { useOrders } from '../../contexts/OrderContext';
 import { useOrderStatus } from '../../hooks/useOrderStatus';
 import { formatCurrency, formatDate } from '../../lib/utils';
@@ -18,21 +19,20 @@ const OrderManagement: React.FC = () => {
   const [customerFilter, setCustomerFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('date-desc');
   const [activePage, setActivePage] = useState<'orders' | 'stats'>('orders');
+  // Estado para paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 10;
   
   // Stats tracking
   const [selectedTimeFrame, setSelectedTimeFrame] = useState<'day' | 'week' | 'month' | 'year'>('month');
 
   // Process orders data for filtering and statistics
   const processedOrders = useMemo(() => {
-    // Apply all filters
     let filtered = [...orders];
-    
-    // Filter by status
+    // ...filtros existentes...
     if (filterStatus !== 'all') {
       filtered = filtered.filter(order => order.status === filterStatus);
     }
-    
-    // Filter by search term (orderNumber, customerName, or products)
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(order => 
@@ -41,12 +41,9 @@ const OrderManagement: React.FC = () => {
         order.items.some(item => item.name.toLowerCase().includes(term))
       );
     }
-    
-    // Filter by date range
     if (dateFilter !== 'all') {
       const now = new Date();
       let startDate = new Date();
-      
       switch (dateFilter) {
         case 'today': {
           startDate.setHours(0, 0, 0, 0);
@@ -94,17 +91,12 @@ const OrderManagement: React.FC = () => {
           break;
         }
         default:
-          // No additional filtering for 'all'
           break;
       }
     }
-    
-    // Filter by customer
     if (customerFilter !== 'all') {
       filtered = filtered.filter(order => order.franchiseeId === customerFilter);
     }
-    
-    // Sort orders
     switch (sortBy) {
       case 'date-asc':
         filtered.sort((a, b) => new Date(a.orderDate).getTime() - new Date(b.orderDate).getTime());
@@ -122,12 +114,20 @@ const OrderManagement: React.FC = () => {
         filtered.sort((a, b) => a.status.localeCompare(b.status));
         break;
       default:
-        // Default sort by most recent
         filtered.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
     }
-    
     return filtered;
   }, [orders, filterStatus, searchTerm, dateFilter, customerFilter, sortBy]);
+
+  // Calcular las órdenes a mostrar en la página actual (10 últimas por defecto)
+  const totalOrders = processedOrders.length;
+  const lastPage = Math.max(1, Math.ceil(totalOrders / ordersPerPage));
+  const paginatedOrders = useMemo(() => {
+    // Mostrar las 10 últimas órdenes en la primera página
+    const start = (currentPage - 1) * ordersPerPage;
+    const end = start + ordersPerPage;
+    return processedOrders.slice(start, end);
+  }, [processedOrders, currentPage]);
 
   // Calculate statistics
   const statistics = useMemo(() => {
@@ -495,9 +495,10 @@ const OrderManagement: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <div className="divide-y divide-gray-200">
-                {processedOrders.map((order, index) => (
-                  <div key={order.id} className={`p-6 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
+              <>
+                <div className="divide-y divide-gray-200">
+                  {paginatedOrders.map((order, index) => (
+                    <div key={order.id} className={`p-6 ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}>
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -723,7 +724,18 @@ const OrderManagement: React.FC = () => {
                     )}
                   </div>
                 ))}
-              </div>
+                </div>
+                {/* Paginador */}
+                <div className="flex justify-center py-6">
+                  <Pagination
+                    totalItems={processedOrders.length}
+                    itemsPerPage={ordersPerPage}
+                    currentPage={currentPage}
+                    onPageChange={setCurrentPage}
+                    itemName="orders"
+                  />
+                </div>
+              </>
             )}
           </div>
         </>

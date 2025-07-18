@@ -73,7 +73,8 @@ const handleSubmit = async (e: React.FormEvent) => {
         productId: item.product.id,
         name: item.product.name,
         quantity: item.quantity,
-        price: item.product.price
+        price: item.product.price,
+        image: item.product.images?.[0] || null
       })),
       paymentMethod: {
         type: 'Credit Card',

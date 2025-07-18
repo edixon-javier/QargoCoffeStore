@@ -19,12 +19,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       },
       {
         productId: mockProducts[1].id,
         name: mockProducts[1].name,
         quantity: 2,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -78,12 +80,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[1].name,
         quantity: 3,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       },
       {
         productId: mockProducts[6].id,
         name: mockProducts[6].name,
         quantity: 2,
         price: mockProducts[6].price,
+        image: mockProducts[6].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -138,18 +142,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[4].name,
         quantity: 1,
         price: mockProducts[4].price,
+        image: mockProducts[4].images?.[0] || undefined,
       },
       {
         productId: mockProducts[7].id,
         name: mockProducts[7].name,
         quantity: 2,
         price: mockProducts[7].price,
+        image: mockProducts[7].images?.[0] || undefined,
       },
       {
         productId: mockProducts[8].id,
         name: mockProducts[8].name,
         quantity: 1,
         price: mockProducts[8].price,
+        image: mockProducts[8].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -204,6 +211,7 @@ export const mockOrders: Order[] = [
         name: mockProducts[3].name,
         quantity: 1,
         price: mockProducts[3].price,
+        image: mockProducts[3].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -258,12 +266,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[9].name,
         quantity: 2,
         price: mockProducts[9].price,
+        image: mockProducts[9].images?.[0] || undefined,
       },
       {
         productId: mockProducts[10].id,
         name: mockProducts[10].name,
         quantity: 3,
         price: mockProducts[10].price,
+        image: mockProducts[10].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -318,12 +328,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[1].name,
         quantity: 2,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       },
       {
         productId: mockProducts[4].id,
         name: mockProducts[4].name,
         quantity: 1,
         price: mockProducts[4].price,
+        image: mockProducts[4].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -378,18 +390,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       },
       {
         productId: mockProducts[6].id,
         name: mockProducts[6].name,
         quantity: 2,
         price: mockProducts[6].price,
+        image: mockProducts[6].images?.[0] || undefined,
       },
       {
         productId: mockProducts[8].id,
         name: mockProducts[8].name,
         quantity: 1,
         price: mockProducts[8].price,
+        image: mockProducts[8].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -445,12 +460,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[2].name,
         quantity: 2,
         price: mockProducts[2].price,
+        image: mockProducts[2].images?.[0] || undefined,
       },
       {
         productId: mockProducts[3].id,
         name: mockProducts[3].name,
         quantity: 1,
         price: mockProducts[3].price,
+        image: mockProducts[3].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -503,6 +520,7 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       },
     ],
     paymentMethod: {
@@ -554,12 +572,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[4].name,
         quantity: 3,
         price: mockProducts[4].price,
+        image: mockProducts[4].images?.[0] || undefined,
       },
       {
         productId: mockProducts[5].id,
         name: mockProducts[5].name,
         quantity: 1,
         price: mockProducts[5].price,
+        image: mockProducts[5].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -614,12 +634,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[3].name,
         quantity: 1,
         price: mockProducts[3].price,
+        image: mockProducts[3].images?.[0] || undefined,
       },
       {
         productId: mockProducts[9].id,
         name: mockProducts[9].name,
         quantity: 2,
         price: mockProducts[9].price,
+        image: mockProducts[9].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -674,12 +696,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[7].name,
         quantity: 3,
         price: mockProducts[7].price,
+        image: mockProducts[7].images?.[0] || undefined,
       },
       {
         productId: mockProducts[11].id,
         name: mockProducts[11].name,
         quantity: 1,
         price: mockProducts[11].price,
+        image: mockProducts[11].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -734,18 +758,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       },
       {
         productId: mockProducts[1].id,
         name: mockProducts[1].name,
         quantity: 1,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       },
       {
         productId: mockProducts[2].id,
         name: mockProducts[2].name,
         quantity: 1,
         price: mockProducts[2].price,
+        image: mockProducts[2].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -799,12 +826,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[5].name,
         quantity: 2,
         price: mockProducts[5].price,
+        image: mockProducts[5].images?.[0] || undefined,
       },
       {
         productId: mockProducts[6].id,
         name: mockProducts[6].name,
         quantity: 1,
         price: mockProducts[6].price,
+        image: mockProducts[6].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -857,18 +886,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[4].name,
         quantity: 1,
         price: mockProducts[4].price,
+        image: mockProducts[4].images?.[0] || undefined,
       },
       {
         productId: mockProducts[8].id,
         name: mockProducts[8].name,
         quantity: 2,
         price: mockProducts[8].price,
+        image: mockProducts[8].images?.[0] || undefined,
       },
       {
         productId: mockProducts[12].id,
         name: mockProducts[12].name,
         quantity: 1,
         price: mockProducts[12].price,
+        image: mockProducts[12].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -921,12 +953,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[3].name,
         quantity: 1,
         price: mockProducts[3].price,
+        image: mockProducts[3].images?.[0] || undefined,
       },
       {
         productId: mockProducts[7].id,
         name: mockProducts[7].name,
         quantity: 1,
         price: mockProducts[7].price,
+        image: mockProducts[7].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -978,18 +1012,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[1].name,
         quantity: 2,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       },
       {
         productId: mockProducts[5].id,
         name: mockProducts[5].name,
         quantity: 1,
         price: mockProducts[5].price,
+        image: mockProducts[5].images?.[0] || undefined,
       },
       {
         productId: mockProducts[10].id,
         name: mockProducts[10].name,
         quantity: 3,
         price: mockProducts[10].price,
+        image: mockProducts[10].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -1041,6 +1078,7 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -1095,12 +1133,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[6].name,
         quantity: 2,
         price: mockProducts[6].price,
+        image: mockProducts[6].images?.[0] || undefined,
       },
       {
         productId: mockProducts[7].id,
         name: mockProducts[7].name,
         quantity: 2,
         price: mockProducts[7].price,
+        image: mockProducts[7].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -1155,18 +1195,21 @@ export const mockOrders: Order[] = [
         name: mockProducts[1].name,
         quantity: 1,
         price: mockProducts[1].price,
+        image: mockProducts[1].images?.[0] || undefined,
       },
       {
         productId: mockProducts[4].id,
         name: mockProducts[4].name,
         quantity: 1,
         price: mockProducts[4].price,
+        image: mockProducts[4].images?.[0] || undefined,
       },
       {
         productId: mockProducts[9].id,
         name: mockProducts[9].name,
         quantity: 1,
         price: mockProducts[9].price,
+        image: mockProducts[9].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -1221,12 +1264,14 @@ export const mockOrders: Order[] = [
         name: mockProducts[2].name,
         quantity: 2,
         price: mockProducts[2].price,
+        image: mockProducts[2].images?.[0] || undefined,
       },
       {
         productId: mockProducts[5].id,
         name: mockProducts[5].name,
         quantity: 1,
         price: mockProducts[5].price,
+        image: mockProducts[5].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
@@ -1281,24 +1326,28 @@ export const mockOrders: Order[] = [
         name: mockProducts[0].name,
         quantity: 1,
         price: mockProducts[0].price,
+        image: mockProducts[0].images?.[0] || undefined,
       },
       {
         productId: mockProducts[3].id,
         name: mockProducts[3].name,
         quantity: 1,
         price: mockProducts[3].price,
+        image: mockProducts[3].images?.[0] || undefined,
       },
       {
         productId: mockProducts[6].id,
         name: mockProducts[6].name,
         quantity: 1,
         price: mockProducts[6].price,
+        image: mockProducts[6].images?.[0] || undefined,
       },
       {
         productId: mockProducts[9].id,
         name: mockProducts[9].name,
         quantity: 1,
         price: mockProducts[9].price,
+        image: mockProducts[9].images?.[0] || undefined,
       }
     ],
     paymentMethod: {
