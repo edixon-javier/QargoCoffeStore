@@ -1,1 +1,0 @@
-import{j as r}from"./index-UqJBXdYY.js";import{F as t}from"./FranchiseeForm-PNGOF_Fm.js";import"./vendor-DPNQA5jQ.js";import"./arrow-left-CATiLkq5.js";import"./store-DkIVz5xA.js";import"./credit-card-hDoelIeH.js";import"./save-Cap5XFia.js";const n=()=>r.jsx(t,{mode:"edit"});export{n as default};

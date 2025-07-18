@@ -1,0 +1,6 @@
+import{b as t,j as e,C as o}from"./index-DDry2z9x.js";import{B as s}from"./Button-ddf6vtKq.js";import"./vendor-DPNQA5jQ.js";import"./utils-PDxtfP7g.js";/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const a=t("Home",[["path",{d:"m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",key:"y5dka4"}],["polyline",{points:"9 22 9 12 15 12 15 22",key:"e2us08"}]]),l=()=>e.jsxs("div",{className:"min-h-[70vh] flex flex-col items-center justify-center py-12 px-4 text-center",children:[e.jsx(o,{className:"h-20 w-20 text-primary-300 mb-6",strokeWidth:1.5}),e.jsx("h1",{className:"text-5xl font-serif mb-4",children:"404"}),e.jsx("h2",{className:"text-2xl font-medium mb-6",children:"Page Not Found"}),e.jsx("p",{className:"text-secondary-600 max-w-md mb-8",children:"Sorry, the page you are looking for doesn't exist or has been moved. You can return to the catalog to continue exploring our products."}),e.jsx("div",{className:"flex flex-wrap gap-4 justify-center",children:e.jsx(s,{variant:"primary",leftIcon:e.jsx(a,{size:18}),onClick:()=>window.location.href="/",children:"Go to Catalog"})})]});export{l as default};
