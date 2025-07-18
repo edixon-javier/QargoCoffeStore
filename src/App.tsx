@@ -1,11 +1,10 @@
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { OrderStatusProvider } from './contexts/orderStatus';
-import { initializeMockOrders } from './mockOrders';
-import { initializeMockFranchisees } from './mockData/franchiseesData';
+
 
 // Lazy-loaded pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -38,16 +37,7 @@ const AdminProductDetailPage = lazy(() => import('./pages/admin/ProductDetailPag
 const NewProductPage = lazy(() => import('./pages/admin/NewProductPage'));
 const EditProductPage = lazy(() => import('./pages/admin/EditProductPage'));
 
-
 function App() {
-  // Inicializar datos mock al cargar la aplicación
-  useEffect(() => {
-    // Inicializar datos de órdenes y franquiciados
-    initializeMockOrders();
-    initializeMockFranchisees();
-    console.log('Datos mock inicializados en App.tsx');
-  }, []);
-
   return (
     <OrderStatusProvider>
       <Suspense fallback={<LoadingSpinner />}>
@@ -109,5 +99,4 @@ function App() {
     </OrderStatusProvider>
   );
 }
-
 export default App;

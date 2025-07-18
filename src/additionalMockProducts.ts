@@ -137,7 +137,7 @@ const createAdditionalProducts = (
     category: categories[2],
     supplier: suppliers[1],
     stock: 15,
-    minOrderQuantity: 1,
+    minOrderQuantity: 4,
     specifications: {
       Power: "150W",
       "Hopper Capacity": "250g",
@@ -283,7 +283,7 @@ const createAdditionalProducts = (
     category: categories[2],
     supplier: suppliers[1],
     stock: 55,
-    minOrderQuantity: 2,
+    minOrderQuantity: 4,
     specifications: {
       Material: "Stainless steel",
       Quantity: "4 filters",
@@ -342,7 +342,7 @@ const createAdditionalProducts = (
     category: categories[2],
     supplier: suppliers[1],
     stock: 25,
-    minOrderQuantity: 2,
+    minOrderQuantity: 4,
     specifications: {
       Material: "Borosilicate glass and stainless steel",
       Capacity: "1L (8 cups)",
