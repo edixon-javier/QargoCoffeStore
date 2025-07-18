@@ -1,1 +1,0 @@
-import{j as r}from"./index-CL7_2bYV.js";import{P as o}from"./ProductForm-CM8jofiE.js";import"./vendor-DPNQA5jQ.js";import"./mockSuppliers-Buh3I-tH.js";import"./arrow-left-CrzQgPoT.js";import"./trash-2-RF3kJHW8.js";import"./plus-B0rKwXo8.js";import"./save-Dvva_04h.js";const c=()=>r.jsx(o,{mode:"create"});export{c as default};
