@@ -58,10 +58,10 @@ const LandingPage: React.FC = () => {
             className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 text-white/90">
-              Professional Equipment and Premium Coffee for Your Business
+              Qargo Coffee - Marketplace
             </h1>
             <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl">
-              At Qargo Connet we offer everything you need to equip and supply your cafe or business with high-quality products, from the best brands at competitive prices.
+              The Qargo Coffee Marketplace is a curated platform designed to streamline sourcing and supply for Qargo Coffee locations. From essential café equipment and branded merchandise to grab-and-go food items and exclusive product collaborations, the Marketplace connects franchisees and store managers with trusted vendors—all in one place.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
