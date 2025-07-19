@@ -9,7 +9,7 @@ import Button from '../components/ui/Button';
 
 // Mock data
 const franchises = [
-  { id: 1, name: 'Prestige Cafe', location: 'Miami, FL', status: 'Active' },
+  { id: 1, name: 'Matari Coffee Co.', location: 'Miami, FL', status: 'Active' },
   { id: 2, name: 'South Franchise', location: 'Orlando, FL', status: 'Active' },
   { id: 3, name: 'East Franchise', location: 'Tampa, FL', status: 'Pending' },
 ];

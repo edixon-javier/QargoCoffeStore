@@ -4,15 +4,15 @@ import { User, BillingInfo } from '../lib/types';
 export const mockFranchisees: (User & { billingInfo?: BillingInfo, status: string, orders: number })[] = [
   {
     id: "f1",
-    name: "Prestige Cafe",
-    email: "dearborn-22022@qargocoffee.com",
+    name: "Matari Coffee Co.",
+    email: "QargoConnect@qargocoffee.com",
     role: "franchisee",
     status: "active",
     orders: 132,
     createdAt: "2023-01-15T08:00:00Z",
     billingInfo: {
-      companyName: "Prestige Cafe",
-      dba: "Qargo Connect Dearborne",
+      companyName: "Matari Coffee Co.",
+      dba: "Qargo Connect ",
       billingAddress: {
         street: "22022 Michigan Ave Unit C",
         city: "Dearborn",
@@ -25,7 +25,7 @@ export const mockFranchisees: (User & { billingInfo?: BillingInfo, status: strin
         state: "MI",
         zipCode: "48124-2889"
       },
-      email: "dearborn-22022@qargocoffee.com",
+      email: "QargoConnect@qargocoffee.com",
       phone: "(734) 686-1192",
       paymentMethod: {
         type: 'credit_card',

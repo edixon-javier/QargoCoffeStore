@@ -3,11 +3,11 @@ import { mockOrders } from './mockOrders';
 import { mockFranchisees } from './mockData/franchiseesData';
 
 export const initializeMockData = () => {
-  // Inicializar franquiciado por defecto (Prestige Cafe)
+  // Inicializar franquiciado por defecto (Matari Coffee Co.)
   const selectedStore = localStorage.getItem('selectedStore');
   if (!selectedStore) {
-    // Busca el franquiciado Prestige Cafe
-    const prestigeCafe = mockFranchisees.find(f => f.name === 'Prestige Cafe');
+    // Busca el franquiciado Matari Coffee Co.
+    const prestigeCafe = mockFranchisees.find(f => f.name === 'Matari Coffee Co.');
     if (prestigeCafe) {
       localStorage.setItem('selectedStore', JSON.stringify(prestigeCafe));
     }

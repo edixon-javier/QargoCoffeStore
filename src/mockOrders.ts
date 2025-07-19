@@ -8,11 +8,11 @@ const randomDate = (start: Date, end: Date) => {
 
 // Generamos órdenes de prueba
 export const mockOrders: Order[] = [
-  // Órdenes de Prestige Cafe (20 órdenes simuladas con datos realistas)
+  // Órdenes de Matari Coffee Co. (20 órdenes simuladas con datos realistas)
   {
     id: 'ORD-001-pc1',
     orderNumber: 'ORD-12345',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[0].id,
@@ -44,8 +44,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-1234567890',
     total: mockProducts[0].price + (mockProducts[1].price * 2),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -58,7 +58,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -73,7 +73,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-002-pc2',
     orderNumber: 'ORD-23456',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[1].id,
@@ -105,8 +105,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-9876543210',
     total: (mockProducts[1].price * 3) + (mockProducts[6].price * 2),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -119,7 +119,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -135,7 +135,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-003-pc3',
     orderNumber: 'ORD-34567',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[4].id,
@@ -174,8 +174,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-4567890123',
     total: mockProducts[4].price + (mockProducts[7].price * 2) + mockProducts[8].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -188,7 +188,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -204,7 +204,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-004-pc4',
     orderNumber: 'ORD-45678',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[3].id,
@@ -229,8 +229,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-5678901234',
     total: mockProducts[3].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -243,7 +243,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -259,7 +259,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-005-pc5',
     orderNumber: 'ORD-56789',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[9].id,
@@ -291,8 +291,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-6789012345',
     total: (mockProducts[9].price * 2) + (mockProducts[10].price * 3),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -305,7 +305,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -321,7 +321,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-006-pc6',
     orderNumber: 'ORD-67890',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[1].id,
@@ -353,8 +353,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-7890123456',
     total: (mockProducts[1].price * 2) + mockProducts[4].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -367,7 +367,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -383,7 +383,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-007-pc7',
     orderNumber: 'ORD-78901',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[0].id,
@@ -422,8 +422,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-8901234567',
     total: mockProducts[0].price + (mockProducts[6].price * 2) + mockProducts[8].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -436,7 +436,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -561,11 +561,11 @@ export const mockOrders: Order[] = [
     franchiseeId: 'f3',
   },
   
-  // Continuación de órdenes para Prestige Cafe
+  // Continuación de órdenes para Matari Coffee Co.
   {
     id: 'ORD-008-pc8',
     orderNumber: 'ORD-89012',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[4].id,
@@ -597,8 +597,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-9012345678',
     total: (mockProducts[4].price * 3) + mockProducts[5].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -611,7 +611,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -627,7 +627,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-009-pc9',
     orderNumber: 'ORD-90123',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[3].id,
@@ -659,8 +659,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-0123456789',
     total: mockProducts[3].price + (mockProducts[9].price * 2),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -673,7 +673,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -689,7 +689,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-010-pc10',
     orderNumber: 'ORD-01234',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[7].id,
@@ -721,8 +721,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-1234567890',
     total: (mockProducts[7].price * 3) + mockProducts[11].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -735,7 +735,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -751,7 +751,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-011-pc11',
     orderNumber: 'ORD-12345',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[0].id,
@@ -789,8 +789,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-2345678901',
     total: mockProducts[0].price + mockProducts[1].price + mockProducts[2].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -803,7 +803,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -819,7 +819,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-012-pc12',
     orderNumber: 'ORD-23456',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[5].id,
@@ -849,8 +849,8 @@ export const mockOrders: Order[] = [
     trackingNumber: '',
     total: (mockProducts[5].price * 2) + mockProducts[6].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -863,7 +863,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -879,7 +879,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-013-pc13',
     orderNumber: 'ORD-34567',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[4].id,
@@ -915,8 +915,8 @@ export const mockOrders: Order[] = [
     trackingNumber: '',
     total: mockProducts[4].price + (mockProducts[8].price * 2) + mockProducts[12].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -929,7 +929,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -942,11 +942,11 @@ export const mockOrders: Order[] = [
     franchiseeId: 'f1',
   },
   
-  // Órdenes adicionales para Prestige Cafe
+  // Órdenes adicionales para Matari Coffee Co.
   {
     id: 'ORD-014-pc14',
     orderNumber: 'ORD-45678',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[3].id,
@@ -975,8 +975,8 @@ export const mockOrders: Order[] = [
     trackingNumber: '',
     total: mockProducts[3].price + mockProducts[7].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -989,7 +989,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1005,7 +1005,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-015-pc15',
     orderNumber: 'ORD-56789',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[1].id,
@@ -1041,8 +1041,8 @@ export const mockOrders: Order[] = [
     trackingNumber: '',
     total: (mockProducts[1].price * 2) + mockProducts[5].price + (mockProducts[10].price * 3),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1055,7 +1055,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1071,7 +1071,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-016-pc16',
     orderNumber: 'ORD-67890',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[0].id,
@@ -1096,8 +1096,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-5678901234',
     total: mockProducts[0].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1110,7 +1110,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1126,7 +1126,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-017-pc17',
     orderNumber: 'ORD-78901',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[6].id,
@@ -1158,8 +1158,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-6789012345',
     total: (mockProducts[6].price * 2) + (mockProducts[7].price * 2),
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1172,7 +1172,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1188,7 +1188,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-018-pc18',
     orderNumber: 'ORD-89012',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[1].id,
@@ -1227,8 +1227,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-7890123456',
     total: mockProducts[1].price + mockProducts[4].price + mockProducts[9].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1241,7 +1241,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1257,7 +1257,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-019-pc19',
     orderNumber: 'ORD-90123',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[2].id,
@@ -1289,8 +1289,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-8901234567',
     total: (mockProducts[2].price * 2) + mockProducts[5].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1303,7 +1303,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',
@@ -1319,7 +1319,7 @@ export const mockOrders: Order[] = [
   {
     id: 'ORD-020-pc20',
     orderNumber: 'ORD-01234',
-    customerName: 'Prestige Cafe',
+    customerName: 'Matari Coffee Co.',
     items: [
       {
         productId: mockProducts[0].id,
@@ -1365,8 +1365,8 @@ export const mockOrders: Order[] = [
     trackingNumber: 'TRACK-9012345678',
     total: mockProducts[0].price + mockProducts[3].price + mockProducts[6].price + mockProducts[9].price,
     billingInfo: {
-      companyName: 'Prestige Cafe',
-      dba: 'Qargo Connect Dearborne',
+      companyName: 'Matari Coffee Co.',
+      dba: 'Qargo Connect',
       billingAddress: {
         street: '22022 Michigan Ave Unit C',
         city: 'Dearborn',
@@ -1379,7 +1379,7 @@ export const mockOrders: Order[] = [
         state: 'MI',
         zipCode: '48124-2889',
       },
-      email: 'dearborn-22022@qargocoffee.com',
+      email: 'QargoConnect@qargocoffee.com',
       phone: '(734) 686-1192',
       paymentMethod: {
         type: 'credit_card',

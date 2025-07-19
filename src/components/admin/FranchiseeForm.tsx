@@ -8,13 +8,13 @@ import LoadingSpinner from '../ui/LoadingSpinner';
 const mockFranchisees: (User & { billingInfo?: BillingInfo })[] = [
   {
     id: "f1",
-    name: "Prestige Cafe",
-    email: "dearborn-22022@qargocoffee.com",
+    name: "Matari Coffee Co.",
+    email: "QargoConnect@qargocoffee.com",
     role: "franchisee",
     createdAt: "2023-01-15T08:00:00Z",
     billingInfo: {
-      companyName: "Prestige Cafe",
-      dba: "Qargo Connect Dearborne",
+      companyName: "Matari Coffee Co.",
+      dba: "Qargo Connect ",
       billingAddress: {
         street: "22022 Michigan Ave Unit C",
         city: "Dearborn",
@@ -27,7 +27,7 @@ const mockFranchisees: (User & { billingInfo?: BillingInfo })[] = [
         state: "MI",
         zipCode: "48124-2889"
       },
-      email: "dearborn-22022@qargocoffee.com",
+      email: "QargoConnect@qargocoffee.com",
       phone: "(734) 686-1192",
       paymentMethod: {
         type: 'credit_card',

@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const [userType, setUserType] = useState<'franchisee' | 'admin'>('franchisee');
   const [formData, setFormData] = useState({
-    email: userType === 'franchisee' ? 'dearborn-22022@qargocoffee.com' : 'admin@tienda.com',
+    email: userType === 'franchisee' ? 'QargoConnect@qargocoffee.com' : 'admin@tienda.com',
     password: userType === 'franchisee' ? '123456' : 'admin123',
     remember: false
   });
@@ -77,7 +77,7 @@ const LoginPage: React.FC = () => {
                   setUserType('franchisee');
                   setFormData(prev => ({
                     ...prev,
-                    email: 'dearborn-22022@qargocoffee.com',
+                    email: 'QargoConnect@qargocoffee.com',
                     password: '123456'
                   }));
                 }}

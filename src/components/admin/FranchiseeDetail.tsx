@@ -9,13 +9,13 @@ import { formatCurrency } from '../../lib/utils';
 const mockFranchisees: (User & { billingInfo?: BillingInfo })[] = [
   {
     id: "f1",
-    name: "Prestige Cafe",
-    email: "dearborn-22022@qargocoffee.com",
+    name: "Matari Coffee Co.",
+    email: "QargoConnect@qargocoffee.com",
     role: "franchisee",
     createdAt: "2023-01-15T08:00:00Z",
     billingInfo: {
-      companyName: "Prestige Cafe",
-      dba: "Qargo Connect Dearborne",
+      companyName: "Matari Coffee Co.",
+      dba: "Qargo Connect ",
       billingAddress: {
         street: "22022 Michigan Ave Unit C",
         city: "Dearborn",
@@ -28,7 +28,7 @@ const mockFranchisees: (User & { billingInfo?: BillingInfo })[] = [
         state: "MI",
         zipCode: "48124-2889"
       },
-      email: "dearborn-22022@qargocoffee.com",
+      email: "QargoConnect@qargocoffee.com",
       phone: "(734) 686-1192",
       paymentMethod: {
         type: 'credit_card',
@@ -46,7 +46,7 @@ const mockOrders = [
   {
     id: "ord-001",
     userId: "f1",
-    customerName: "Prestige Cafe",
+    customerName: "Matari Coffee Co.",
     orderNumber: "ORD-2023-001",
     status: "delivered",
     items: [
@@ -59,7 +59,7 @@ const mockOrders = [
   {
     id: "ord-002",
     userId: "f1",
-    customerName: "Prestige Cafe",
+    customerName: "Matari Coffee Co.",
     orderNumber: "ORD-2023-008",
     status: "processing",
     items: [
@@ -72,7 +72,7 @@ const mockOrders = [
   {
     id: "ord-003",
     userId: "f1",
-    customerName: "Prestige Cafe",
+    customerName: "Matari Coffee Co.",
     orderNumber: "ORD-2023-012",
     status: "pending",
     items: [

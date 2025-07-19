@@ -8,8 +8,8 @@ import type { BillingInfo } from '../lib/types';
 
 // Mock data for Franchisee Nort
 const mockFranchiseeData: BillingInfo = {
-  companyName: "Prestige Cafe",
-  dba: "Qargo Connect Dearborne",
+  companyName: "Matari Coffee Co.",
+  dba: "Qargo Connect",
   billingAddress: {
     street: "22022 Michigan Ave Unit C",
     city: "Dearborn",
@@ -22,7 +22,7 @@ const mockFranchiseeData: BillingInfo = {
     state: "MI",
     zipCode: "48124-2889"
   },
-  email: "dearborn-22022@qargocoffee.com",
+  email: "QargoConnect@qargocoffee.com",
   phone: "(734) 686-1192",
   paymentMethod: {
     type: 'credit_card',
