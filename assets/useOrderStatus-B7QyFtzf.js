@@ -1,0 +1,1 @@
+import{r}from"./vendor-DPNQA5jQ.js";import{O as e}from"./index-CMzwpkaO.js";function u(){const t=r.useContext(e);if(!t)throw new Error("useOrderStatus must be used within an OrderStatusProvider");return t}export{u};
